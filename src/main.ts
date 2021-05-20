@@ -1,5 +1,9 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
+import fs from "fs";
+import { Level } from "elmajs";
+
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
+declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -12,6 +16,10 @@ const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
+    webPreferences: {
+      nodeIntegration: false,
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+    },
   });
 
   // and load the index.html of the app.
@@ -45,3 +53,19 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+ipcMain.on("read-lev-folder-sync", (event, path) => {
+  const levFolder = fs.readdirSync(path);
+  event.returnValue = levFolder;
+});
+
+ipcMain.on("read-level-file-sync", (event, path) => {
+  const levelFile = fs.readFileSync(path);
+  event.returnValue = levelFile;
+});
+
+ipcMain.on("read-level", (event, path) => {
+  const levelFile = fs.readFileSync(path);
+  const level = Level.from(levelFile);
+  event.returnValue = JSON.stringify(level);
+});

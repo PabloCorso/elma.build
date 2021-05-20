@@ -1,0 +1,15 @@
+.app {
+  height: 100%;
+  display: flex;
+}
+
+.stage {
+  border: 1px dashed green;
+}
+
+.stage-container {
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
