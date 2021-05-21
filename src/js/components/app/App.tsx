@@ -45,7 +45,7 @@ const App: React.FC = () => {
   };
 
   const [templateName, setTemplateName] = useState("");
-  const handleCreateTemplate = (event: any) => {
+  const handleCreateTemplate = (event: React.FormEvent) => {
     event.preventDefault();
     if (templateName) {
       window.electron.saveTemplate({ name: templateName, blocks });
