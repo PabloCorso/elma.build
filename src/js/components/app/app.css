@@ -1,15 +1,16 @@
 .app {
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-areas: "levels editor";
+  grid-template-columns: 200px 1fr;
 }
 
-.stage {
-  border: 1px dashed green;
+.app__level {
+  grid-area: levels;
 }
 
-.stage-container {
+.app__stage {
+  grid-area: editor;
+  position: relative;
   height: 100%;
-  width: 100%;
-  flex: 1;
-  min-height: 0;
 }
