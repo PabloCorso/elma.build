@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Stage, Layer, Rect } from "react-konva";
+import { Stage, Layer, Rect, RegularPolygon } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
 import { LevelShape, PolygonShape } from "../shapes";
 import { useEventListener } from "../../hooks";
+
+enum ObjectType {
+  Exit = 1,
+  Apple = 2,
+  Killer = 3,
+  Start = 4,
+}
+
+type ShapeNode = Konva.Node & {
+  atrrs: Konva.NodeConfig & { selectable: boolean };
+};
 
 type Bounds = { x1: number; y1: number; x2: number; y2: number };
 type Props = { level: Level; width: number; height: number };
@@ -77,7 +88,10 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
 
     setSelection((state) => ({ ...state, visible: false }));
 
-    const shapes = event.target.getStage().find("Line").toArray();
+    const shapes = event.target
+      .getStage()
+      .find((node: ShapeNode) => node.attrs.selectable)
+      .toArray();
     const box = event.target
       .getStage()
       .findOne(".selection-rect")
@@ -154,7 +168,7 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
         <Layer>
           <LevelShape name={level.name}>
             {level.polygons.map((polygon, index) => {
-              const id = `${level.name}_${index}`;
+              const id = `${level.name}_polygon_${index}`;
               const isSelected = selectedNodes.some(
                 (node) => node.attrs.id === id
               );
@@ -169,6 +183,29 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
                 />
               );
             })}
+            {level.objects.map((levelObject, index) => {
+              const id = `${level.name}_object_${index}`;
+              const isSelected = selectedNodes.some(
+                (node) => node.attrs.id === id
+              );
+              return (
+                <RegularPolygon
+                  key={id}
+                  id={id}
+                  x={levelObject.position.x}
+                  y={levelObject.position.y}
+                  radius={0.5}
+                  sides={10}
+                  stroke={
+                    isSelected
+                      ? "yellow"
+                      : getObjectTypeStroke(levelObject.type)
+                  }
+                  strokeWidth={1 / stageScale}
+                  selectable={true}
+                />
+              );
+            })}
           </LevelShape>
           <Rect
             stroke="blue"
@@ -180,6 +217,20 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
       </Stage>
     </div>
   );
+};
+
+const getObjectTypeStroke = (type: ObjectType) => {
+  switch (type) {
+    case ObjectType.Apple:
+      return "red";
+    case ObjectType.Exit:
+      return "white";
+    case ObjectType.Start:
+      return "green";
+    case ObjectType.Killer:
+    default:
+      return "black";
+  }
 };
 
 const getLevelBounds = (level: Level): Bounds => {

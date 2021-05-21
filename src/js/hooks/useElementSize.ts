@@ -10,10 +10,7 @@ function useElementSize<T extends HTMLElement>(
     setSize(target.current.getBoundingClientRect());
   }, [target]);
 
-  useResizeObserver(target, (entry) => {
-    console.log(entry.contentRect);
-    setSize(entry.contentRect);
-  });
+  useResizeObserver(target, (entry) => setSize(entry.contentRect));
   return size;
 }
 
