@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Stage, Layer, Rect, RegularPolygon } from "react-konva";
 import Konva from "konva";
-import { Level } from "elmajs";
+import { Level, Polygon, ElmaObject } from "elmajs";
 import { LevelShape, PolygonShape } from "../shapes";
 import { useEventListener } from "../../hooks";
 
@@ -12,14 +12,33 @@ enum ObjectType {
   Start = 4,
 }
 
+export type BlockElement = {
+  type?: "level-object" | "polygon";
+  data?: Polygon | ElmaObject;
+};
+
 type ShapeNode = Konva.Node & {
-  atrrs: Konva.NodeConfig & { selectable: boolean };
+  attrs: Konva.NodeConfig & {
+    selectable?: boolean;
+    element?: BlockElement;
+  };
 };
 
 type Bounds = { x1: number; y1: number; x2: number; y2: number };
-type Props = { level: Level; width: number; height: number };
 
-const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
+type Props = {
+  level: Level;
+  width: number;
+  height: number;
+  onCreateBlock: (elements: BlockElement[]) => void;
+};
+
+const LevelEditor: React.FC<Props> = ({
+  level,
+  width,
+  height,
+  onCreateBlock,
+}) => {
   const [stageScale, setStageScale] = useState(8);
   const [stageX, setStageX] = useState(0);
   const [stageY, setStageY] = useState(0);
@@ -39,7 +58,7 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
     [level]
   );
 
-  const [selectedNodes, setSelectedNodes] = useState<Konva.Node[]>([]);
+  const [selectedNodes, setSelectedNodes] = useState<ShapeNode[]>([]);
 
   const [selectionRectProps, setSelectionRectProps] =
     useState<Konva.RectConfig>({});
@@ -98,7 +117,7 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
       .getClientRect();
     const selected = shapes.filter((shape) =>
       Konva.Util.haveIntersection(box, shape.getClientRect())
-    );
+    ) as ShapeNode[];
 
     setSelectedNodes(selected);
   };
@@ -112,7 +131,7 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
     moveStage(stageX + x, stageY + y);
   };
 
-  const onMoveStage = (event: KeyboardEvent) => {
+  const handleNavigateStage = (event: KeyboardEvent) => {
     if (event.key === "ArrowLeft") {
       translateStage(50, 0);
     } else if (event.key === "ArrowRight") {
@@ -124,7 +143,16 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
     }
   };
 
-  useEventListener("keydown", onMoveStage);
+  const handleCreateBlock = (event: KeyboardEvent) => {
+    if (event.key === "Enter" && selectedNodes.length > 0) {
+      const blockElements = selectedNodes.map((node) => node.attrs.element);
+      setSelectedNodes([]);
+      onCreateBlock(blockElements);
+    }
+  };
+
+  useEventListener("keydown", handleNavigateStage);
+  useEventListener("keydown", handleCreateBlock);
 
   const handleWheel = (event: Konva.KonvaEventObject<WheelEvent>) => {
     event.evt.preventDefault();
@@ -203,6 +231,7 @@ const LevelEditor: React.FC<Props> = ({ level, width, height }) => {
                   }
                   strokeWidth={1 / stageScale}
                   selectable={true}
+                  element={{ type: "level-object", data: levelObject }}
                 />
               );
             })}

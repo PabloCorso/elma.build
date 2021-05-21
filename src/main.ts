@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import fs from "fs";
 import { Level } from "elmajs";
+import { Template } from "./preload";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -54,18 +55,27 @@ app.on("activate", () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-ipcMain.on("read-lev-folder-sync", (event, path) => {
-  const levFolder = fs.readdirSync(path);
+const levFolderPath =
+  "C:/Users/USER/Documents/Source/elastomania/elma.build/lev";
+const templatesFolderPath =
+  "C:/Users/USER/Documents/Source/elastomania/elma.build/templates";
+
+ipcMain.on("read-all-levels", (event) => {
+  const levFolder = fs.readdirSync(levFolderPath);
   event.returnValue = levFolder;
 });
 
-ipcMain.on("read-level-file-sync", (event, path) => {
-  const levelFile = fs.readFileSync(path);
-  event.returnValue = levelFile;
-});
-
-ipcMain.on("read-level", (event, path) => {
-  const levelFile = fs.readFileSync(path);
+ipcMain.on("read-level", (event, name: string) => {
+  const levelFile = fs.readFileSync(`${levFolderPath}/${name}`);
   const level = Level.from(levelFile);
   event.returnValue = JSON.stringify(level);
+});
+
+ipcMain.on("save-template", (event, template: string) => {
+  const parsedTemplate: Template = JSON.parse(template);
+  fs.writeFileSync(
+    `${templatesFolderPath}/${parsedTemplate.name}.txt`,
+    template
+  );
+  event.returnValue = true;
 });

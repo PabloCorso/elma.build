@@ -18,6 +18,7 @@ const PolygonShape: React.FC<Props> = ({
       closed
       stroke={stroke}
       selectable
+      element={{ type: "polygon", data: polygon }}
       {...props}
     ></Line>
   );
