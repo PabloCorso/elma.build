@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { List, ListItem, ListItemText } from "@material-ui/core";
 import { Level } from "elmajs";
 import LevelEditor from "../levelEditor";
 import { useElementSize } from "../../hooks";
-import useResizeObserver from "@react-hook/resize-observer";
 import "./app.css";
 
 const levFolderPath =
@@ -19,11 +18,7 @@ const App: React.FC = () => {
   };
 
   const stageContainerRef = useRef<HTMLDivElement>();
-  const [editorSize, setEditorSize] = useState<DOMRectReadOnly>();
-
-  useResizeObserver(stageContainerRef, (entry) =>
-    setEditorSize(entry.contentRect)
-  );
+  const editorSize = useElementSize(stageContainerRef);
 
   return (
     <div className="app">
