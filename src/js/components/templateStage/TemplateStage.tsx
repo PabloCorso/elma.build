@@ -3,8 +3,8 @@ import { Stage, Layer, Rect, RegularPolygon } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
 import { LevelShape, PolygonShape } from "../shapes";
-import { useEventListener } from "../../hooks";
 import { BlockElement } from "../../types";
+import "./templateStage.css";
 
 enum ObjectType {
   Exit = 1,
@@ -127,7 +127,7 @@ const TemplateEditor: React.FC<Props> = ({
     moveStage(stageX + x, stageY + y);
   };
 
-  const handleNavigateStage = (event: KeyboardEvent) => {
+  const handleNavigateStage = (event: React.KeyboardEvent) => {
     if (event.key === "ArrowLeft") {
       translateStage(50, 0);
     } else if (event.key === "ArrowRight") {
@@ -139,7 +139,7 @@ const TemplateEditor: React.FC<Props> = ({
     }
   };
 
-  const handleCreateBlock = (event: KeyboardEvent) => {
+  const handleCreateBlock = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && selectedNodes.length > 0) {
       const blockElements = selectedNodes.map((node) => node.attrs.element);
       setSelectedNodes([]);
@@ -147,8 +147,10 @@ const TemplateEditor: React.FC<Props> = ({
     }
   };
 
-  useEventListener("keydown", handleNavigateStage);
-  useEventListener("keydown", handleCreateBlock);
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    handleNavigateStage(event);
+    handleCreateBlock(event);
+  };
 
   const handleWheel = (event: Konva.KonvaEventObject<WheelEvent>) => {
     event.evt.preventDefault();
@@ -174,69 +176,76 @@ const TemplateEditor: React.FC<Props> = ({
   };
 
   return (
-    <Stage
-      className="stage"
-      onWheel={handleWheel}
-      scaleX={stageScale}
-      scaleY={stageScale}
-      x={stageX}
-      y={stageY}
-      width={width}
-      height={height}
-      onMouseDown={onMouseDown}
-      onMouseMove={onMouseMove}
-      onMouseUp={onMouseUp}
-      style={{ backgroundColor: "lightgray" }}
+    <div
+      tabIndex={1}
+      className="template-stage-container"
+      onKeyDown={handleKeyDown}
     >
-      <Layer>
-        <LevelShape name={level.name}>
-          {level.polygons.map((polygon, index) => {
-            const id = `${level.name}_polygon_${index}`;
-            const isSelected = selectedNodes.some(
-              (node) => node.attrs.id === id
-            );
-            return (
-              <PolygonShape
-                key={index}
-                name={id}
-                id={id}
-                polygon={polygon}
-                stroke={isSelected ? "yellow" : "black"}
-                strokeWidth={1 / stageScale}
-              />
-            );
-          })}
-          {level.objects.map((levelObject, index) => {
-            const id = `${level.name}_object_${index}`;
-            const isSelected = selectedNodes.some(
-              (node) => node.attrs.id === id
-            );
-            return (
-              <RegularPolygon
-                key={id}
-                id={id}
-                x={levelObject.position.x}
-                y={levelObject.position.y}
-                radius={0.5}
-                sides={10}
-                stroke={
-                  isSelected ? "yellow" : getObjectTypeStroke(levelObject.type)
-                }
-                strokeWidth={1 / stageScale}
-                selectable={true}
-                element={{ type: "level-object", data: levelObject }}
-              />
-            );
-          })}
-        </LevelShape>
-        <Rect
-          stroke="blue"
-          strokeWidth={1 / stageScale}
-          name="selection-rect"
-          {...selectionRectProps}
-        />
-      </Layer>
-    </Stage>
+      <Stage
+        onWheel={handleWheel}
+        scaleX={stageScale}
+        scaleY={stageScale}
+        x={stageX}
+        y={stageY}
+        width={width}
+        height={height}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        style={{ backgroundColor: "lightgray" }}
+      >
+        <Layer>
+          <LevelShape name={level.name}>
+            {level.polygons.map((polygon, index) => {
+              const id = `${level.name}_polygon_${index}`;
+              const isSelected = selectedNodes.some(
+                (node) => node.attrs.id === id
+              );
+              return (
+                <PolygonShape
+                  key={index}
+                  name={id}
+                  id={id}
+                  polygon={polygon}
+                  stroke={isSelected ? "yellow" : "black"}
+                  strokeWidth={1 / stageScale}
+                />
+              );
+            })}
+            {level.objects.map((levelObject, index) => {
+              const id = `${level.name}_object_${index}`;
+              const isSelected = selectedNodes.some(
+                (node) => node.attrs.id === id
+              );
+              return (
+                <RegularPolygon
+                  key={id}
+                  id={id}
+                  x={levelObject.position.x}
+                  y={levelObject.position.y}
+                  radius={0.5}
+                  sides={10}
+                  stroke={
+                    isSelected
+                      ? "yellow"
+                      : getObjectTypeStroke(levelObject.type)
+                  }
+                  strokeWidth={1 / stageScale}
+                  selectable={true}
+                  element={{ type: "level-object", data: levelObject }}
+                />
+              );
+            })}
+          </LevelShape>
+          <Rect
+            stroke="blue"
+            strokeWidth={1 / stageScale}
+            name="selection-rect"
+            {...selectionRectProps}
+          />
+        </Layer>
+      </Stage>
+    </div>
   );
 };
 
