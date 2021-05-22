@@ -21,10 +21,10 @@ export type BlockElement = {
   data?: Polygon | ElmaObject;
 };
 
-export type Block = {
+export type TemplateBlock = {
   id: string;
   name: string;
   elements: BlockElement[];
 };
 
-export type Template = { name: string; blocks: Block[] };
+export type Template = { name: string; blocks: TemplateBlock[] };

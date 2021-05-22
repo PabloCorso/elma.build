@@ -1,0 +1,22 @@
+.template-editor {
+  height: 100%;
+  display: grid;
+  grid-template-areas: "template-info" "template-stage" "template-blocks";
+  grid-template-rows: 75px 1fr 150px;
+}
+
+.template-editor__info {
+  grid-area: template-info;
+  display: flex;
+  padding: 8px;
+}
+
+.template-editor__stage {
+  grid-area: template-stage;
+  position: relative;
+  height: 100%;
+}
+
+.template-editor__blocks {
+  grid-area: template-blocks;
+}

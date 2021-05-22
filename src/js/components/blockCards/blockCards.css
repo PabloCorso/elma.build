@@ -1,0 +1,10 @@
+.block-cards {
+  display: flex;
+  overflow-x: auto;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.block-cards > .block-card:not(:last-child) {
+  margin-right: 12px;
+}

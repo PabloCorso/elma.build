@@ -10,34 +10,5 @@
 }
 
 .app__template-editor {
-  display: grid;
   grid-area: template-editor;
-  grid-template-areas: "level-editor" "blocks";
-  grid-template-rows: 1fr 150px;
-}
-
-.app__level-editor {
-  grid-area: level-editor;
-  position: relative;
-  height: 100%;
-}
-
-.app__blocks {
-  grid-area: blocks;
-  display: flex;
-  overflow-x: auto;
-  align-items: center;
-  padding: 0 12px;
-}
-
-.app__block {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.app__blocks > .app__block:not(:last-child) {
-  margin-right: 12px;
 }

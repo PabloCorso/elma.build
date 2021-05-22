@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./js/components/app";
-import { ElectronApi } from "./preload";
+import { ElectronApi } from "./js/types";
 
 declare global {
   interface Window {
