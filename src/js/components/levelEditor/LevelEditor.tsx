@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Stage, Layer, Rect, RegularPolygon } from "react-konva";
 import Konva from "konva";
-import { Level, Polygon, ElmaObject } from "elmajs";
+import { Level } from "elmajs";
 import { LevelShape, PolygonShape } from "../shapes";
 import { useEventListener } from "../../hooks";
+import { BlockElement } from "../../types";
 
 enum ObjectType {
   Exit = 1,
@@ -11,11 +12,6 @@ enum ObjectType {
   Killer = 3,
   Start = 4,
 }
-
-export type BlockElement = {
-  type?: "level-object" | "polygon";
-  data?: Polygon | ElmaObject;
-};
 
 type ShapeNode = Konva.Node & {
   attrs: Konva.NodeConfig & {

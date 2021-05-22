@@ -1,20 +1,13 @@
-import { Level } from "elmajs";
-import { Block } from "./js/components/app/App";
-
+import { ElectronApis, Template } from "./js/types";
 const { contextBridge, ipcRenderer } = require("electron");
 
-export type Template = { name: string; blocks: Block[] };
-
-export type ElectronApi = {
-  readAllLevels: () => string[];
-  readLevel: (name: string) => Level;
-  saveTemplate: ({ name, blocks }: Template) => boolean;
-};
-
 contextBridge.exposeInMainWorld("electron", {
-  readAllLevels: () => ipcRenderer.sendSync("read-all-levels"),
+  readAllLevels: () => ipcRenderer.sendSync(ElectronApis.ReadAllLevels),
   readLevel: (name: string) =>
-    JSON.parse(ipcRenderer.sendSync("read-level", name)),
+    JSON.parse(ipcRenderer.sendSync(ElectronApis.ReadLevel, name)),
   saveTemplate: (template: Template) =>
-    ipcRenderer.sendSync("save-template", JSON.stringify(template)),
+    ipcRenderer.sendSync(ElectronApis.SaveTemplate, JSON.stringify(template)),
+  readAllTemplates: () => ipcRenderer.sendSync(ElectronApis.ReadAllTemplates),
+  readTemplate: (name: string) =>
+    JSON.parse(ipcRenderer.sendSync(ElectronApis.ReadTemplate, name)),
 });

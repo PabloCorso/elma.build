@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import fs from "fs";
 import { Level } from "elmajs";
-import { Template } from "./preload";
+import { ElectronApis, Template } from "./js/types";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -28,6 +28,8 @@ const createWindow = (): void => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  mainWindow.maximize();
 };
 
 // This method will be called when Electron has finished
@@ -60,22 +62,36 @@ const levFolderPath =
 const templatesFolderPath =
   "C:/Users/USER/Documents/Source/elastomania/elma.build/templates";
 
-ipcMain.on("read-all-levels", (event) => {
+ipcMain.on(ElectronApis.ReadAllLevels, (event) => {
   const levFolder = fs.readdirSync(levFolderPath);
   event.returnValue = levFolder;
 });
 
-ipcMain.on("read-level", (event, name: string) => {
+ipcMain.on(ElectronApis.ReadLevel, (event, name: string) => {
   const levelFile = fs.readFileSync(`${levFolderPath}/${name}`);
   const level = Level.from(levelFile);
   event.returnValue = JSON.stringify(level);
 });
 
-ipcMain.on("save-template", (event, template: string) => {
+ipcMain.on(ElectronApis.SaveTemplate, (event, template: string) => {
   const parsedTemplate: Template = JSON.parse(template);
   fs.writeFileSync(
-    `${templatesFolderPath}/${parsedTemplate.name}.txt`,
+    `${templatesFolderPath}/${parsedTemplate.name}.json`,
     template
   );
   event.returnValue = true;
+});
+
+ipcMain.on(ElectronApis.ReadAllTemplates, (event) => {
+  const templatesFolder = fs.readdirSync(templatesFolderPath);
+  event.returnValue = templatesFolder;
+});
+
+ipcMain.on(ElectronApis.ReadTemplate, (event, name: string) => {
+  const templateFile = fs.readFileSync(
+    `${templatesFolderPath}/${name}`,
+    "utf8"
+  );
+  const template = JSON.parse(templateFile);
+  event.returnValue = JSON.stringify(template);
 });
