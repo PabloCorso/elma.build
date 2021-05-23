@@ -2,10 +2,11 @@ import React from "react";
 import { Polygon } from "elmajs";
 import { Line } from "react-konva";
 import Konva from "konva";
+import { ShapeElementType } from "../../types";
 
-export type Props = {
+export type Props = Omit<Konva.LineConfig, "points"> & {
   polygon: Polygon;
-} & Omit<Konva.LineConfig, "points">;
+};
 
 const PolygonShape: React.FC<Props> = ({
   polygon,
@@ -15,10 +16,10 @@ const PolygonShape: React.FC<Props> = ({
   return (
     <Line
       points={getPolygonLinePoints(polygon)}
-      closed
       stroke={stroke}
+      element={{ type: ShapeElementType.Polygon, data: polygon }}
+      closed
       selectable
-      element={{ type: "polygon", data: polygon }}
       {...props}
     ></Line>
   );

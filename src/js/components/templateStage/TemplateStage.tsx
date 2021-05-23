@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import { Layer, RegularPolygon } from "react-konva";
+import { Layer } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
-import { PolygonShape } from "../shapes";
+import { ElmaObjectShape, PolygonShape } from "../shapes";
 import { BlockElement } from "../../types";
 import EditorStage, { StageZoom } from "../editorStage/EditorStage";
 import "./templateStage.css";
-
-enum ObjectType {
-  Exit = 1,
-  Apple = 2,
-  Killer = 3,
-  Start = 4,
-}
 
 type ShapeNode = Konva.Node & {
   attrs: Konva.NodeConfig & {
@@ -131,19 +124,12 @@ const TemplateEditor: React.FC<Props> = ({
               (node) => node.attrs.id === id
             );
             return (
-              <RegularPolygon
+              <ElmaObjectShape
                 key={id}
                 id={id}
-                x={levelObject.position.x}
-                y={levelObject.position.y}
-                radius={0.5}
-                sides={10}
-                stroke={
-                  isSelected ? "yellow" : getObjectTypeStroke(levelObject.type)
-                }
+                elmaObject={levelObject}
+                stroke={isSelected ? "yellow" : "default"}
                 strokeWidth={1 / stageScale}
-                selectable={true}
-                element={{ type: "level-object", data: levelObject }}
               />
             );
           })}
@@ -151,20 +137,6 @@ const TemplateEditor: React.FC<Props> = ({
       </EditorStage>
     </div>
   );
-};
-
-const getObjectTypeStroke = (type: ObjectType) => {
-  switch (type) {
-    case ObjectType.Apple:
-      return "red";
-    case ObjectType.Exit:
-      return "white";
-    case ObjectType.Start:
-      return "green";
-    case ObjectType.Killer:
-    default:
-      return "black";
-  }
 };
 
 // const getLevelBounds = (level: Level): Bounds => {

@@ -1,5 +1,7 @@
 import { ElmaObject, Level, Polygon } from "elmajs";
 
+export { ObjectType as ElmaObjectType } from "elmajs/lib-esm/lev/ElmaObject";
+
 export type ElectronApi = {
   readAllLevels: () => string[];
   readLevel: (name: string) => Level;
@@ -16,8 +18,13 @@ export enum ElectronApis {
   ReadTemplate = "read-template",
 }
 
+export enum ShapeElementType {
+  ElmaObject = "elma-object",
+  Polygon = "polygon",
+}
+
 export type BlockElement = {
-  type?: "level-object" | "polygon";
+  type?: ShapeElementType;
   data?: Polygon | ElmaObject;
 };
 
