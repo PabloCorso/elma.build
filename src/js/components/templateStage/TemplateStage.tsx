@@ -84,57 +84,48 @@ const TemplateEditor: React.FC<Props> = ({
   };
 
   return (
-    <div
-      tabIndex={1}
-      className="template-stage-container"
-      onKeyDown={handleKeyDown}
+    <EditorStage
+      x={stageX}
+      y={stageY}
+      scaleX={stageScale}
+      scaleY={stageScale}
+      width={width}
+      height={height}
+      onWheel={handleWheel}
+      handleKeyDown={handleKeyDown}
+      onMouseSelect={handleMouseSelect}
+      onNavigateTo={handleNavigateTo}
     >
-      <EditorStage
-        x={stageX}
-        y={stageY}
-        scaleX={stageScale}
-        scaleY={stageScale}
-        width={width}
-        height={height}
-        onWheel={handleWheel}
-        onMouseSelect={handleMouseSelect}
-        onNavigateTo={handleNavigateTo}
-      >
-        <Layer>
-          {level.polygons.map((polygon, index) => {
-            const id = `${level.name}_polygon_${index}`;
-            const isSelected = selectedNodes.some(
-              (node) => node.attrs.id === id
-            );
-            return (
-              <PolygonShape
-                key={index}
-                name={id}
-                id={id}
-                polygon={polygon}
-                stroke={isSelected ? "yellow" : "black"}
-                strokeWidth={1 / stageScale}
-              />
-            );
-          })}
-          {level.objects.map((levelObject, index) => {
-            const id = `${level.name}_object_${index}`;
-            const isSelected = selectedNodes.some(
-              (node) => node.attrs.id === id
-            );
-            return (
-              <ElmaObjectShape
-                key={id}
-                id={id}
-                elmaObject={levelObject}
-                stroke={isSelected ? "yellow" : "default"}
-                strokeWidth={1 / stageScale}
-              />
-            );
-          })}
-        </Layer>
-      </EditorStage>
-    </div>
+      <Layer>
+        {level.polygons.map((polygon, index) => {
+          const id = `${level.name}_polygon_${index}`;
+          const isSelected = selectedNodes.some((node) => node.attrs.id === id);
+          return (
+            <PolygonShape
+              key={index}
+              name={id}
+              id={id}
+              polygon={polygon}
+              stroke={isSelected ? "yellow" : "black"}
+              strokeWidth={1 / stageScale}
+            />
+          );
+        })}
+        {level.objects.map((levelObject, index) => {
+          const id = `${level.name}_object_${index}`;
+          const isSelected = selectedNodes.some((node) => node.attrs.id === id);
+          return (
+            <ElmaObjectShape
+              key={id}
+              id={id}
+              elmaObject={levelObject}
+              stroke={isSelected ? "yellow" : "default"}
+              strokeWidth={1 / stageScale}
+            />
+          );
+        })}
+      </Layer>
+    </EditorStage>
   );
 };
 

@@ -26,20 +26,18 @@ const LevelStage: React.FC<Props> = ({ width, height }) => {
   };
 
   return (
-    <div tabIndex={1} className="template-stage-container">
-      <EditorStage
-        x={stageX}
-        y={stageY}
-        scaleX={stageScale}
-        scaleY={stageScale}
-        width={width}
-        height={height}
-        onWheel={handleWheel}
-        onNavigateTo={handleNavigateTo}
-      >
-        <Layer></Layer>
-      </EditorStage>
-    </div>
+    <EditorStage
+      x={stageX}
+      y={stageY}
+      scaleX={stageScale}
+      scaleY={stageScale}
+      width={width}
+      height={height}
+      onWheel={handleWheel}
+      onNavigateTo={handleNavigateTo}
+    >
+      <Layer></Layer>
+    </EditorStage>
   );
 };
 
