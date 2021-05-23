@@ -39,14 +39,14 @@ const LevelEditor: React.FC<Props> = ({ template }) => {
           Create level
         </Button>
       </form>
-      <div className="template-editor__stage" ref={stageContainerRef}>
+      <div className="level-editor__stage" ref={stageContainerRef}>
         <LevelStage
           blocks={stageBlocks}
           width={editorSize ? editorSize.width : 0}
           height={editorSize ? editorSize.height : 0}
         />
       </div>
-      <BlockCards className="template-editor__blocks">
+      <BlockCards className="level-editor__blocks">
         {template.blocks.map((block, index) => (
           <BlockCard
             key={index}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { TemplateBlock } from "../../types";
 import EditableText from "../editableText";
 import "./blockCard.css";
@@ -25,12 +25,14 @@ const BlockCard: React.FC<Props> = ({
 
   return (
     <Paper elevation={1} className="block-card" onClick={onClick}>
-      <EditableText
-        value={block.name}
-        onChange={handleChange}
-        defaultEditMode={!readonly}
-        readonly={readonly}
-      />
+      {readonly && <Typography variant="body1">{block.name}</Typography>}
+      {!readonly && (
+        <EditableText
+          value={block.name}
+          onChange={handleChange}
+          defaultEditMode={!readonly}
+        />
+      )}
     </Paper>
   );
 };

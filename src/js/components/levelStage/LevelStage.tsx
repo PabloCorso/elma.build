@@ -1,6 +1,6 @@
 import Konva from "konva";
 import React, { useState } from "react";
-import { Layer } from "react-konva";
+import { Layer, Rect } from "react-konva";
 import { TemplateBlock } from "../../types";
 import EditorStage from "../editorStage";
 import { StageZoom } from "../editorStage/EditorStage";
@@ -27,6 +27,7 @@ const LevelStage: React.FC<Props> = ({ blocks, width, height }) => {
     setStageY(y);
   };
 
+  console.log(blocks);
   return (
     <EditorStage
       x={stageX}
@@ -39,6 +40,14 @@ const LevelStage: React.FC<Props> = ({ blocks, width, height }) => {
       onNavigateTo={handleNavigateTo}
     >
       <Layer>
+        <Rect
+          x={0}
+          y={0}
+          stroke="red"
+          strokeWidth={1 / stageScale}
+          width={100}
+          height={100}
+        ></Rect>
         {blocks.map((block) => {
           <>
             {block.polygons.map((polygon, index) => {

@@ -5,7 +5,6 @@ type Props = {
   value: string;
   showEditMode?: boolean;
   defaultEditMode?: boolean;
-  readonly?: boolean;
   onChange: (value: string, isClickOutside?: boolean) => void;
   onStartEdit?: () => void;
 };
@@ -14,7 +13,6 @@ const EditableText: React.FC<Props> = ({
   value,
   showEditMode = false,
   defaultEditMode = false,
-  readonly = false,
   onChange,
   onStartEdit,
 }) => {
@@ -60,7 +58,7 @@ const EditableText: React.FC<Props> = ({
     handleSubmit(true);
   };
 
-  return !readonly && isEditing ? (
+  return isEditing ? (
     <ClickAwayListener onClickAway={handleClickAway}>
       <Input
         type="text"
