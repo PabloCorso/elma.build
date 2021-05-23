@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Layer, RegularPolygon } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
-import { LevelShape, PolygonShape } from "../shapes";
+import { PolygonShape } from "../shapes";
 import { BlockElement } from "../../types";
 import EditorStage, { StageZoom } from "../editorStage/EditorStage";
 import "./templateStage.css";
@@ -55,11 +55,17 @@ const TemplateEditor: React.FC<Props> = ({
 
   const [selectedNodes, setSelectedNodes] = useState<ShapeNode[]>([]);
 
-  const handleCreateBlock = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter" && selectedNodes.length > 0) {
+  const handleCreateBlock = () => {
+    if (selectedNodes.length > 0) {
       const blockElements = selectedNodes.map((node) => node.attrs.element);
       setSelectedNodes([]);
       onCreateBlock(blockElements);
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      handleCreateBlock();
     }
   };
 
@@ -77,11 +83,18 @@ const TemplateEditor: React.FC<Props> = ({
     setStageY(y);
   };
 
+  const handleMouseSelect = (
+    _event: Konva.KonvaEventObject<MouseEvent>,
+    nodes: Konva.Node[]
+  ) => {
+    setSelectedNodes(nodes);
+  };
+
   return (
     <div
       tabIndex={1}
       className="template-stage-container"
-      onKeyDown={handleCreateBlock}
+      onKeyDown={handleKeyDown}
     >
       <EditorStage
         x={stageX}
@@ -91,55 +104,49 @@ const TemplateEditor: React.FC<Props> = ({
         width={width}
         height={height}
         onWheel={handleWheel}
-        onMouseSelect={(_event, nodes) => {
-          setSelectedNodes(nodes);
-        }}
+        onMouseSelect={handleMouseSelect}
         onNavigateTo={handleNavigateTo}
         style={{ backgroundColor: "lightgray" }}
       >
         <Layer>
-          <LevelShape name={level.name}>
-            {level.polygons.map((polygon, index) => {
-              const id = `${level.name}_polygon_${index}`;
-              const isSelected = selectedNodes.some(
-                (node) => node.attrs.id === id
-              );
-              return (
-                <PolygonShape
-                  key={index}
-                  name={id}
-                  id={id}
-                  polygon={polygon}
-                  stroke={isSelected ? "yellow" : "black"}
-                  strokeWidth={1 / stageScale}
-                />
-              );
-            })}
-            {level.objects.map((levelObject, index) => {
-              const id = `${level.name}_object_${index}`;
-              const isSelected = selectedNodes.some(
-                (node) => node.attrs.id === id
-              );
-              return (
-                <RegularPolygon
-                  key={id}
-                  id={id}
-                  x={levelObject.position.x}
-                  y={levelObject.position.y}
-                  radius={0.5}
-                  sides={10}
-                  stroke={
-                    isSelected
-                      ? "yellow"
-                      : getObjectTypeStroke(levelObject.type)
-                  }
-                  strokeWidth={1 / stageScale}
-                  selectable={true}
-                  element={{ type: "level-object", data: levelObject }}
-                />
-              );
-            })}
-          </LevelShape>
+          {level.polygons.map((polygon, index) => {
+            const id = `${level.name}_polygon_${index}`;
+            const isSelected = selectedNodes.some(
+              (node) => node.attrs.id === id
+            );
+            return (
+              <PolygonShape
+                key={index}
+                name={id}
+                id={id}
+                polygon={polygon}
+                stroke={isSelected ? "yellow" : "black"}
+                strokeWidth={1 / stageScale}
+              />
+            );
+          })}
+          {level.objects.map((levelObject, index) => {
+            const id = `${level.name}_object_${index}`;
+            const isSelected = selectedNodes.some(
+              (node) => node.attrs.id === id
+            );
+            return (
+              <RegularPolygon
+                key={id}
+                id={id}
+                x={levelObject.position.x}
+                y={levelObject.position.y}
+                radius={0.5}
+                sides={10}
+                stroke={
+                  isSelected ? "yellow" : getObjectTypeStroke(levelObject.type)
+                }
+                strokeWidth={1 / stageScale}
+                selectable={true}
+                element={{ type: "level-object", data: levelObject }}
+              />
+            );
+          })}
         </Layer>
       </EditorStage>
     </div>
