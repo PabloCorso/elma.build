@@ -28,3 +28,5 @@ export type TemplateBlock = {
 };
 
 export type Template = { name: string; blocks: TemplateBlock[] };
+
+export type Bounds = { x1: number; y1: number; x2: number; y2: number };

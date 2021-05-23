@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Stage, Layer, Rect, RegularPolygon } from "react-konva";
+import React, { useState } from "react";
+import { Layer, RegularPolygon } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
 import { LevelShape, PolygonShape } from "../shapes";
 import { BlockElement } from "../../types";
+import EditorStage, { StageZoom } from "../editorStage/EditorStage";
 import "./templateStage.css";
 
 enum ObjectType {
@@ -19,8 +20,6 @@ type ShapeNode = Konva.Node & {
     element?: BlockElement;
   };
 };
-
-type Bounds = { x1: number; y1: number; x2: number; y2: number };
 
 type Props = {
   level: Level;
@@ -39,105 +38,22 @@ const TemplateEditor: React.FC<Props> = ({
   const [stageX, setStageX] = useState(0);
   const [stageY, setStageY] = useState(0);
 
-  useEffect(
-    function onLevelChange() {
-      const levelBounds = getLevelBounds(level);
-      const levelRect = getBoundsRect(levelBounds);
+  // useEffect(
+  //   function onLevelChange() {
+  //     const levelBounds = getLevelBounds(level);
+  //     const levelRect = getBoundsRect(levelBounds);
 
-      const xSign = levelRect.x < 0 ? -1 : 1;
-      const ySign = levelRect.y < 0 ? -1 : 1;
-      const x = Math.abs(levelRect.x) + levelRect.width + width;
-      const y = Math.abs(levelRect.y) + levelRect.height + height;
-      setStageX(-x * xSign);
-      setStageY(-y * ySign);
-    },
-    [level]
-  );
+  //     const xSign = levelRect.x < 0 ? -1 : 1;
+  //     const ySign = levelRect.y < 0 ? -1 : 1;
+  //     const x = Math.abs(levelRect.x) + levelRect.width + width;
+  //     const y = Math.abs(levelRect.y) + levelRect.height + height;
+  //     setStageX(-x * xSign);
+  //     setStageY(-y * ySign);
+  //   },
+  //   [level]
+  // );
 
   const [selectedNodes, setSelectedNodes] = useState<ShapeNode[]>([]);
-
-  const [selectionRectProps, setSelectionRectProps] =
-    useState<Konva.RectConfig>({});
-  const [selection, setSelection] = useState({
-    visible: false,
-    x1: 0,
-    y1: 0,
-    x2: 0,
-    y2: 0,
-  });
-
-  useEffect(
-    function updateSelectionRect() {
-      setSelectionRectProps((state) => ({
-        ...state,
-        visible: selection.visible,
-        ...getBoundsRect({ ...selection }),
-      }));
-    },
-    [selection, setSelectionRectProps]
-  );
-
-  const onMouseDown = (event: Konva.KonvaEventObject<MouseEvent>) => {
-    const isTransformer = event.target.findAncestor("Transformer");
-    if (isTransformer) {
-      return;
-    }
-
-    const pos = getRelativePointerPosition(event.target.getStage());
-    setSelection({ visible: true, x1: pos.x, y1: pos.y, x2: pos.x, y2: pos.y });
-  };
-
-  const onMouseMove = (event: Konva.KonvaEventObject<MouseEvent>) => {
-    if (!selection.visible) {
-      return;
-    }
-
-    const pos = getRelativePointerPosition(event.target.getStage());
-    setSelection((state) => ({ ...state, x2: pos.x, y2: pos.y }));
-  };
-
-  const onMouseUp = (event: Konva.KonvaEventObject<MouseEvent>) => {
-    if (!selection.visible) {
-      return;
-    }
-
-    setSelection((state) => ({ ...state, visible: false }));
-
-    const shapes = event.target
-      .getStage()
-      .find((node: ShapeNode) => node.attrs.selectable)
-      .toArray();
-    const box = event.target
-      .getStage()
-      .findOne(".selection-rect")
-      .getClientRect();
-    const selected = shapes.filter((shape) =>
-      Konva.Util.haveIntersection(box, shape.getClientRect())
-    ) as ShapeNode[];
-
-    setSelectedNodes(selected);
-  };
-
-  const moveStage = (newX: number, newY: number) => {
-    setStageX(newX);
-    setStageY(newY);
-  };
-
-  const translateStage = (x: number, y: number) => {
-    moveStage(stageX + x, stageY + y);
-  };
-
-  const handleNavigateStage = (event: React.KeyboardEvent) => {
-    if (event.key === "ArrowLeft") {
-      translateStage(50, 0);
-    } else if (event.key === "ArrowRight") {
-      translateStage(-50, 0);
-    } else if (event.key === "ArrowUp") {
-      translateStage(0, 50);
-    } else if (event.key === "ArrowDown") {
-      translateStage(0, -50);
-    }
-  };
 
   const handleCreateBlock = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && selectedNodes.length > 0) {
@@ -147,51 +63,38 @@ const TemplateEditor: React.FC<Props> = ({
     }
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    handleNavigateStage(event);
-    handleCreateBlock(event);
+  const handleWheel = (
+    _event: Konva.KonvaEventObject<WheelEvent>,
+    { scale, x, y }: StageZoom
+  ) => {
+    setStageScale(scale);
+    setStageX(x);
+    setStageY(y);
   };
 
-  const handleWheel = (event: Konva.KonvaEventObject<WheelEvent>) => {
-    event.evt.preventDefault();
-
-    const scaleBy = 1.1;
-    const stage = event.target.getStage();
-    const oldScale = stage.scaleX();
-    const mousePointTo = {
-      x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
-      y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale,
-    };
-
-    const newScale =
-      event.evt.deltaY <= 0 ? oldScale * scaleBy : oldScale / scaleBy;
-
-    setStageScale(newScale);
-    setStageX(
-      -(mousePointTo.x - stage.getPointerPosition().x / newScale) * newScale
-    );
-    setStageY(
-      -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale
-    );
+  const handleNavigateTo = (x: number, y: number) => {
+    setStageX(x);
+    setStageY(y);
   };
 
   return (
     <div
       tabIndex={1}
       className="template-stage-container"
-      onKeyDown={handleKeyDown}
+      onKeyDown={handleCreateBlock}
     >
-      <Stage
-        onWheel={handleWheel}
-        scaleX={stageScale}
-        scaleY={stageScale}
+      <EditorStage
         x={stageX}
         y={stageY}
+        scaleX={stageScale}
+        scaleY={stageScale}
         width={width}
         height={height}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
+        onWheel={handleWheel}
+        onMouseSelect={(_event, nodes) => {
+          setSelectedNodes(nodes);
+        }}
+        onNavigateTo={handleNavigateTo}
         style={{ backgroundColor: "lightgray" }}
       >
         <Layer>
@@ -237,14 +140,8 @@ const TemplateEditor: React.FC<Props> = ({
               );
             })}
           </LevelShape>
-          <Rect
-            stroke="blue"
-            strokeWidth={1 / stageScale}
-            name="selection-rect"
-            {...selectionRectProps}
-          />
         </Layer>
-      </Stage>
+      </EditorStage>
     </div>
   );
 };
@@ -263,41 +160,22 @@ const getObjectTypeStroke = (type: ObjectType) => {
   }
 };
 
-const getLevelBounds = (level: Level): Bounds => {
-  let x1;
-  let y1;
-  let x2;
-  let y2;
-  for (const polygon of level.polygons) {
-    for (const vertex of polygon.vertices) {
-      x1 = x1 !== undefined ? Math.min(vertex.x, x1) : vertex.x;
-      y1 = y1 !== undefined ? Math.min(vertex.y, y1) : vertex.y;
-      x2 = x2 !== undefined ? Math.max(vertex.x, x2) : vertex.x;
-      y2 = y2 !== undefined ? Math.max(vertex.y, y2) : vertex.y;
-    }
-  }
+// const getLevelBounds = (level: Level): Bounds => {
+//   let x1;
+//   let y1;
+//   let x2;
+//   let y2;
+//   for (const polygon of level.polygons) {
+//     for (const vertex of polygon.vertices) {
+//       x1 = x1 !== undefined ? Math.min(vertex.x, x1) : vertex.x;
+//       y1 = y1 !== undefined ? Math.min(vertex.y, y1) : vertex.y;
+//       x2 = x2 !== undefined ? Math.max(vertex.x, x2) : vertex.x;
+//       y2 = y2 !== undefined ? Math.max(vertex.y, y2) : vertex.y;
+//     }
+//   }
 
-  return { x1, y1, x2, y2 };
-};
-
-const getBoundsRect = ({ x1, y1, x2, y2 }: Bounds) => ({
-  x: Math.min(x1, x2),
-  y: Math.min(y1, y2),
-  width: Math.abs(x1 - x2),
-  height: Math.abs(y1 - y2),
-});
-
-function getRelativePointerPosition(node: Konva.Group) {
-  const transform = node.getAbsoluteTransform().copy();
-  // to detect relative position we need to invert transform
-  transform.invert();
-
-  // get pointer (say mouse or touch) position
-  const pos = node.getStage().getPointerPosition();
-
-  // now we can find relative point
-  return transform.point(pos);
-}
+//   return { x1, y1, x2, y2 };
+// };
 
 // function getCenter(p1: Konva.Vector2d, p2: Konva.Vector2d) {
 //   return {
