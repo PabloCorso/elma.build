@@ -23,6 +23,7 @@ const EditorStage: React.FC<Props> = ({
   x: stageX,
   y: stageY,
   scaleX: stageScaleX,
+  scaleY: stageScaleY,
   children,
   style,
   onKeyDown,
@@ -34,7 +35,7 @@ const EditorStage: React.FC<Props> = ({
   onNavigateTo,
   ...stageProps
 }) => {
-  const stageRef = useRef<HTMLDivElement>();
+  const containerRef = useRef<HTMLDivElement>();
 
   const [selectionRectProps, setSelectionRectProps] =
     useState<Konva.RectConfig>({});
@@ -122,8 +123,8 @@ const EditorStage: React.FC<Props> = ({
     const newStageY =
       -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale;
 
-    if (stageRef.current) {
-      stageRef.current.focus();
+    if (containerRef.current) {
+      containerRef.current.focus();
     }
 
     onWheel(event, { scale: newScale, x: newStageX, y: newStageY });
@@ -155,12 +156,13 @@ const EditorStage: React.FC<Props> = ({
       tabIndex={1}
       className="editor-stage-container"
       onKeyDown={handleKeyDown}
-      ref={stageRef}
+      ref={containerRef}
     >
       <Stage
         x={stageX}
         y={stageY}
         scaleX={stageScaleX}
+        scaleY={stageScaleY}
         onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -189,7 +191,7 @@ const getBoundsRect = ({ x1, y1, x2, y2 }: Bounds) => ({
   height: Math.abs(y1 - y2),
 });
 
-function getRelativePointerPosition(node: Konva.Group) {
+function getRelativePointerPosition(node: Konva.Group | Konva.Node) {
   const transform = node.getAbsoluteTransform().copy();
   // to detect relative position we need to invert transform
   transform.invert();
