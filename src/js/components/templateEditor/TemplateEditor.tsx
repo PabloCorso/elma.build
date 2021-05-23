@@ -10,7 +10,7 @@ import "./templateEditor.css";
 
 type Props = { level: Level; onCreateTemplate: () => void };
 
-const TemplateBuilder: React.FC<Props> = ({ level, onCreateTemplate }) => {
+const TemplateEditor: React.FC<Props> = ({ level, onCreateTemplate }) => {
   const stageContainerRef = useRef<HTMLDivElement>();
   const editorSize = useElementSize(stageContainerRef);
 
@@ -83,4 +83,4 @@ const TemplateBuilder: React.FC<Props> = ({ level, onCreateTemplate }) => {
   );
 };
 
-export default TemplateBuilder;
+export default TemplateEditor;
