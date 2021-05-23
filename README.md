@@ -8,7 +8,9 @@ Create levels from templates. Templates are made of blocks and possible connecti
 2. Run `npm install` to install the dependencies.
 3. Run `npm start` for local development.
 
-This is an electron project. It start a main process that creates a desktop window, that window runs a renderer process that displays everyhing.
+### Technical notes and limitations
+
+This is an electron project. It starts a main process that creates a desktop window, that window runs a renderer process that displays everyhing.
 
 The main process is a node evironment and runs from the `main.ts` file. Whenever you change something there, you can write `rs` in the command line to quickly restart the project. 
 
