@@ -6,13 +6,25 @@ import "./blockCard.css";
 
 export type Props = {
   block: TemplateBlock;
-  onRename: (name: string) => void;
+  readonly?: boolean;
+  onRename?: (name: string) => void;
 };
 
-const BlockCard: React.FC<Props> = ({ block, onRename }) => {
+const BlockCard: React.FC<Props> = ({ block, readonly = false, onRename }) => {
+  const handleChange = (value: string) => {
+    if (!readonly) {
+      onRename && onRename(value);
+    }
+  };
+
   return (
     <Paper elevation={1} className="block-card">
-      <EditableText value={block.name} onChange={onRename} defaultEditMode />
+      <EditableText
+        value={block.name}
+        onChange={handleChange}
+        defaultEditMode={!readonly}
+        readonly={readonly}
+      />
     </Paper>
   );
 };

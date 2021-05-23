@@ -99,7 +99,6 @@ const TemplateEditor: React.FC<Props> = ({
         onWheel={handleWheel}
         onMouseSelect={handleMouseSelect}
         onNavigateTo={handleNavigateTo}
-        style={{ backgroundColor: "lightgray" }}
       >
         <Layer>
           {level.polygons.map((polygon, index) => {
