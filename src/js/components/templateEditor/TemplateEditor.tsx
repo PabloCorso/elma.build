@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Level } from "elmajs";
-import { TemplateBlock, BlockElement } from "../../types";
+import { ElmaObject, Level, Polygon } from "elmajs";
+import { TemplateBlock, BlockElement, ShapeElementType } from "../../types";
 import { Button, TextField } from "@material-ui/core";
 import { useElementSize } from "../../hooks";
 import TemplateStage from "../templateStage";
@@ -17,10 +17,17 @@ const TemplateBuilder: React.FC<Props> = ({ level, onCreateTemplate }) => {
   const [blocks, setBlocks] = useState<TemplateBlock[]>([]);
   const handleCreateBlock = (elements: BlockElement[]) => {
     const id = blocks.length + 1 + "";
+    const polygons = elements
+      .filter((element) => element.type === ShapeElementType.Polygon)
+      .map((element) => element.data) as Polygon[];
+    const objects = elements
+      .filter((element) => element.type === ShapeElementType.ElmaObject)
+      .map((element) => element.data) as ElmaObject[];
     const newBlock: TemplateBlock = {
       id,
       name: `Block ${id}`,
-      elements,
+      polygons,
+      objects,
     };
     setBlocks((state) => [...state, newBlock]);
   };

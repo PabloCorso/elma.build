@@ -31,7 +31,8 @@ export type BlockElement = {
 export type TemplateBlock = {
   id: string;
   name: string;
-  elements: BlockElement[];
+  polygons: Polygon[];
+  objects: ElmaObject[];
 };
 
 export type Template = { name: string; blocks: TemplateBlock[] };

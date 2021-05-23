@@ -7,10 +7,16 @@ import "./blockCard.css";
 export type Props = {
   block: TemplateBlock;
   readonly?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   onRename?: (name: string) => void;
 };
 
-const BlockCard: React.FC<Props> = ({ block, readonly = false, onRename }) => {
+const BlockCard: React.FC<Props> = ({
+  block,
+  readonly = false,
+  onClick,
+  onRename,
+}) => {
   const handleChange = (value: string) => {
     if (!readonly) {
       onRename && onRename(value);
@@ -18,7 +24,7 @@ const BlockCard: React.FC<Props> = ({ block, readonly = false, onRename }) => {
   };
 
   return (
-    <Paper elevation={1} className="block-card">
+    <Paper elevation={1} className="block-card" onClick={onClick}>
       <EditableText
         value={block.name}
         onChange={handleChange}

@@ -5,7 +5,6 @@ import { Level } from "elmajs";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
 import { BlockElement } from "../../types";
 import EditorStage, { StageZoom } from "../editorStage/EditorStage";
-import "./templateStage.css";
 
 type ShapeNode = Konva.Node & {
   attrs: Konva.NodeConfig & {
@@ -92,7 +91,7 @@ const TemplateEditor: React.FC<Props> = ({
       width={width}
       height={height}
       onWheel={handleWheel}
-      handleKeyDown={handleKeyDown}
+      onKeyDown={handleKeyDown}
       onMouseSelect={handleMouseSelect}
       onNavigateTo={handleNavigateTo}
     >

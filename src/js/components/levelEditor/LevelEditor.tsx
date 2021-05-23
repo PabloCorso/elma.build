@@ -1,7 +1,7 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useRef, useState } from "react";
 import { useElementSize } from "../../hooks";
-import { Template } from "../../types";
+import { TemplateBlock, Template } from "../../types";
 import LevelStage from "../levelStage";
 import BlockCards from "../blockCards";
 import BlockCard from "../blockCard";
@@ -16,6 +16,11 @@ const LevelEditor: React.FC<Props> = ({ template }) => {
   const editorSize = useElementSize(stageContainerRef);
 
   const [levelName, setLevelName] = useState("");
+  const [stageBlocks, setStageBlocks] = useState<TemplateBlock[]>([]);
+
+  const handleClickBlock = (block: TemplateBlock) => {
+    setStageBlocks((state) => [...state, block]);
+  };
 
   return (
     <div className="level-editor">
@@ -26,7 +31,7 @@ const LevelEditor: React.FC<Props> = ({ template }) => {
         onSubmit={(event) => event.preventDefault()}
       >
         <TextField
-          label="Template name"
+          label="Level name"
           value={levelName}
           onChange={(event) => setLevelName(event.target.value)}
         />
@@ -36,13 +41,21 @@ const LevelEditor: React.FC<Props> = ({ template }) => {
       </form>
       <div className="template-editor__stage" ref={stageContainerRef}>
         <LevelStage
+          blocks={stageBlocks}
           width={editorSize ? editorSize.width : 0}
           height={editorSize ? editorSize.height : 0}
         />
       </div>
       <BlockCards className="template-editor__blocks">
         {template.blocks.map((block, index) => (
-          <BlockCard key={index} block={block} readonly />
+          <BlockCard
+            key={index}
+            block={block}
+            onClick={() => {
+              handleClickBlock(block);
+            }}
+            readonly
+          />
         ))}
       </BlockCards>
     </div>

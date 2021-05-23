@@ -147,7 +147,7 @@ const EditorStage: React.FC<Props> = ({
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     handleNavigateStage(event);
-    onKeyDown && onKeyDown;
+    onKeyDown && onKeyDown(event);
   };
 
   return (
