@@ -1,19 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { ElmaObject, Level, Polygon } from "elmajs";
 import { TemplateBlock, BlockElement, ShapeElementType } from "../../types";
 import { Button, TextField } from "@material-ui/core";
-import { useElementSize } from "../../hooks";
 import TemplateStage from "../templateStage";
 import BlockCards from "../blockCards";
 import BlockCard from "../blockCard";
+import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
 import "./templateEditor.css";
+import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
 
 type Props = { level: Level; onCreateTemplate: () => void };
 
 const TemplateEditor: React.FC<Props> = ({ level, onCreateTemplate }) => {
-  const stageContainerRef = useRef<HTMLDivElement>();
-  const editorSize = useElementSize(stageContainerRef);
-
   const [blocks, setBlocks] = useState<TemplateBlock[]>([]);
   const handleCreateBlock = (elements: BlockElement[]) => {
     const id = blocks.length + 1 + "";
@@ -40,29 +38,70 @@ const TemplateEditor: React.FC<Props> = ({ level, onCreateTemplate }) => {
       onCreateTemplate();
     }
   };
+
   return (
     <div className="template-editor">
-      <form
-        className="template-editor__info"
-        noValidate
-        autoComplete="off"
-        onSubmit={handleCreateTemplate}
-      >
-        <TextField
-          label="Template name"
-          value={templateName}
-          onChange={(event) => setTemplateName(event.target.value)}
-        />
-        <Button type="submit" color="primary" disabled={blocks.length === 0}>
-          Create template
-        </Button>
-      </form>
-      <div className="template-editor__stage" ref={stageContainerRef}>
+      <div className="template-editor__stage">
         <TemplateStage
           level={level}
-          width={editorSize ? editorSize.width : 0}
-          height={editorSize ? editorSize.height : 0}
           onCreateBlock={handleCreateBlock}
+          toolbar={({ fitBoundsRect }) => (
+            <>
+              <Button
+                onClick={() => {
+                  const levelBounds = getLevelBounds(level);
+                  const levelBoundsRect = getBoundsRect(levelBounds);
+                  fitBoundsRect({
+                    ...levelBoundsRect,
+                    x: -levelBoundsRect.x,
+                    y: -levelBoundsRect.y,
+                  });
+                }}
+              >
+                <ZoomOutMapIcon />
+              </Button>
+              <Button
+                onClick={() => {
+                  fitBoundsRect({ x: 0, y: 0, width: 100, height: 100 });
+                }}
+              >
+                GO to 0:0
+              </Button>
+              <Button
+                onClick={() => {
+                  fitBoundsRect({ x: 100, y: 100, width: 100, height: 100 });
+                }}
+              >
+                GO to 100:100
+              </Button>
+              <Button
+                onClick={() => {
+                  fitBoundsRect({ x: -100, y: -100, width: 100, height: 200 });
+                }}
+              >
+                GO to -100:-100
+              </Button>
+              <form
+                className="template-editor__info"
+                noValidate
+                autoComplete="off"
+                onSubmit={handleCreateTemplate}
+              >
+                <TextField
+                  label="Template name"
+                  value={templateName}
+                  onChange={(event) => setTemplateName(event.target.value)}
+                />
+                <Button
+                  type="submit"
+                  color="primary"
+                  disabled={blocks.length === 0}
+                >
+                  Create template
+                </Button>
+              </form>
+            </>
+          )}
         />
       </div>
       <BlockCards className="template-editor__blocks">

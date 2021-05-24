@@ -1,41 +1,55 @@
 import React, { useEffect, useRef, useState } from "react";
 import Konva from "konva";
 import { Layer, Rect, Stage, StageProps } from "react-konva";
-import { Bounds } from "../../types";
+import { BoundsRect } from "../../types";
+import { useElementSize } from "../../hooks";
+import {
+  getBoundsRect,
+  getRelativePointerPosition,
+} from "../../utils/shapeUtils";
 import "./editorStage.css";
 
-export type StageZoom = { scale: number; x: number; y: number };
+export type StageContextProps = {
+  stageX: number;
+  stageY: number;
+  stageScale: number;
+  fitBoundsRect: (rect: BoundsRect) => void;
+};
 
-type Props = Omit<StageProps, "onWheel"> & {
+export type ToolbarProps = StageContextProps;
+
+// const StageContext = React.createContext<StageContextProps>(null);
+
+type Props = StageProps & {
+  children: (props: StageContextProps) => React.ReactNode;
   onKeyDown?: (event: React.KeyboardEvent) => void;
-  onWheel?: (
-    event: Konva.KonvaEventObject<WheelEvent>,
-    newValues: StageZoom
-  ) => void;
   onMouseSelect?: (
     event: Konva.KonvaEventObject<MouseEvent>,
     nodes: Konva.Node[]
   ) => void;
-  onNavigateTo?: (x: number, y: number) => void;
+  toolbar?: (props: StageContextProps) => React.ReactNode;
 };
 
 const EditorStage: React.FC<Props> = ({
-  x: stageX,
-  y: stageY,
-  scaleX: stageScaleX,
-  scaleY: stageScaleY,
   children,
   style,
+  toolbar,
   onKeyDown,
   onWheel,
   onMouseDown,
   onMouseMove,
   onMouseUp,
   onMouseSelect,
-  onNavigateTo,
   ...stageProps
 }) => {
   const containerRef = useRef<HTMLDivElement>();
+  const editorSize = useElementSize(containerRef);
+  const stageWidth = editorSize ? editorSize.width : 0;
+  const stageHeight = editorSize ? editorSize.height : 0;
+
+  const [stageScale, setStageScale] = useState(8);
+  const [stageX, setStageX] = useState(0);
+  const [stageY, setStageY] = useState(0);
 
   const [selectionRectProps, setSelectionRectProps] =
     useState<Konva.RectConfig>({});
@@ -123,26 +137,52 @@ const EditorStage: React.FC<Props> = ({
     const newStageY =
       -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale;
 
+    setStageScale(newScale);
+    setStageX(newStageX);
+    setStageY(newStageY);
+
     if (containerRef.current) {
       containerRef.current.focus();
     }
 
-    onWheel(event, { scale: newScale, x: newStageX, y: newStageY });
+    onWheel && onWheel(event);
+  };
+
+  const fitBoundsRect = (rect: BoundsRect) => {
+    const padding = 10;
+    const rectWidth = rect.width + padding * 2;
+    const rectHeight = rect.height + padding * 2;
+    const rectX = rect.x + padding;
+    const rectY = rect.y + padding;
+
+    const newScaleX = stageWidth / rectWidth;
+    const newScaleY = stageHeight / rectHeight;
+    const newScale = Math.min(newScaleX, newScaleY);
+
+    navigateTo({ x: rectX, y: rectY }, newScale);
+    setStageScale(newScale);
+  };
+
+  const navigateTo = (point: Konva.Vector2d, scale?: number) => {
+    setStageX(point.x * (scale || stageScale));
+    setStageY(point.y * (scale || stageScale));
   };
 
   const translateStage = (translateX: number, translateY: number) => {
-    onNavigateTo && onNavigateTo(stageX + translateX, stageY + translateY);
+    const newStageX = stageX / stageScale + translateX;
+    const newStageY = stageY / stageScale + translateY;
+    navigateTo({ x: newStageX, y: newStageY });
   };
 
   const handleNavigateStage = (event: React.KeyboardEvent) => {
     if (event.key === "ArrowLeft") {
-      translateStage(50, 0);
+      translateStage(50 / stageScale, 0);
     } else if (event.key === "ArrowRight") {
-      translateStage(-50, 0);
+      translateStage(-50 / stageScale, 0);
     } else if (event.key === "ArrowUp") {
-      translateStage(0, 50);
+      translateStage(0, 50 / stageScale);
     } else if (event.key === "ArrowDown") {
-      translateStage(0, -50);
+      translateStage(0, -50 / stageScale);
     }
   };
 
@@ -151,56 +191,60 @@ const EditorStage: React.FC<Props> = ({
     onKeyDown && onKeyDown(event);
   };
 
+  const childrenProps = { stageX, stageY, stageScale, fitBoundsRect };
+
   return (
-    <div
-      tabIndex={1}
-      className="editor-stage-container"
-      onKeyDown={handleKeyDown}
-      ref={containerRef}
-    >
-      <Stage
-        x={stageX}
-        y={stageY}
-        scaleX={stageScaleX}
-        scaleY={stageScaleY}
-        onWheel={handleWheel}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        style={{ backgroundColor: "lightgray", ...style }}
-        {...stageProps}
+    <div className="editor-stage">
+      {toolbar && (
+        <div className="editor-stage__toolbar">{toolbar(childrenProps)}</div>
+      )}
+      <div
+        tabIndex={1}
+        className="editor-stage__container"
+        onKeyDown={handleKeyDown}
+        ref={containerRef}
       >
-        <Layer>
-          <Rect
-            stroke="blue"
-            strokeWidth={1 / stageScaleX}
-            name="selection-rect"
-            {...selectionRectProps}
-          />
-        </Layer>
-        {children}
-      </Stage>
+        <Stage
+          width={stageWidth}
+          height={stageHeight}
+          x={stageX}
+          y={stageY}
+          scaleX={stageScale}
+          scaleY={stageScale}
+          onWheel={handleWheel}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          style={{ backgroundColor: "lightgray", ...style }}
+          {...stageProps}
+        >
+          <Layer>
+            <Rect
+              stroke="blue"
+              strokeWidth={1 / stageScale}
+              name="selection-rect"
+              {...selectionRectProps}
+            />
+            <Rect
+              stroke="red"
+              strokeWidth={1 / stageScale}
+              width={100}
+              height={100}
+            />
+            <Rect
+              stroke="orange"
+              strokeWidth={1 / stageScale}
+              x={100}
+              y={100}
+              width={100}
+              height={200}
+            />
+          </Layer>
+          {children(childrenProps)}
+        </Stage>
+      </div>
     </div>
   );
 };
-
-const getBoundsRect = ({ x1, y1, x2, y2 }: Bounds) => ({
-  x: Math.min(x1, x2),
-  y: Math.min(y1, y2),
-  width: Math.abs(x1 - x2),
-  height: Math.abs(y1 - y2),
-});
-
-function getRelativePointerPosition(node: Konva.Group | Konva.Node) {
-  const transform = node.getAbsoluteTransform().copy();
-  // to detect relative position we need to invert transform
-  transform.invert();
-
-  // get pointer (say mouse or touch) position
-  const pos = node.getStage().getPointerPosition();
-
-  // now we can find relative point
-  return transform.point(pos);
-}
 
 export default EditorStage;

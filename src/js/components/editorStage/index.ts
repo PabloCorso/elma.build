@@ -1,1 +1,1 @@
-export { default } from "./EditorStage";
+export { default, ToolbarProps } from "./EditorStage";

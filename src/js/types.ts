@@ -1,4 +1,5 @@
 import { ElmaObject, Level, Polygon } from "elmajs";
+import Konva from "konva";
 
 export { ObjectType as ElmaObjectType } from "elmajs/lib-esm/lev/ElmaObject";
 
@@ -38,3 +39,17 @@ export type TemplateBlock = {
 export type Template = { name: string; blocks: TemplateBlock[] };
 
 export type Bounds = { x1: number; y1: number; x2: number; y2: number };
+
+export type BoundsRect = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+export type ShapeNode = Konva.Node & {
+  attrs: Konva.NodeConfig & {
+    selectable?: boolean;
+    element?: BlockElement;
+  };
+};
