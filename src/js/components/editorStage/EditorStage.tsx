@@ -10,7 +10,6 @@ import "./editorStage.css";
 
 type Props = Omit<StageProps, "scale"> & {
   scale: number;
-  onKeyDown?: (event: React.KeyboardEvent) => void;
   onMouseSelect?: (
     event: Konva.KonvaEventObject<MouseEvent>,
     nodes: Konva.Node[]

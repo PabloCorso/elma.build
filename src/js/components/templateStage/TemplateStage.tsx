@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Layer } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
 import { BlockElement, BoundsRect, ShapeNode } from "../../types";
 import EditorStage from "../editorStage";
-import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
-import useEditorStageState from "../../hooks/editorHooks";
+import useEditorStageState, {
+  useCenterLevelOnMount,
+} from "../../hooks/editorHooks";
 import EditorStageContainer from "../editorStageContainer";
 import "./templateStage.css";
 
@@ -22,15 +23,12 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
   const { stage, stageContainer, navigateTo, fitBoundsRect } =
     useEditorStageState<HTMLDivElement>();
 
-  useEffect(function centerLevelOnInit() {
-    const levelBounds = getLevelBounds(level);
-    const levelBoundsRect = getBoundsRect(levelBounds);
-    fitBoundsRect({
-      ...levelBoundsRect,
-      x: -levelBoundsRect.x,
-      y: -levelBoundsRect.y,
-    });
-  }, []);
+  useCenterLevelOnMount({
+    stageWidth: stage.width,
+    stageHeight: stage.height,
+    level,
+    fitBoundsRect,
+  });
 
   const [selectedNodes, setSelectedNodes] = useState<ShapeNode[]>([]);
 

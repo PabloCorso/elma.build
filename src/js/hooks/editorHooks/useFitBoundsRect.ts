@@ -1,16 +1,12 @@
 import { BoundsRect, NavigateTo } from "../../types";
 
-type UseFitBoundsRectProps = {
+export type Props = {
   stageWidth: number;
   stageHeight: number;
   navigateTo: NavigateTo;
 };
 
-function useFitBoundsRect({
-  stageWidth,
-  stageHeight,
-  navigateTo,
-}: UseFitBoundsRectProps) {
+function useFitBoundsRect({ stageWidth, stageHeight, navigateTo }: Props) {
   return (rect: BoundsRect): void => {
     const padding = 10;
     const rectWidth = rect.width + padding * 2;
