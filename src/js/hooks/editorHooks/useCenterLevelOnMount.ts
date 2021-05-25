@@ -1,10 +1,13 @@
-import { Level } from "elmajs";
 import { useEffect, useState } from "react";
-import { BoundsRect } from "../../types";
-import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
+import { BoundsRect, LevelElements } from "../../types";
+import {
+  getBoundsRect,
+  getLevelsBounds,
+  getLevelBounds,
+} from "../../utils/shapeUtils";
 
 type Props = {
-  level: Level;
+  level: LevelElements | LevelElements[];
   stageWidth: number;
   stageHeight: number;
   fitBoundsRect: (rect: BoundsRect) => void;
@@ -21,7 +24,9 @@ const useCenterLevelOnMount = ({
     function centerLevelOnMount() {
       const visibleStage = stageWidth > 0 && stageHeight > 0;
       if (!mountedStage && visibleStage) {
-        const levelBounds = getLevelBounds(level);
+        const levelBounds = Array.isArray(level)
+          ? getLevelsBounds(level)
+          : getLevelBounds(level);
         const levelBoundsRect = getBoundsRect(levelBounds);
         fitBoundsRect({
           ...levelBoundsRect,

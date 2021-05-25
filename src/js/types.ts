@@ -55,3 +55,10 @@ export type ShapeNode = Konva.Node & {
 };
 
 export type NavigateTo = (point: Konva.Vector2d, newScale?: number) => void;
+
+export type ToolbarProps = { fitBoundsRect: (rect: BoundsRect) => void };
+
+export type LevelElements = {
+  polygons: Polygon[];
+  objects: ElmaObject[];
+};

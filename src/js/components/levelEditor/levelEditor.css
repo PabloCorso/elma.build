@@ -1,14 +1,8 @@
 .level-editor {
   height: 100%;
   display: grid;
-  grid-template-areas: "level-info" "level-stage" "level-blocks";
-  grid-template-rows: 75px 1fr 150px;
-}
-
-.level-editor__info {
-  grid-area: level-info;
-  display: flex;
-  padding: 8px;
+  grid-template-areas: "level-stage" "level-blocks";
+  grid-template-rows: 1fr 150px;
 }
 
 .level-editor__stage {
@@ -19,4 +13,8 @@
 
 .level-editor__blocks {
   grid-area: level-blocks;
+}
+
+.level-editor__info {
+  display: flex;
 }

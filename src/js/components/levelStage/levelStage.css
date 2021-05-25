@@ -1,0 +1,16 @@
+.level-stage {
+  height: 100%;
+  display: grid;
+  grid-template-areas: "stage-toolbar" "stage-container";
+  grid-template-rows: 75px 1fr;
+}
+
+.level-stage__toolbar {
+  display: flex;
+  grid-area: stage-toolbar;
+}
+
+.level-stage__container {
+  grid-area: stage-container;
+  outline: none;
+}

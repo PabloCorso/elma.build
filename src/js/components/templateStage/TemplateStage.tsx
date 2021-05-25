@@ -3,15 +3,13 @@ import { Layer } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
-import { BlockElement, BoundsRect, ShapeNode } from "../../types";
+import { BlockElement, ToolbarProps, ShapeNode } from "../../types";
 import EditorStage from "../editorStage";
 import useEditorStageState, {
   useCenterLevelOnMount,
 } from "../../hooks/editorHooks";
 import EditorStageContainer from "../editorStageContainer";
 import "./templateStage.css";
-
-type ToolbarProps = { fitBoundsRect: (rect: BoundsRect) => void };
 
 type Props = {
   level: Level;

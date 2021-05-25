@@ -1,6 +1,5 @@
-import { Level } from "elmajs";
 import Konva from "konva";
-import { Bounds, BoundsRect } from "../types";
+import { Bounds, BoundsRect, LevelElements } from "../types";
 
 export const getBoundsRect = ({ x1, y1, x2, y2 }: Bounds): BoundsRect => ({
   x: Math.min(x1, x2),
@@ -37,12 +36,13 @@ export const getDistance = (p1: Konva.Vector2d, p2: Konva.Vector2d): number => {
   return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
 };
 
-export const getLevelBounds = (level: Level): Bounds => {
-  let x1;
-  let y1;
-  let x2;
-  let y2;
-  for (const polygon of level.polygons) {
+export const getLevelBounds = ({
+  polygons,
+  objects,
+}: LevelElements): Bounds => {
+  let x1, y1;
+  let x2, y2;
+  for (const polygon of polygons) {
     for (const vertex of polygon.vertices) {
       x1 = x1 !== undefined ? Math.min(vertex.x, x1) : vertex.x;
       y1 = y1 !== undefined ? Math.min(vertex.y, y1) : vertex.y;
@@ -51,5 +51,31 @@ export const getLevelBounds = (level: Level): Bounds => {
     }
   }
 
+  for (const object of objects) {
+    const vertex = object.position;
+    x1 = x1 !== undefined ? Math.min(vertex.x, x1) : vertex.x;
+    y1 = y1 !== undefined ? Math.min(vertex.y, y1) : vertex.y;
+    x2 = x2 !== undefined ? Math.max(vertex.x, x2) : vertex.x;
+    y2 = y2 !== undefined ? Math.max(vertex.y, y2) : vertex.y;
+  }
+
   return { x1, y1, x2, y2 };
+};
+
+export const mergeBounds = (bounds1: Bounds, bounds2: Bounds): Bounds => {
+  const result1: { x1: number; y1: number } =
+    bounds1.x1 < bounds2.x1 || bounds1.y1 < bounds2.y1 ? bounds1 : bounds2;
+  const result2: { x2: number; y2: number } =
+    bounds1.x2 > bounds2.x2 || bounds2.y2 > bounds2.y2 ? bounds1 : bounds2;
+  return { x1: result1.x1, y1: result1.y1, x2: result2.x2, y2: result2.y2 };
+};
+
+export const getLevelsBounds = (levels: LevelElements[]): Bounds => {
+  let result: Bounds;
+  for (const level of levels) {
+    const levelBounds = getLevelBounds(level);
+    result = result ? mergeBounds(levelBounds, result) : levelBounds;
+  }
+
+  return result;
 };
