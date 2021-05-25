@@ -60,27 +60,6 @@ const TemplateEditor: React.FC<Props> = ({ level, onCreateTemplate }) => {
               >
                 <ZoomOutMapIcon />
               </Button>
-              <Button
-                onClick={() => {
-                  fitBoundsRect({ x: 0, y: 0, width: 100, height: 100 });
-                }}
-              >
-                GO to 0:0
-              </Button>
-              <Button
-                onClick={() => {
-                  fitBoundsRect({ x: 100, y: 100, width: 100, height: 100 });
-                }}
-              >
-                GO to 100:100
-              </Button>
-              <Button
-                onClick={() => {
-                  fitBoundsRect({ x: -100, y: -100, width: 100, height: 200 });
-                }}
-              >
-                GO to -100:-100
-              </Button>
               <form
                 className="template-editor__info"
                 noValidate
