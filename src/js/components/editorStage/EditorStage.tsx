@@ -159,7 +159,12 @@ const EditorStage: React.FC<Props> = ({
     const newScaleY = stageHeight / rectHeight;
     const newScale = Math.min(newScaleX, newScaleY);
 
-    navigateTo({ x: rectX, y: rectY }, newScale);
+    const widthDiff = stageWidth / newScale - rectWidth;
+    const heightDiff = stageHeight / newScale - rectHeight;
+    const newX = widthDiff > heightDiff ? rectX + widthDiff / 2 : rectX;
+    const newY = heightDiff > widthDiff ? rectY + heightDiff / 2 : rectY;
+
+    navigateTo({ x: newX, y: newY }, newScale);
     setStageScale(newScale);
   };
 
@@ -224,20 +229,6 @@ const EditorStage: React.FC<Props> = ({
               strokeWidth={1 / stageScale}
               name="selection-rect"
               {...selectionRectProps}
-            />
-            <Rect
-              stroke="red"
-              strokeWidth={1 / stageScale}
-              width={100}
-              height={100}
-            />
-            <Rect
-              stroke="orange"
-              strokeWidth={1 / stageScale}
-              x={100}
-              y={100}
-              width={100}
-              height={200}
             />
           </Layer>
           {children(childrenProps)}
