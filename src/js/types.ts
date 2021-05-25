@@ -53,3 +53,5 @@ export type ShapeNode = Konva.Node & {
     element?: BlockElement;
   };
 };
+
+export type NavigateTo = (point: Konva.Vector2d, newScale?: number) => void;

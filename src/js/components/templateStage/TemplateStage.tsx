@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { Layer, Rect } from "react-konva";
+import React, { useEffect, useState } from "react";
+import cn from "classnames";
+import { Layer } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
 import { BlockElement, BoundsRect, ShapeNode } from "../../types";
 import EditorStage from "../editorStage";
 import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
-import { useEditorStageState } from "../../hooks/editorHooks";
+import useEditorStageState from "../../hooks/editorHooks";
 import "./templateStage.css";
 
 type ToolbarProps = { fitBoundsRect: (rect: BoundsRect) => void };
@@ -18,6 +19,20 @@ type Props = {
 };
 
 const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
+  const { stage, stageContainer, navigateTo, fitBoundsRect } =
+    useEditorStageState<HTMLDivElement>();
+
+  useEffect(function centerLevelOnInit() {
+    const levelBounds = getLevelBounds(level);
+    const levelBoundsRect = getBoundsRect(levelBounds);
+    console.log({ stage, level, levelBoundsRect });
+    fitBoundsRect({
+      ...levelBoundsRect,
+      x: -levelBoundsRect.x,
+      y: -levelBoundsRect.y,
+    });
+  }, []);
+
   const [selectedNodes, setSelectedNodes] = useState<ShapeNode[]>([]);
 
   const handleCreateBlock = () => {
@@ -41,18 +56,6 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
     setSelectedNodes(nodes);
   };
 
-  const levelBounds = getLevelBounds(level);
-  const levelBoundsRect = getBoundsRect(levelBounds);
-
-  const { containerRef, stage, navigateTo, fitBoundsRect } =
-    useEditorStageState<HTMLDivElement>();
-
-  const handleWheel = () => {
-    if (containerRef.current) {
-      containerRef.current.focus();
-    }
-  };
-
   return (
     <div className="template-stage">
       {toolbar && (
@@ -61,17 +64,16 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
         </div>
       )}
       <div
-        tabIndex={1}
-        className="template-stage__container"
-        onKeyDown={handleKeyDown}
-        ref={containerRef}
+        ref={stageContainer.ref}
+        onWheel={stageContainer.onWheel}
+        tabIndex={stageContainer.tabIndex}
+        className={cn("template-stage__container", stageContainer)}
       >
         <EditorStage
           {...stage}
           navigateTo={navigateTo}
           onKeyDown={handleKeyDown}
           onMouseSelect={handleMouseSelect}
-          onWheel={handleWheel}
           toolbar={toolbar}
         >
           <Layer>
@@ -106,11 +108,6 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
                 />
               );
             })}
-            <Rect
-              {...levelBoundsRect}
-              stroke="green"
-              strokeWidth={1 / stage.scale}
-            />
           </Layer>
         </EditorStage>
       </div>

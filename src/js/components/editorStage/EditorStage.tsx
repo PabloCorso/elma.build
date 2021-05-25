@@ -6,6 +6,7 @@ import {
   getRelativePointerPosition,
 } from "../../utils/shapeUtils";
 import { NavigateTo } from "../../hooks/editorHooks";
+import "./editorStage.css";
 
 type Props = Omit<StageProps, "scale"> & {
   scale: number;
@@ -153,31 +154,37 @@ const EditorStage: React.FC<Props> = ({
   };
 
   return (
-    <Stage
-      width={stageWidth}
-      height={stageHeight}
-      x={stageX}
-      y={stageY}
-      scaleX={stageScale}
-      scaleY={stageScale}
-      onWheel={handleWheel}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
+    <div
+      tabIndex={1}
+      className="editor-stage-container"
       onKeyDown={handleKeyDown}
-      style={{ backgroundColor: "lightgray", ...style }}
-      {...stageProps}
     >
-      <Layer>
-        <Rect
-          stroke="blue"
-          strokeWidth={1 / stageScale}
-          name="selection-rect"
-          {...selectionRectProps}
-        />
-      </Layer>
-      {children}
-    </Stage>
+      <Stage
+        tabIndex={1}
+        width={stageWidth}
+        height={stageHeight}
+        x={stageX}
+        y={stageY}
+        scaleX={stageScale}
+        scaleY={stageScale}
+        onWheel={handleWheel}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        style={{ backgroundColor: "lightgray", ...style }}
+        {...stageProps}
+      >
+        <Layer>
+          <Rect
+            stroke="blue"
+            strokeWidth={1 / stageScale}
+            name="selection-rect"
+            {...selectionRectProps}
+          />
+        </Layer>
+        {children}
+      </Stage>
+    </div>
   );
 };
 
