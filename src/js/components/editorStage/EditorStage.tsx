@@ -5,7 +5,7 @@ import {
   getBoundsRect,
   getRelativePointerPosition,
 } from "../../utils/shapeUtils";
-import { NavigateTo } from "../../hooks/editorHooks";
+import { NavigateTo } from "../../types";
 import "./editorStage.css";
 
 type Props = Omit<StageProps, "scale"> & {
@@ -27,7 +27,6 @@ const EditorStage: React.FC<Props> = ({
   children,
   style,
   navigateTo,
-  onKeyDown,
   onWheel,
   onMouseDown,
   onMouseMove,
@@ -130,61 +129,31 @@ const EditorStage: React.FC<Props> = ({
     onWheel && onWheel(event);
   };
 
-  const translateStage = (translateX: number, translateY: number) => {
-    const newStageX = stageX / stageScale + translateX;
-    const newStageY = stageY / stageScale + translateY;
-    navigateTo({ x: newStageX, y: newStageY }, stageScale);
-  };
-
-  const handleNavigateStage = (event: React.KeyboardEvent) => {
-    if (event.key === "ArrowLeft") {
-      translateStage(50 / stageScale, 0);
-    } else if (event.key === "ArrowRight") {
-      translateStage(-50 / stageScale, 0);
-    } else if (event.key === "ArrowUp") {
-      translateStage(0, 50 / stageScale);
-    } else if (event.key === "ArrowDown") {
-      translateStage(0, -50 / stageScale);
-    }
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    handleNavigateStage(event);
-    onKeyDown && onKeyDown(event);
-  };
-
   return (
-    <div
-      tabIndex={1}
-      className="editor-stage-container"
-      onKeyDown={handleKeyDown}
+    <Stage
+      width={stageWidth}
+      height={stageHeight}
+      x={stageX}
+      y={stageY}
+      scaleX={stageScale}
+      scaleY={stageScale}
+      onWheel={handleWheel}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      style={{ backgroundColor: "lightgray", ...style }}
+      {...stageProps}
     >
-      <Stage
-        tabIndex={1}
-        width={stageWidth}
-        height={stageHeight}
-        x={stageX}
-        y={stageY}
-        scaleX={stageScale}
-        scaleY={stageScale}
-        onWheel={handleWheel}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        style={{ backgroundColor: "lightgray", ...style }}
-        {...stageProps}
-      >
-        <Layer>
-          <Rect
-            stroke="blue"
-            strokeWidth={1 / stageScale}
-            name="selection-rect"
-            {...selectionRectProps}
-          />
-        </Layer>
-        {children}
-      </Stage>
-    </div>
+      <Layer>
+        <Rect
+          stroke="blue"
+          strokeWidth={1 / stageScale}
+          name="selection-rect"
+          {...selectionRectProps}
+        />
+      </Layer>
+      {children}
+    </Stage>
   );
 };
 

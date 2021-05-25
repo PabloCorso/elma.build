@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import cn from "classnames";
 import { Layer } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
@@ -8,6 +7,7 @@ import { BlockElement, BoundsRect, ShapeNode } from "../../types";
 import EditorStage from "../editorStage";
 import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
 import useEditorStageState from "../../hooks/editorHooks";
+import EditorStageContainer from "../editorStageContainer";
 import "./templateStage.css";
 
 type ToolbarProps = { fitBoundsRect: (rect: BoundsRect) => void };
@@ -25,7 +25,6 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
   useEffect(function centerLevelOnInit() {
     const levelBounds = getLevelBounds(level);
     const levelBoundsRect = getBoundsRect(levelBounds);
-    console.log({ stage, level, levelBoundsRect });
     fitBoundsRect({
       ...levelBoundsRect,
       x: -levelBoundsRect.x,
@@ -44,6 +43,10 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (stageContainer && stageContainer.onKeyDown) {
+      stageContainer.onKeyDown(event);
+    }
+
     if (event.key === "Enter") {
       handleCreateBlock();
     }
@@ -63,17 +66,16 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
           {toolbar({ fitBoundsRect })}
         </div>
       )}
-      <div
-        ref={stageContainer.ref}
-        onWheel={stageContainer.onWheel}
-        tabIndex={stageContainer.tabIndex}
-        className={cn("template-stage__container", stageContainer)}
+      <EditorStageContainer
+        {...stageContainer}
+        onKeyDown={handleKeyDown}
+        className={"template-stage__container"}
       >
         <EditorStage
           {...stage}
           navigateTo={navigateTo}
-          onKeyDown={handleKeyDown}
           onMouseSelect={handleMouseSelect}
+          onWheel={stageContainer.onWheel}
           toolbar={toolbar}
         >
           <Layer>
@@ -110,7 +112,7 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
             })}
           </Layer>
         </EditorStage>
-      </div>
+      </EditorStageContainer>
     </div>
   );
 };
