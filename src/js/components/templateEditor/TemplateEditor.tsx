@@ -6,8 +6,8 @@ import TemplateStage from "../templateStage";
 import BlockCards from "../blockCards";
 import BlockCard from "../blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
-import "./templateEditor.css";
 import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
+import "./templateEditor.css";
 
 type Props = { level: Level; onCreateTemplate: () => void };
 
