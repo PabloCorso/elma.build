@@ -43,7 +43,7 @@ const LevelStage: React.FC<Props> = ({ blocks, templateBlocks, toolbar }) => {
       )}
       <EditorStageContainer
         {...stageContainer}
-        className={"level-stage__container"}
+        className="level-stage__container"
       >
         <EditorStage
           {...stage}

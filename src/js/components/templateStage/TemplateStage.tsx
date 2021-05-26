@@ -65,7 +65,7 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
       <EditorStageContainer
         {...stageContainer}
         onKeyDown={handleKeyDown}
-        className={"template-stage__container"}
+        className="template-stage__container"
       >
         <EditorStage
           {...stage}
