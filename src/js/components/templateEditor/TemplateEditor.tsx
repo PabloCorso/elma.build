@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { ElmaObject, Level, Polygon } from "elmajs";
-import { TemplateBlock, BlockElement, ShapeElementType } from "../../types";
+import {
+  TemplateBlock,
+  BlockElement,
+  ShapeElementType,
+  Template,
+} from "../../types";
 import { Button, TextField } from "@material-ui/core";
 import TemplateStage from "../templateStage";
 import BlockCards from "../blockCards";
@@ -9,9 +14,9 @@ import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
 import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
 import "./templateEditor.css";
 
-type Props = { level: Level; onCreateTemplate: () => void };
+type Props = { level: Level; createTemplate: (template: Template) => void };
 
-const TemplateEditor: React.FC<Props> = ({ level, onCreateTemplate }) => {
+const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
   const [blocks, setBlocks] = useState<TemplateBlock[]>([]);
   const handleCreateBlock = (elements: BlockElement[]) => {
     const id = blocks.length + 1 + "";
@@ -34,8 +39,7 @@ const TemplateEditor: React.FC<Props> = ({ level, onCreateTemplate }) => {
   const handleCreateTemplate = (event: React.FormEvent) => {
     event.preventDefault();
     if (templateName) {
-      window.electron.saveTemplate({ name: templateName, blocks });
-      onCreateTemplate();
+      createTemplate({ name: templateName, blocks });
     }
   };
 

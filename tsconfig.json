@@ -13,7 +13,8 @@
     "paths": {
       "*": ["node_modules/*"]
     },
-    "jsx": "react"
+    "jsx": "react",
+    "lib": ["es2019", "DOM"]
   },
   "include": ["src/**/*"]
 }

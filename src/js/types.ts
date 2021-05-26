@@ -3,7 +3,13 @@ import Konva from "konva";
 
 export { ObjectType as ElmaObjectType } from "elmajs/lib-esm/lev/ElmaObject";
 
+export type SaveLevelProps = {
+  filename: string;
+  level: Partial<Level>;
+};
+
 export type ElectronApi = {
+  saveLevel: (level: SaveLevelProps) => boolean;
   readAllLevels: () => string[];
   readLevel: (name: string) => Level;
   saveTemplate: ({ name, blocks }: Template) => boolean;
@@ -12,6 +18,7 @@ export type ElectronApi = {
 };
 
 export enum ElectronApis {
+  SaveLevel = "save-level",
   ReadAllLevels = "read-all-levels",
   ReadLevel = "read-level",
   SaveTemplate = "save-template",

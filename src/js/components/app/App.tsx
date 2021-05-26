@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import { Level } from "elmajs";
 import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
-import { Template } from "../../types";
+import { SaveLevelProps, Template } from "../../types";
 import "./app.css";
 
 const App: React.FC = () => {
@@ -15,6 +15,21 @@ const App: React.FC = () => {
   const updateTemplatesFolder = () => {
     const folder = window.electron.readAllTemplates();
     setTemplatesFolder(folder);
+  };
+
+  const handleCreateTemplate = (template: Template) => {
+    window.electron.saveTemplate(template);
+    updateTemplatesFolder();
+  };
+
+  const updateLevFolder = () => {
+    const folder = window.electron.readAllLevels();
+    setLevFolder(folder);
+  };
+
+  const handleCreateLevel = (data: SaveLevelProps) => {
+    window.electron.saveLevel(data);
+    updateLevFolder();
   };
 
   useEffect(function initialize() {
@@ -69,12 +84,11 @@ const App: React.FC = () => {
       </div>
       <div className="app__template-editor">
         {level && (
-          <TemplateEditor
-            level={level}
-            onCreateTemplate={updateTemplatesFolder}
-          />
+          <TemplateEditor level={level} createTemplate={handleCreateTemplate} />
         )}
-        {template && <LevelEditor template={template} />}
+        {template && (
+          <LevelEditor template={template} createLevel={handleCreateLevel} />
+        )}
       </div>
     </div>
   );

@@ -1,16 +1,18 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
-import { TemplateBlock, Template } from "../../types";
+import { TemplateBlock, Template, SaveLevelProps } from "../../types";
 import LevelStage from "../levelStage";
 import BlockCards from "../blockCards";
 import BlockCard from "../blockCard";
+import { ElmaObject, Level, Polygon } from "elmajs";
 import "./levelEditor.css";
 
 type Props = {
   template: Template;
+  createLevel: (props: SaveLevelProps) => void;
 };
 
-const LevelEditor: React.FC<Props> = ({ template }) => {
+const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
   const [levelName, setLevelName] = useState("");
   const [stageBlocks, setStageBlocks] = useState<TemplateBlock[]>([]);
 
@@ -20,6 +22,23 @@ const LevelEditor: React.FC<Props> = ({ template }) => {
 
   const handleCreateLevel = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const polygons: Polygon[] = [];
+    const objects: ElmaObject[] = [];
+    for (const block of stageBlocks) {
+      polygons.push(...block.polygons);
+      objects.push(...block.objects);
+    }
+
+    const level: Partial<Level> = {
+      name: "Generated with elma.build",
+      polygons,
+      objects,
+      ground: "sky",
+      sky: "groud",
+    };
+
+    createLevel({ filename: levelName, level });
   };
 
   return (

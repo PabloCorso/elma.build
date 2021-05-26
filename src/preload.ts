@@ -1,7 +1,9 @@
-import { ElectronApis, Template } from "./js/types";
 const { contextBridge, ipcRenderer } = require("electron");
+import { ElectronApis, Template, SaveLevelProps } from "./js/types";
 
 contextBridge.exposeInMainWorld("electron", {
+  saveLevel: (data: SaveLevelProps) =>
+    ipcRenderer.sendSync(ElectronApis.SaveLevel, JSON.stringify(data)),
   readAllLevels: () => ipcRenderer.sendSync(ElectronApis.ReadAllLevels),
   readLevel: (name: string) =>
     JSON.parse(ipcRenderer.sendSync(ElectronApis.ReadLevel, name)),

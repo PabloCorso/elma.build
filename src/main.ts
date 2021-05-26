@@ -4,7 +4,7 @@ import installExtension, {
 } from "electron-devtools-installer";
 import fs from "fs";
 import { Level } from "elmajs";
-import { ElectronApis, Template } from "./js/types";
+import { ElectronApis, SaveLevelProps, Template } from "./js/types";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -67,6 +67,20 @@ const levFolderPath =
   "C:/Users/USER/Documents/Source/elastomania/elma.build/lev";
 const templatesFolderPath =
   "C:/Users/USER/Documents/Source/elastomania/elma.build/templates";
+const defaultLevelName = "Generated with elma.build";
+
+ipcMain.on(ElectronApis.SaveLevel, (event, data: string) => {
+  const { filename, level: parsedLevel } = JSON.parse(data) as SaveLevelProps;
+  const level = new Level();
+  level.name = parsedLevel.name || defaultLevelName;
+  level.polygons = parsedLevel.polygons || [];
+  level.objects = parsedLevel.objects || [];
+  level.ground = parsedLevel.ground || level.ground;
+  level.sky = parsedLevel.sky || level.sky;
+
+  fs.writeFileSync(`${levFolderPath}/${filename}.lev`, level.toBuffer());
+  event.returnValue = true;
+});
 
 ipcMain.on(ElectronApis.ReadAllLevels, (event) => {
   const levFolder = fs.readdirSync(levFolderPath);
