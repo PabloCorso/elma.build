@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import { BlockProps } from "../blockCard";
-import "./blockCards.css";
+import "./cardsList.css";
 
 type Props = {
   children?: React.ReactElement<BlockProps>[];
@@ -9,7 +9,7 @@ type Props = {
 };
 
 const BlockCards: React.FC<Props> = ({ children, className }) => {
-  const rootClassName = cn("block-cards", className);
+  const rootClassName = cn("cards-list", className);
   return <ul className={rootClassName}>{children}</ul>;
 };
 

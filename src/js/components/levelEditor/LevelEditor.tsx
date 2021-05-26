@@ -2,7 +2,7 @@ import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { TemplateBlock, Template, SaveLevelProps } from "../../types";
 import LevelStage from "../levelStage";
-import BlockCards from "../blockCards";
+import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
 import { ElmaObject, Level, Polygon } from "elmajs";
 import "./levelEditor.css";
@@ -81,7 +81,7 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
           )}
         />
       </div>
-      <BlockCards className="level-editor__blocks">
+      <CardsList className="level-editor__blocks">
         {template.blocks.map((block, index) => (
           <BlockCard
             key={index}
@@ -92,7 +92,7 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
             readonly
           />
         ))}
-      </BlockCards>
+      </CardsList>
     </div>
   );
 };

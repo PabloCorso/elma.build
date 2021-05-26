@@ -8,7 +8,7 @@ import {
 } from "../../types";
 import { Button, TextField } from "@material-ui/core";
 import TemplateStage from "../templateStage";
-import BlockCards from "../blockCards";
+import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
 import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
@@ -87,7 +87,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
           )}
         />
       </div>
-      <BlockCards className="template-editor__blocks">
+      <CardsList className="template-editor__blocks">
         {blocks.map((block, index) => (
           <BlockCard
             key={index}
@@ -100,7 +100,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
             }}
           />
         ))}
-      </BlockCards>
+      </CardsList>
     </div>
   );
 };
