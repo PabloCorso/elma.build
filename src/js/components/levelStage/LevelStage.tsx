@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import Konva from "konva";
 import { Group, Layer } from "react-konva";
-import useEditorStageState, {
+import {
+  EditorStageState,
   useCenterLevelOnMount,
 } from "../../hooks/editorHooks";
-import { ShapeNode, TemplateBlock, ToolbarProps } from "../../types";
+import { ShapeNode, TemplateBlock } from "../../types";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../editorStageContainer/EditorStageContainer";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
-import "./levelStage.css";
 
 type Props = {
   blocks: TemplateBlock[];
   templateBlocks: TemplateBlock[];
-  toolbar?: (props: ToolbarProps) => React.ReactNode;
+  stageState: EditorStageState<HTMLDivElement>;
 };
 
-const LevelStage: React.FC<Props> = ({ blocks, templateBlocks, toolbar }) => {
-  const { stage, stageContainer, navigateTo, fitBoundsRect } =
-    useEditorStageState<HTMLDivElement>();
+const LevelStage: React.FC<Props> = ({
+  blocks,
+  templateBlocks,
+  stageState,
+}) => {
+  const { stage, stageContainer, navigateTo, fitBoundsRect } = stageState;
 
   useCenterLevelOnMount({
     level: templateBlocks,
@@ -37,63 +40,55 @@ const LevelStage: React.FC<Props> = ({ blocks, templateBlocks, toolbar }) => {
   };
 
   return (
-    <div className="level-stage">
-      {toolbar && (
-        <div className="level-stage__toolbar">{toolbar({ fitBoundsRect })}</div>
-      )}
-      <EditorStageContainer
-        {...stageContainer}
-        className="level-stage__container"
+    <EditorStageContainer {...stageContainer}>
+      <EditorStage
+        {...stage}
+        navigateTo={navigateTo}
+        onMouseSelect={handleMouseSelect}
+        onWheel={stageContainer.onWheel}
+        toolbar={toolbar}
       >
-        <EditorStage
-          {...stage}
-          navigateTo={navigateTo}
-          onMouseSelect={handleMouseSelect}
-          onWheel={stageContainer.onWheel}
-          toolbar={toolbar}
-        >
-          <Layer>
-            {blocks.map((block, index) => {
-              return (
-                <Group key={`${block.name}_${index}`}>
-                  {block.polygons.map((polygon, index) => {
-                    const id = `${block.name}_polygon_${index}`;
-                    const isSelected = selectedNodes.some(
-                      (node) => node.attrs.id === id
-                    );
-                    return (
-                      <PolygonShape
-                        key={index}
-                        name={id}
-                        id={id}
-                        polygon={polygon}
-                        stroke={isSelected ? "yellow" : "black"}
-                        strokeWidth={1 / stage.scale}
-                      />
-                    );
-                  })}
-                  {block.objects.map((levelObject, index) => {
-                    const id = `${block.name}_object_${index}`;
-                    const isSelected = selectedNodes.some(
-                      (node) => node.attrs.id === id
-                    );
-                    return (
-                      <ElmaObjectShape
-                        key={id}
-                        id={id}
-                        elmaObject={levelObject}
-                        stroke={isSelected ? "yellow" : "default"}
-                        strokeWidth={1 / stage.scale}
-                      />
-                    );
-                  })}
-                </Group>
-              );
-            })}
-          </Layer>
-        </EditorStage>
-      </EditorStageContainer>
-    </div>
+        <Layer>
+          {blocks.map((block, index) => {
+            return (
+              <Group key={`${block.name}_${index}`}>
+                {block.polygons.map((polygon, index) => {
+                  const id = `${block.name}_polygon_${index}`;
+                  const isSelected = selectedNodes.some(
+                    (node) => node.attrs.id === id
+                  );
+                  return (
+                    <PolygonShape
+                      key={index}
+                      name={id}
+                      id={id}
+                      polygon={polygon}
+                      stroke={isSelected ? "yellow" : "black"}
+                      strokeWidth={1 / stage.scale}
+                    />
+                  );
+                })}
+                {block.objects.map((levelObject, index) => {
+                  const id = `${block.name}_object_${index}`;
+                  const isSelected = selectedNodes.some(
+                    (node) => node.attrs.id === id
+                  );
+                  return (
+                    <ElmaObjectShape
+                      key={id}
+                      id={id}
+                      elmaObject={levelObject}
+                      stroke={isSelected ? "yellow" : "default"}
+                      strokeWidth={1 / stage.scale}
+                    />
+                  );
+                })}
+              </Group>
+            );
+          })}
+        </Layer>
+      </EditorStage>
+    </EditorStageContainer>
   );
 };
 

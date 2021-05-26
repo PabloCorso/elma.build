@@ -5,6 +5,7 @@ import LevelStage from "../levelStage";
 import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
 import { ElmaObject, Level, Polygon } from "elmajs";
+import useEditorStageState from "../../hooks/editorHooks";
 import "./levelEditor.css";
 
 type Props = {
@@ -13,6 +14,8 @@ type Props = {
 };
 
 const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
+  const stageState = useEditorStageState<HTMLDivElement>();
+
   const [levelName, setLevelName] = useState("");
   const [stageBlocks, setStageBlocks] = useState<TemplateBlock[]>([]);
 
@@ -43,42 +46,28 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
 
   return (
     <div className="level-editor">
+      <div className="level-editor__toolbar">
+        <form
+          className="level-editor__info"
+          noValidate
+          autoComplete="off"
+          onSubmit={handleCreateLevel}
+        >
+          <TextField
+            label="Level name"
+            value={levelName}
+            onChange={(event) => setLevelName(event.target.value)}
+          />
+          <Button type="submit" color="primary">
+            Create level
+          </Button>
+        </form>
+      </div>
       <div className="level-editor__stage">
         <LevelStage
           blocks={stageBlocks}
           templateBlocks={template.blocks}
-          toolbar={() => (
-            <>
-              {/* <Button
-                onClick={() => {
-                  const levelBounds = getLevelBounds(level);
-                  const levelBoundsRect = getBoundsRect(levelBounds);
-                  fitBoundsRect({
-                    ...levelBoundsRect,
-                    x: -levelBoundsRect.x,
-                    y: -levelBoundsRect.y,
-                  });
-                }}
-              >
-                <ZoomOutMapIcon />
-              </Button> */}
-              <form
-                className="level-editor__info"
-                noValidate
-                autoComplete="off"
-                onSubmit={handleCreateLevel}
-              >
-                <TextField
-                  label="Level name"
-                  value={levelName}
-                  onChange={(event) => setLevelName(event.target.value)}
-                />
-                <Button type="submit" color="primary">
-                  Create level
-                </Button>
-              </form>
-            </>
-          )}
+          stageState={stageState}
         />
       </div>
       <CardsList className="level-editor__blocks">

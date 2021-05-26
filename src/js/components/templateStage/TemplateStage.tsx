@@ -3,24 +3,26 @@ import { Layer } from "react-konva";
 import Konva from "konva";
 import { Level } from "elmajs";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
-import { BlockElement, ToolbarProps, ShapeNode } from "../../types";
+import { BlockElement, ShapeNode } from "../../types";
 import EditorStage from "../editorStage";
-import useEditorStageState, {
+import {
+  EditorStageState,
   useCenterLevelOnMount,
 } from "../../hooks/editorHooks";
 import EditorStageContainer from "../editorStageContainer";
-import "./templateStage.css";
 
 type Props = {
   level: Level;
-  toolbar?: (props: ToolbarProps) => React.ReactNode;
+  stageState: EditorStageState<HTMLDivElement>;
   onCreateBlock: (elements: BlockElement[]) => void;
 };
 
-const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
-  const { stage, stageContainer, navigateTo, fitBoundsRect } =
-    useEditorStageState<HTMLDivElement>();
-
+const TemplateEditor: React.FC<Props> = ({
+  level,
+  stageState,
+  onCreateBlock,
+}) => {
+  const { stage, stageContainer, navigateTo, fitBoundsRect } = stageState;
   useCenterLevelOnMount({
     stageWidth: stage.width,
     stageHeight: stage.height,
@@ -56,60 +58,49 @@ const TemplateEditor: React.FC<Props> = ({ level, toolbar, onCreateBlock }) => {
   };
 
   return (
-    <div className="template-stage">
-      {toolbar && (
-        <div className="template-stage__toolbar">
-          {toolbar({ fitBoundsRect })}
-        </div>
-      )}
-      <EditorStageContainer
-        {...stageContainer}
-        onKeyDown={handleKeyDown}
-        className="template-stage__container"
+    <EditorStageContainer {...stageContainer} onKeyDown={handleKeyDown}>
+      <EditorStage
+        {...stage}
+        navigateTo={navigateTo}
+        onMouseSelect={handleMouseSelect}
+        onWheel={stageContainer.onWheel}
+        toolbar={toolbar}
       >
-        <EditorStage
-          {...stage}
-          navigateTo={navigateTo}
-          onMouseSelect={handleMouseSelect}
-          onWheel={stageContainer.onWheel}
-          toolbar={toolbar}
-        >
-          <Layer>
-            {level.polygons.map((polygon, index) => {
-              const id = `${level.name}_polygon_${index}`;
-              const isSelected = selectedNodes.some(
-                (node) => node.attrs.id === id
-              );
-              return (
-                <PolygonShape
-                  key={index}
-                  name={id}
-                  id={id}
-                  polygon={polygon}
-                  stroke={isSelected ? "yellow" : "black"}
-                  strokeWidth={1 / stage.scale}
-                />
-              );
-            })}
-            {level.objects.map((levelObject, index) => {
-              const id = `${level.name}_object_${index}`;
-              const isSelected = selectedNodes.some(
-                (node) => node.attrs.id === id
-              );
-              return (
-                <ElmaObjectShape
-                  key={id}
-                  id={id}
-                  elmaObject={levelObject}
-                  stroke={isSelected ? "yellow" : "default"}
-                  strokeWidth={1 / stage.scale}
-                />
-              );
-            })}
-          </Layer>
-        </EditorStage>
-      </EditorStageContainer>
-    </div>
+        <Layer>
+          {level.polygons.map((polygon, index) => {
+            const id = `${level.name}_polygon_${index}`;
+            const isSelected = selectedNodes.some(
+              (node) => node.attrs.id === id
+            );
+            return (
+              <PolygonShape
+                key={index}
+                name={id}
+                id={id}
+                polygon={polygon}
+                stroke={isSelected ? "yellow" : "black"}
+                strokeWidth={1 / stage.scale}
+              />
+            );
+          })}
+          {level.objects.map((levelObject, index) => {
+            const id = `${level.name}_object_${index}`;
+            const isSelected = selectedNodes.some(
+              (node) => node.attrs.id === id
+            );
+            return (
+              <ElmaObjectShape
+                key={id}
+                id={id}
+                elmaObject={levelObject}
+                stroke={isSelected ? "yellow" : "default"}
+                strokeWidth={1 / stage.scale}
+              />
+            );
+          })}
+        </Layer>
+      </EditorStage>
+    </EditorStageContainer>
   );
 };
 

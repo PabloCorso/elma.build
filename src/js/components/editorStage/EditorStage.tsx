@@ -6,7 +6,6 @@ import {
   getRelativePointerPosition,
 } from "../../utils/shapeUtils";
 import { NavigateTo } from "../../types";
-import "./editorStage.css";
 
 type Props = Omit<StageProps, "scale"> & {
   scale: number;

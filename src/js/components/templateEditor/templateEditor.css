@@ -1,12 +1,39 @@
 .template-editor {
   height: 100%;
   display: grid;
-  grid-template-areas: "template-stage" "template-blocks";
-  grid-template-rows: 1fr 150px;
+  grid-template-areas: "template-toolbar" "template-body" "template-blocks";
+  grid-template-rows: 75px minmax(0, 1fr) 150px;
+
+  /* Fix for the stage resize */
+  min-height: 0;
+  min-width: 0;
+}
+
+.template-editor__toolbar {
+  grid-area: template-toolbar;
+  display: flex;
+}
+
+.template-editor__body {
+  grid-area: template-body;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 12px;
+
+  /* Fix for the stage resize */
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+}
+
+.template-editor__tabs {
+  background-color: lightgray;
 }
 
 .template-editor__stage {
-  grid-area: template-stage;
+  flex: 1;
   position: relative;
   height: 100%;
 }

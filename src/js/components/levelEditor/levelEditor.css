@@ -1,20 +1,31 @@
 .level-editor {
   height: 100%;
   display: grid;
-  grid-template-areas: "level-stage" "level-blocks";
-  grid-template-rows: 1fr 150px;
+  grid-template-areas: "level-toolbar" "level-stage" "level-blocks";
+  grid-template-rows: 75px minmax(0, 1fr) 150px;
+
+  /* Fix for the stage resize */
+  min-height: 0;
+  min-width: 0;
+}
+
+.level-editor__toolbar {
+  grid-area: level-toolbar;
+  display: flex;
 }
 
 .level-editor__stage {
   grid-area: level-stage;
   position: relative;
   height: 100%;
+  flex: 1;
+
+  /* Fix for the stage resize */
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
 }
 
 .level-editor__blocks {
   grid-area: level-blocks;
-}
-
-.level-editor__info {
-  display: flex;
 }

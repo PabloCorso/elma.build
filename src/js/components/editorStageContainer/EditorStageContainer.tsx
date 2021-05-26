@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import cn from "classnames";
+import "./editorStageContainer.css";
 
 const EditorStageContinaer = forwardRef<
   HTMLDivElement,
