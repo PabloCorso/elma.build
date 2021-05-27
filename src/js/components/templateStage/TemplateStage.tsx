@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Layer } from "react-konva";
 import Konva from "konva";
-import { Level } from "elmajs";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
-import { BlockElement, ShapeNode } from "../../types";
+import { BlockElement, ShapeNode, PartialLevel } from "../../types";
 import EditorStage from "../editorStage";
 import {
   EditorStageState,
@@ -12,7 +11,7 @@ import {
 import EditorStageContainer from "../editorStageContainer";
 
 type Props = {
-  level: Level;
+  level: PartialLevel;
   stageState: EditorStageState<HTMLDivElement>;
   onCreateBlock: (elements: BlockElement[]) => void;
 };
@@ -58,7 +57,11 @@ const TemplateEditor: React.FC<Props> = ({
   };
 
   return (
-    <EditorStageContainer {...stageContainer} onKeyDown={handleKeyDown}>
+    <EditorStageContainer
+      ref={stageContainer.setRef}
+      onWheel={stageContainer.onWheel}
+      onKeyDown={handleKeyDown}
+    >
       <EditorStage
         {...stage}
         navigateTo={navigateTo}
