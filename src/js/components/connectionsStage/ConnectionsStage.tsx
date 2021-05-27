@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Group, Layer, Line } from "react-konva";
+import { Group, Layer } from "react-konva";
 import {
   EditorStageState,
   useCenterLevelOnMount,
 } from "../../hooks/editorHooks";
 import { Vertex, TemplateBlock, VertexConnection } from "../../types";
+import ConnectionShape from "../connectionShape";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../editorStageContainer/EditorStageContainer";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
@@ -104,14 +105,8 @@ const ConnectionsStage: React.FC<Props> = ({
                   );
                 })}
                 {connections.map((connection) => (
-                  <Line
-                    points={[
-                      connection.v1.x,
-                      connection.v1.y,
-                      connection.v2.x,
-                      connection.v2.y,
-                    ]}
-                    stroke="green"
+                  <ConnectionShape
+                    connection={connection}
                     strokeWidth={1 / stage.scale}
                   />
                 ))}
