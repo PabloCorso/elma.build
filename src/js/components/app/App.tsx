@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
-import { Level } from "elmajs";
 import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
-import { SaveLevelProps, Template } from "../../types";
+import { SaveLevelProps, Template, PartialLevel } from "../../types";
 import "./app.css";
 
 const App: React.FC = () => {
   const [levFolder, setLevFolder] = useState<string[]>([]);
   const [templatesFolder, setTemplatesFolder] = useState<string[]>([]);
-  const [level, setLevel] = useState<Level>();
+  const [level, setLevel] = useState<PartialLevel>();
   const [template, setTemplate] = useState<Template>();
 
   const updateTemplatesFolder = () => {

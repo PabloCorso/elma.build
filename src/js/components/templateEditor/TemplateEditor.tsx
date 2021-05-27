@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { ElmaObject, Level, Polygon } from "elmajs";
+import { ElmaObject, Polygon } from "elmajs";
 import {
   TemplateBlock,
   BlockElement,
   ShapeElementType,
   Template,
+  PartialLevel,
 } from "../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
 import TemplateStage from "../templateStage";
@@ -22,7 +23,10 @@ enum TemplateStageTab {
   Connections = 1,
 }
 
-type Props = { level: Level; createTemplate: (template: Template) => void };
+type Props = {
+  level: PartialLevel;
+  createTemplate: (template: Template) => void;
+};
 
 const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
   const templateStage = useEditorStageState<HTMLDivElement>();

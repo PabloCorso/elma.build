@@ -1,7 +1,7 @@
 import Konva from "konva";
 import { useState } from "react";
 import { BoundsRect, NavigateTo } from "../../types";
-import useElementDimensions from "use-element-dimensions";
+import useElementDimensions from "react-cool-dimensions";
 import useFitBoundsRect from "./useFitBoundsRect";
 import useStageKeyNavigation from "./useStageKeyNavigation";
 
@@ -19,13 +19,13 @@ type EditorStageMethods = {
   fitBoundsRect: (rect: BoundsRect) => void;
 };
 
-type StageContainer<T extends HTMLElement> = {
-  ref: React.MutableRefObject<T>;
+type StageContainer<T extends HTMLDivElement> = {
+  setRef: (element?: T) => void;
   onWheel: (event: React.WheelEvent<Element>) => void;
   onKeyDown: (event: React.KeyboardEvent<Element>) => void;
 };
 
-export type EditorStageState<T extends HTMLElement> = {
+export type EditorStageState<T extends HTMLDivElement> = {
   stage: EditorStageValues;
   stageContainer: StageContainer<T>;
 } & EditorStageMethods;
@@ -36,7 +36,7 @@ const defaultEditorStageState: Partial<EditorStageValues> = {
   scale: 8,
 };
 
-function useEditorStageState<T extends HTMLElement>(
+function useEditorStageState<T extends HTMLDivElement>(
   initialValues = defaultEditorStageState
 ): EditorStageState<T> {
   const [scale, setScale] = useState(initialValues.scale);
@@ -52,10 +52,7 @@ function useEditorStageState<T extends HTMLElement>(
     }
   };
 
-  const [{ width, height }, elementRef] = useElementDimensions();
-  const containerRef = elementRef as unknown as React.RefObject<
-    T | HTMLDivElement
-  >;
+  const { width, height, entry, observe } = useElementDimensions();
   const containerSize = { width: width || 0, height: height || 0 };
 
   const keyNavigation = useStageKeyNavigation({
@@ -65,10 +62,10 @@ function useEditorStageState<T extends HTMLElement>(
     navigateTo,
   });
   const stageContainer = {
-    ref: containerRef,
+    setRef: observe,
     onWheel: () => {
-      if (containerRef.current) {
-        containerRef.current.focus();
+      if (entry && entry.target) {
+        (entry.target as T).focus();
       }
     },
     onKeyDown: keyNavigation,

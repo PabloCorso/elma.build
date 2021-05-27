@@ -146,6 +146,14 @@ const EditorStage: React.FC<Props> = ({
         <Rect
           stroke="blue"
           strokeWidth={1 / stageScale}
+          width={100}
+          height={100}
+          x={100}
+          y={100}
+        />
+        <Rect
+          stroke="blue"
+          strokeWidth={1 / stageScale}
           name="selection-rect"
           {...selectionRectProps}
         />
