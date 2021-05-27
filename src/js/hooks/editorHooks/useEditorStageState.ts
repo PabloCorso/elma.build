@@ -1,6 +1,5 @@
-import Konva from "konva";
 import { useState } from "react";
-import { BoundsRect, NavigateTo } from "../../types";
+import { BoundsRect, NavigateTo, Point } from "../../types";
 import useElementDimensions from "react-cool-dimensions";
 import useFitBoundsRect from "./useFitBoundsRect";
 import useStageKeyNavigation from "./useStageKeyNavigation";
@@ -43,7 +42,7 @@ function useEditorStageState<T extends HTMLDivElement>(
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
-  const navigateTo = (point: Konva.Vector2d, newScale?: number) => {
+  const navigateTo = (point: Point, newScale?: number) => {
     setX(point.x * (newScale || scale));
     setY(point.y * (newScale || scale));
 

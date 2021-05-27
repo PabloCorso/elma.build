@@ -1,9 +1,12 @@
 import Konva from "konva";
-import { BlockElement, Bounds, BoundsRect, PartialLevel } from "../types";
+import { Bounds, BoundsRect, Point } from "../types";
+
+export const EmptyBounds: Bounds = { x1: 0, y1: 0, x2: 0, y2: 0 };
+export const EmptyBoundsRect: BoundsRect = { x: 0, y: 0, width: 0, height: 0 };
 
 export function getRelativePointerPosition(
   node: Konva.Group | Konva.Node
-): Konva.Vector2d {
+): Point {
   const transform = node.getAbsoluteTransform().copy();
   // to detect relative position we need to invert transform
   transform.invert();
@@ -15,21 +18,23 @@ export function getRelativePointerPosition(
   return transform.point(pos);
 }
 
-export const getCenter = (
-  p1: Konva.Vector2d,
-  p2: Konva.Vector2d
-): Konva.Vector2d => {
+export const getCenter = (p1: Point, p2: Point): Point => {
   return {
     x: (p1.x + p2.x) / 2,
     y: (p1.y + p2.y) / 2,
   };
 };
 
-export const getDistance = (p1: Konva.Vector2d, p2: Konva.Vector2d): number => {
+export const getDistance = (p1: Point, p2: Point): number => {
   return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
 };
 
-export const getBoundsRect = ({ x1, y1, x2, y2 }: Bounds): BoundsRect => ({
+export const getBoundsRect = ({
+  x1,
+  y1,
+  x2,
+  y2,
+} = EmptyBounds): BoundsRect => ({
   x: Math.min(x1, x2),
   y: Math.min(y1, y2),
   width: Math.abs(x1 - x2),

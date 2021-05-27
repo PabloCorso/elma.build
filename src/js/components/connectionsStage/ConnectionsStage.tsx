@@ -30,7 +30,10 @@ const ConnectionsStage: React.FC<Props> = ({
   });
 
   return (
-    <EditorStageContainer ref={stageContainer.setRef}>
+    <EditorStageContainer
+      ref={stageContainer.setRef}
+      onKeyDown={stageContainer.onKeyDown}
+    >
       <EditorStage
         {...stage}
         navigateTo={navigateTo}

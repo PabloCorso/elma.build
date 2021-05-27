@@ -11,7 +11,12 @@ import ConnectionsStage from "../connectionsStage";
 import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
-import { getBoundsRect, getLevelBounds, parseBlockElements } from "../../utils";
+import {
+  getLevelBoundsRect,
+  getLevelsBoundsRect,
+  parseBlockElements,
+  shiftTemplateBlock,
+} from "../../utils";
 import TabPanel from "../tabPanel";
 import useEditorStageState from "../../hooks/editorHooks";
 import "./templateEditor.css";
@@ -58,7 +63,18 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
 
   const handleClickBlock = (block: TemplateBlock) => {
     if (tabIndex === TemplateStageTab.Connections) {
-      setConnectionBlocks((state) => [...state, block]);
+      const shiftedBlock = shiftTemplateBlock(block, connectionBlocks);
+      setConnectionBlocks((state) => [...state, shiftedBlock]);
+
+      const newBoundsRect = getLevelsBoundsRect([
+        ...connectionBlocks,
+        shiftedBlock,
+      ]);
+      connectionsStage.fitBoundsRect({
+        ...newBoundsRect,
+        x: -newBoundsRect.x,
+        y: -newBoundsRect.y,
+      });
     }
   };
 
@@ -67,8 +83,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
       <div className="template-editor__toolbar">
         <Button
           onClick={() => {
-            const levelBounds = getLevelBounds(level);
-            const levelBoundsRect = getBoundsRect(levelBounds);
+            const levelBoundsRect = getLevelBoundsRect(level);
             templateStage.fitBoundsRect({
               ...levelBoundsRect,
               x: -levelBoundsRect.x,
