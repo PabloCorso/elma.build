@@ -1,24 +1,29 @@
-import React from "react";
-import { Group, Layer } from "react-konva";
+import React, { useState } from "react";
+import { Group, Layer, Line } from "react-konva";
 import {
   EditorStageState,
   useCenterLevelOnMount,
 } from "../../hooks/editorHooks";
-import { TemplateBlock } from "../../types";
+import { Vertex, TemplateBlock, VertexConnection } from "../../types";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../editorStageContainer/EditorStageContainer";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
+import VertexShape from "../vertexShape";
 
 type Props = {
   blocks: TemplateBlock[];
   templateBlocks: TemplateBlock[];
   stageState: EditorStageState<HTMLDivElement>;
+  createConnection: (v1: Vertex, v2: Vertex) => void;
+  connections?: VertexConnection[];
 };
 
 const ConnectionsStage: React.FC<Props> = ({
   blocks,
   templateBlocks,
   stageState,
+  connections,
+  createConnection,
 }) => {
   const { stage, stageContainer, navigateTo, fitBoundsRect } = stageState;
 
@@ -28,6 +33,17 @@ const ConnectionsStage: React.FC<Props> = ({
     stageHeight: stage.height,
     fitBoundsRect,
   });
+
+  const [selectedVertex, setSelectedVertex] = useState<Vertex>();
+
+  const handleClickVertex = (selection: Vertex) => {
+    if (selectedVertex) {
+      createConnection(selectedVertex, selection);
+      setSelectedVertex(null);
+    } else {
+      setSelectedVertex(selection);
+    }
+  };
 
   return (
     <EditorStageContainer
@@ -40,38 +56,65 @@ const ConnectionsStage: React.FC<Props> = ({
         onWheel={stageContainer.onWheel}
       >
         <Layer>
-          {blocks.map((block, index) => {
+          {blocks.map((block) => {
             return (
-              <Group
-                key={`${block.name}_${index}`}
-                draggable
-                onDragEnd={console.log}
-              >
-                {block.polygons.map((polygon, index) => {
-                  const id = `${block.name}_polygon_${index}`;
+              <Group key={block.instance}>
+                {block.polygons.map((polygon) => {
                   return (
-                    <PolygonShape
-                      key={index}
-                      name={id}
-                      id={id}
-                      polygon={polygon}
-                      stroke={"black"}
-                      strokeWidth={1 / stage.scale}
-                    />
+                    <>
+                      <PolygonShape
+                        key={polygon.id}
+                        name={polygon.id}
+                        polygon={polygon}
+                        stroke="black"
+                        strokeWidth={1 / stage.scale}
+                      />
+                      {polygon.vertices.map((vertex) => {
+                        const selected =
+                          selectedVertex &&
+                          selectedVertex.id === vertex.id &&
+                          block.instance === selectedVertex.instance;
+                        return (
+                          <VertexShape
+                            key={vertex.id}
+                            radius={4 / stage.scale}
+                            strokeWidth={1 / stage.scale}
+                            x={vertex.x}
+                            y={vertex.y}
+                            onClick={() => {
+                              handleClickVertex({
+                                ...vertex,
+                                instance: block.instance,
+                              });
+                            }}
+                            selected={selected}
+                          />
+                        );
+                      })}
+                    </>
                   );
                 })}
-                {block.objects.map((levelObject, index) => {
-                  const id = `${block.name}_object_${index}`;
+                {block.objects.map((levelObject) => {
                   return (
                     <ElmaObjectShape
-                      key={id}
-                      id={id}
+                      key={levelObject.id}
                       elmaObject={levelObject}
-                      stroke={"default"}
                       strokeWidth={1 / stage.scale}
                     />
                   );
                 })}
+                {connections.map((connection) => (
+                  <Line
+                    points={[
+                      connection.v1.x,
+                      connection.v1.y,
+                      connection.v2.x,
+                      connection.v2.y,
+                    ]}
+                    stroke="green"
+                    strokeWidth={1 / stage.scale}
+                  />
+                ))}
               </Group>
             );
           })}

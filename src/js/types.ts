@@ -1,4 +1,8 @@
-import { ElmaObject, Level, Polygon } from "elmajs";
+import {
+  ElmaObject as ElmaJSElmaObject,
+  Level as ElmaJSLevel,
+  Polygon as ElmaJSPolygon,
+} from "elmajs";
 import Konva from "konva";
 
 export { ObjectType as ElmaObjectType } from "elmajs/lib-esm/lev/ElmaObject";
@@ -8,7 +12,24 @@ export type SaveLevelProps = {
   level: PartialLevel;
 };
 
-export type PartialLevel = Partial<Level>;
+export type Point = Konva.Vector2d;
+
+export type BlockElementIds = {
+  id?: string;
+  blockId?: string;
+  instance?: string;
+};
+
+export type Vertex = BlockElementIds & { polygonId?: string } & Point;
+
+export type Polygon = BlockElementIds &
+  Omit<ElmaJSPolygon, "vertices"> & { vertices: Vertex[] };
+
+export type ElmaObject = BlockElementIds & ElmaJSElmaObject;
+
+export type PartialLevel = Partial<
+  Omit<ElmaJSLevel, "polygons" | "objects">
+> & { polygons: Polygon[]; objects: ElmaObject[] };
 
 export type ElectronApi = {
   saveLevel: (level: SaveLevelProps) => boolean;
@@ -33,8 +54,6 @@ export enum ShapeElementType {
   Polygon = "polygon",
 }
 
-export type Point = Konva.Vector2d;
-
 export type LevelElements = { polygons: Polygon[]; objects: ElmaObject[] };
 
 export type BlockElement = {
@@ -45,9 +64,12 @@ export type BlockElement = {
 export type TemplateBlock = {
   id: string;
   name: string;
+  instance?: string;
 } & LevelElements;
 
 export type Template = { name: string; blocks: TemplateBlock[] };
+
+export type VertexConnection = { v1: Vertex; v2: Vertex };
 
 export type Bounds = { x1: number; y1: number; x2: number; y2: number };
 

@@ -5,11 +5,12 @@ import {
   Template,
   SaveLevelProps,
   PartialLevel,
+  ElmaObject,
+  Polygon,
 } from "../../types";
 import LevelStage from "../levelStage";
 import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
-import { ElmaObject, Polygon } from "elmajs";
 import useEditorStageState from "../../hooks/editorHooks";
 import "./levelEditor.css";
 

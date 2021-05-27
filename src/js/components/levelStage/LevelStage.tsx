@@ -67,15 +67,14 @@ const LevelStage: React.FC<Props> = ({
                     />
                   );
                 })}
-                {block.objects.map((levelObject, index) => {
-                  const id = `${block.name}_object_${index}`;
+                {block.objects.map((levelObject) => {
                   const isSelected = selectedNodes.some(
-                    (node) => node.attrs.id === id
+                    (node) => node.attrs.id === levelObject.id
                   );
                   return (
                     <ElmaObjectShape
-                      key={id}
-                      id={id}
+                      key={levelObject.id}
+                      id={levelObject.id}
                       elmaObject={levelObject}
                       stroke={isSelected ? "yellow" : "default"}
                       strokeWidth={1 / stage.scale}

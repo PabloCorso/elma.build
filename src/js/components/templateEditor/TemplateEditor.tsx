@@ -4,6 +4,8 @@ import {
   BlockElement,
   Template,
   PartialLevel,
+  VertexConnection,
+  Vertex,
 } from "../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
 import TemplateStage from "../templateStage";
@@ -36,14 +38,38 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
   const connectionsStage = useEditorStageState<HTMLDivElement>();
 
   const [templateBlocks, setTemplateBlocks] = useState<TemplateBlock[]>([]);
+  const [connectionBlocks, setConnectionBlocks] = useState<TemplateBlock[]>([]);
+  const [connections, setConnections] = useState<VertexConnection[]>([]);
+
+  const addBlockToConnections = (block: TemplateBlock) => {
+    const instancedBlock = {
+      ...block,
+      instance: `${block.id}_${connectionBlocks.length}`,
+    };
+    const shiftedBlock = shiftTemplateBlock(instancedBlock, connectionBlocks);
+    setConnectionBlocks((state) => [...state, shiftedBlock]);
+
+    const newBoundsRect = getLevelsBoundsRect([
+      ...connectionBlocks,
+      shiftedBlock,
+    ]);
+    connectionsStage.fitBoundsRect({
+      ...newBoundsRect,
+      x: -newBoundsRect.x,
+      y: -newBoundsRect.y,
+    });
+  };
+
   const handleCreateBlock = (elements: BlockElement[]) => {
-    const id = templateBlocks.length + 1 + "";
+    const blockIndex = templateBlocks.length;
+    const blockId = `block_${blockIndex}`;
     const newBlock: TemplateBlock = {
-      id,
-      name: `Block ${id}`,
-      ...parseBlockElements(elements),
+      id: blockId,
+      name: `Block ${blockIndex + 1}`,
+      ...parseBlockElements(blockId, elements),
     };
     setTemplateBlocks((state) => [...state, newBlock]);
+    addBlockToConnections(newBlock);
   };
 
   const [templateName, setTemplateName] = useState("");
@@ -59,23 +85,14 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
     setTabIndex(value);
   };
 
-  const [connectionBlocks, setConnectionBlocks] = useState<TemplateBlock[]>([]);
-
   const handleClickBlock = (block: TemplateBlock) => {
     if (tabIndex === TemplateStageTab.Connections) {
-      const shiftedBlock = shiftTemplateBlock(block, connectionBlocks);
-      setConnectionBlocks((state) => [...state, shiftedBlock]);
-
-      const newBoundsRect = getLevelsBoundsRect([
-        ...connectionBlocks,
-        shiftedBlock,
-      ]);
-      connectionsStage.fitBoundsRect({
-        ...newBoundsRect,
-        x: -newBoundsRect.x,
-        y: -newBoundsRect.y,
-      });
+      addBlockToConnections(block);
     }
+  };
+
+  const handleCreateConnection = (v1: Vertex, v2: Vertex) => {
+    setConnections((state) => [...state, { v1, v2 }]);
   };
 
   return (
@@ -135,6 +152,8 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
               blocks={connectionBlocks}
               templateBlocks={templateBlocks}
               stageState={connectionsStage}
+              createConnection={handleCreateConnection}
+              connections={connections}
             />
           </TabPanel>
         </div>

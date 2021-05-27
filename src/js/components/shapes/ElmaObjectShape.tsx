@@ -1,8 +1,7 @@
 import React from "react";
 import Konva from "konva";
 import { RegularPolygon } from "react-konva";
-import { ElmaObject } from "elmajs";
-import { ShapeElementType, ElmaObjectType } from "../../types";
+import { ShapeElementType, ElmaObjectType, ElmaObject } from "../../types";
 
 type Props = Omit<Konva.RegularPolygonConfig, "stroke"> & {
   elmaObject: ElmaObject;

@@ -66,7 +66,10 @@ export const resetLevelPosition = (
 
   const polygons = level.polygons.map((polygon) => ({
     ...polygon,
-    vertices: polygon.vertices.map(resetPosition),
+    vertices: polygon.vertices.map((vertex) => ({
+      ...vertex,
+      ...resetPosition(vertex),
+    })),
   }));
   const objects = level.objects.map((elmaObject) => ({
     ...elmaObject,
