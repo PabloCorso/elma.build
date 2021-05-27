@@ -57,11 +57,7 @@ const TemplateEditor: React.FC<Props> = ({
   };
 
   return (
-    <EditorStageContainer
-      ref={stageContainer.setRef}
-      onWheel={stageContainer.onWheel}
-      onKeyDown={handleKeyDown}
-    >
+    <EditorStageContainer ref={stageContainer.setRef} onKeyDown={handleKeyDown}>
       <EditorStage
         {...stage}
         navigateTo={navigateTo}

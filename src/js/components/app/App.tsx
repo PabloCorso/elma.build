@@ -3,6 +3,7 @@ import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
 import { SaveLevelProps, Template, PartialLevel } from "../../types";
+import { resetLevelPosition } from "../../utils";
 import "./app.css";
 
 const App: React.FC = () => {
@@ -39,7 +40,7 @@ const App: React.FC = () => {
 
   const handleLevelClick = (levelName: string) => {
     const lev = window.electron.readLevel(levelName);
-    setLevel(lev);
+    setLevel(resetLevelPosition(lev));
     setTemplate(null);
   };
 

@@ -5,6 +5,10 @@ type Props = {
   strokeWidth: number;
 };
 
+/** Example use:
+ *
+ * <LineAxis strokeWidth={1 / stage.scale} />
+ */
 const LineAxis: React.FC<Props> = ({ strokeWidth }) => {
   return (
     <>
