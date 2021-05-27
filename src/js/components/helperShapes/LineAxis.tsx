@@ -16,11 +16,14 @@ const LineAxis: React.FC<Props> = ({ strokeWidth }) => {
         stroke="white"
         strokeWidth={strokeWidth}
         points={[-1000, 0, 1000, 0]}
+        dashEnabled
+        dash={[1]}
       />
       <Line
         stroke="white"
         strokeWidth={strokeWidth}
         points={[0, -1000, 0, 1000]}
+        dash={[1]}
       />
     </>
   );

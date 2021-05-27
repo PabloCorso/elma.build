@@ -46,7 +46,6 @@ const LevelStage: React.FC<Props> = ({
         navigateTo={navigateTo}
         onMouseSelect={handleMouseSelect}
         onWheel={stageContainer.onWheel}
-        toolbar={toolbar}
       >
         <Layer>
           {blocks.map((block, index) => {

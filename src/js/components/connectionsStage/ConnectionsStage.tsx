@@ -38,12 +38,15 @@ const ConnectionsStage: React.FC<Props> = ({
         {...stage}
         navigateTo={navigateTo}
         onWheel={stageContainer.onWheel}
-        toolbar={toolbar}
       >
         <Layer>
           {blocks.map((block, index) => {
             return (
-              <Group key={`${block.name}_${index}`}>
+              <Group
+                key={`${block.name}_${index}`}
+                draggable
+                onDragEnd={console.log}
+              >
                 {block.polygons.map((polygon, index) => {
                   const id = `${block.name}_polygon_${index}`;
                   return (

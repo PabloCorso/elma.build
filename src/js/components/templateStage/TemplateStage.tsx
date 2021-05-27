@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Layer } from "react-konva";
-import Konva from "konva";
+import { Layer, Rect } from "react-konva";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
 import { BlockElement, ShapeNode, PartialLevel } from "../../types";
 import EditorStage from "../editorStage";
 import {
   EditorStageState,
   useCenterLevelOnMount,
+  useSelectionRect,
 } from "../../hooks/editorHooks";
 import EditorStageContainer from "../editorStageContainer";
 
@@ -49,22 +49,24 @@ const TemplateEditor: React.FC<Props> = ({
     }
   };
 
-  const handleMouseSelect = (
-    _event: Konva.KonvaEventObject<MouseEvent>,
-    nodes: Konva.Node[]
-  ) => {
-    setSelectedNodes(nodes);
-  };
+  const { selectionRectProps, ...mouseHandlers } = useSelectionRect({
+    scale: stage.scale,
+    onMouseSelect: (_event, nodes) => {
+      setSelectedNodes(nodes);
+    },
+  });
 
   return (
     <EditorStageContainer ref={stageContainer.setRef} onKeyDown={handleKeyDown}>
       <EditorStage
         {...stage}
         navigateTo={navigateTo}
-        onMouseSelect={handleMouseSelect}
         onWheel={stageContainer.onWheel}
-        toolbar={toolbar}
+        {...mouseHandlers}
       >
+        <Layer>
+          <Rect {...selectionRectProps} />
+        </Layer>
         <Layer>
           {level.polygons.map((polygon, index) => {
             const id = `${level.name}_polygon_${index}`;
