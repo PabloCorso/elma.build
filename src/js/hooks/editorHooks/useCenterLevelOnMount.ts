@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { BoundsRect, PartialLevel } from "../../types";
-import {
-  getBoundsRect,
-  getLevelsBounds,
-  getLevelBounds,
-} from "../../utils/shapeUtils";
+import { getBoundsRect, getLevelsBounds, getLevelBounds } from "../../utils";
 
 type Props = {
   level: PartialLevel | PartialLevel[];

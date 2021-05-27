@@ -6,6 +6,7 @@ import {
   getRelativePointerPosition,
 } from "../../utils/shapeUtils";
 import { NavigateTo } from "../../types";
+import { LineAxis } from "../helperShapes";
 
 type Props = Omit<StageProps, "scale"> & {
   scale: number;
@@ -149,6 +150,7 @@ const EditorStage: React.FC<Props> = ({
           name="selection-rect"
           {...selectionRectProps}
         />
+        <LineAxis strokeWidth={1 / stageScale} />
       </Layer>
       {children}
     </Stage>

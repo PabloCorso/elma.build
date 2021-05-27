@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { ElmaObject, Polygon } from "elmajs";
 import {
   TemplateBlock,
   BlockElement,
-  ShapeElementType,
   Template,
   PartialLevel,
 } from "../../types";
@@ -13,7 +11,7 @@ import ConnectionsStage from "../connectionsStage";
 import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
-import { getBoundsRect, getLevelBounds } from "../../utils/shapeUtils";
+import { getBoundsRect, getLevelBounds, parseBlockElements } from "../../utils";
 import TabPanel from "../tabPanel";
 import useEditorStageState from "../../hooks/editorHooks";
 import "./templateEditor.css";
@@ -35,17 +33,10 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
   const [templateBlocks, setTemplateBlocks] = useState<TemplateBlock[]>([]);
   const handleCreateBlock = (elements: BlockElement[]) => {
     const id = templateBlocks.length + 1 + "";
-    const polygons = elements
-      .filter((element) => element.type === ShapeElementType.Polygon)
-      .map((element) => element.data) as Polygon[];
-    const objects = elements
-      .filter((element) => element.type === ShapeElementType.ElmaObject)
-      .map((element) => element.data) as ElmaObject[];
     const newBlock: TemplateBlock = {
       id,
       name: `Block ${id}`,
-      polygons,
-      objects,
+      ...parseBlockElements(elements),
     };
     setTemplateBlocks((state) => [...state, newBlock]);
   };

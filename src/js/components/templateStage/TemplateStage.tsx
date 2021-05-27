@@ -34,8 +34,8 @@ const TemplateEditor: React.FC<Props> = ({
   const handleCreateBlock = () => {
     if (selectedNodes.length > 0) {
       const blockElements = selectedNodes.map((node) => node.attrs.element);
-      setSelectedNodes([]);
       onCreateBlock(blockElements);
+      setSelectedNodes([]);
     }
   };
 

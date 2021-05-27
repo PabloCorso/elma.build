@@ -8,6 +8,8 @@ export type SaveLevelProps = {
   level: PartialLevel;
 };
 
+export type PartialLevel = Partial<Level>;
+
 export type ElectronApi = {
   saveLevel: (level: SaveLevelProps) => boolean;
   readAllLevels: () => string[];
@@ -31,6 +33,8 @@ export enum ShapeElementType {
   Polygon = "polygon",
 }
 
+export type LevelElements = { polygons: Polygon[]; objects: ElmaObject[] };
+
 export type BlockElement = {
   type?: ShapeElementType;
   data?: Polygon | ElmaObject;
@@ -39,9 +43,7 @@ export type BlockElement = {
 export type TemplateBlock = {
   id: string;
   name: string;
-  polygons: Polygon[];
-  objects: ElmaObject[];
-};
+} & LevelElements;
 
 export type Template = { name: string; blocks: TemplateBlock[] };
 
@@ -54,7 +56,7 @@ export type BoundsRect = {
   height: number;
 };
 
-export type ShapeNode = Konva.Node & {
+export type ShapeNode = Omit<Konva.Node, "attrs"> & {
   attrs: Konva.NodeConfig & {
     selectable?: boolean;
     element?: BlockElement;
@@ -64,5 +66,3 @@ export type ShapeNode = Konva.Node & {
 export type NavigateTo = (point: Konva.Vector2d, newScale?: number) => void;
 
 export type ToolbarProps = { fitBoundsRect: (rect: BoundsRect) => void };
-
-export type PartialLevel = Partial<Level>;
