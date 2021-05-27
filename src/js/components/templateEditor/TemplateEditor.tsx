@@ -8,6 +8,7 @@ import {
 } from "../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
 import TemplateStage from "../templateStage";
+import ConnectionsStage from "../connectionsStage";
 import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
@@ -16,14 +17,20 @@ import TabPanel from "../tabPanel";
 import useEditorStageState from "../../hooks/editorHooks";
 import "./templateEditor.css";
 
+enum TemplateStageTab {
+  Level = 0,
+  Connections = 1,
+}
+
 type Props = { level: Level; createTemplate: (template: Template) => void };
 
 const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
-  const stageState = useEditorStageState<HTMLDivElement>();
+  const templateStage = useEditorStageState<HTMLDivElement>();
+  const connectionsStage = useEditorStageState<HTMLDivElement>();
 
-  const [blocks, setBlocks] = useState<TemplateBlock[]>([]);
+  const [templateBlocks, setTemplateBlocks] = useState<TemplateBlock[]>([]);
   const handleCreateBlock = (elements: BlockElement[]) => {
-    const id = blocks.length + 1 + "";
+    const id = templateBlocks.length + 1 + "";
     const polygons = elements
       .filter((element) => element.type === ShapeElementType.Polygon)
       .map((element) => element.data) as Polygon[];
@@ -36,20 +43,28 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
       polygons,
       objects,
     };
-    setBlocks((state) => [...state, newBlock]);
+    setTemplateBlocks((state) => [...state, newBlock]);
   };
 
   const [templateName, setTemplateName] = useState("");
   const handleCreateTemplate = (event: React.FormEvent) => {
     event.preventDefault();
     if (templateName) {
-      createTemplate({ name: templateName, blocks });
+      createTemplate({ name: templateName, blocks: templateBlocks });
     }
   };
 
-  const [tabIndex, setTabIndex] = React.useState(0);
+  const [tabIndex, setTabIndex] = React.useState(TemplateStageTab.Level);
   const handleChange = (_event: React.ChangeEvent, value: number) => {
     setTabIndex(value);
+  };
+
+  const [connectionBlocks, setConnectionBlocks] = useState<TemplateBlock[]>([]);
+
+  const handleClickBlock = (block: TemplateBlock) => {
+    if (tabIndex === TemplateStageTab.Connections) {
+      setConnectionBlocks((state) => [...state, block]);
+    }
   };
 
   return (
@@ -59,7 +74,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
           onClick={() => {
             const levelBounds = getLevelBounds(level);
             const levelBoundsRect = getBoundsRect(levelBounds);
-            stageState.fitBoundsRect({
+            templateStage.fitBoundsRect({
               ...levelBoundsRect,
               x: -levelBoundsRect.x,
               y: -levelBoundsRect.y,
@@ -79,7 +94,11 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
             value={templateName}
             onChange={(event) => setTemplateName(event.target.value)}
           />
-          <Button type="submit" color="primary" disabled={blocks.length === 0}>
+          <Button
+            type="submit"
+            color="primary"
+            disabled={templateBlocks.length === 0}
+          >
             Create template
           </Button>
         </form>
@@ -94,33 +113,37 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
           <Tab label="Connections" />
         </Tabs>
         <div className="template-editor__stage">
-          <TabPanel value={0} index={tabIndex}>
+          <TabPanel value={TemplateStageTab.Level} index={tabIndex}>
             <TemplateStage
               level={level}
-              stageState={stageState}
+              stageState={templateStage}
               onCreateBlock={handleCreateBlock}
             />
           </TabPanel>
-          <TabPanel value={1} index={tabIndex}>
-            <TemplateStage
-              level={level}
-              stageState={stageState}
-              onCreateBlock={handleCreateBlock}
+          <TabPanel value={TemplateStageTab.Connections} index={tabIndex}>
+            <ConnectionsStage
+              blocks={connectionBlocks}
+              templateBlocks={templateBlocks}
+              stageState={connectionsStage}
             />
           </TabPanel>
         </div>
       </div>
       <CardsList className="template-editor__blocks">
-        {blocks.map((block, index) => (
+        {templateBlocks.map((block, index) => (
           <BlockCard
             key={index}
             block={block}
+            onClick={() => {
+              handleClickBlock(block);
+            }}
             onRename={(name) => {
-              const newBlocks = blocks.map((item) =>
+              const newBlocks = templateBlocks.map((item) =>
                 item.id === block.id ? { ...item, name } : item
               );
-              setBlocks(newBlocks);
+              setTemplateBlocks(newBlocks);
             }}
+            readonly={tabIndex === TemplateStageTab.Connections}
           />
         ))}
       </CardsList>

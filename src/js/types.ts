@@ -5,13 +5,13 @@ export { ObjectType as ElmaObjectType } from "elmajs/lib-esm/lev/ElmaObject";
 
 export type SaveLevelProps = {
   filename: string;
-  level: Partial<Level>;
+  level: PartialLevel;
 };
 
 export type ElectronApi = {
   saveLevel: (level: SaveLevelProps) => boolean;
   readAllLevels: () => string[];
-  readLevel: (name: string) => Level;
+  readLevel: (name: string) => PartialLevel;
   saveTemplate: ({ name, blocks }: Template) => boolean;
   readAllTemplates: () => string[];
   readTemplate: (name: string) => Template;
@@ -65,7 +65,4 @@ export type NavigateTo = (point: Konva.Vector2d, newScale?: number) => void;
 
 export type ToolbarProps = { fitBoundsRect: (rect: BoundsRect) => void };
 
-export type LevelElements = {
-  polygons: Polygon[];
-  objects: ElmaObject[];
-};
+export type PartialLevel = Partial<Level>;

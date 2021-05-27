@@ -1,9 +1,7 @@
 import Konva from "konva";
 import { useState } from "react";
 import { BoundsRect, NavigateTo } from "../../types";
-// import useElementSize from "../useElementSize";
-// import { useElementSize, Size } from "use-element-size";
-import useElementSize from "react-grapnel-use-element-size";
+import useElementDimensions from "use-element-dimensions";
 import useFitBoundsRect from "./useFitBoundsRect";
 import useStageKeyNavigation from "./useStageKeyNavigation";
 
@@ -54,8 +52,10 @@ function useEditorStageState<T extends HTMLElement>(
     }
   };
 
-  const { elementRef, width, height } = useElementSize();
-  const containerRef = elementRef as React.RefObject<T | HTMLDivElement>;
+  const [{ width, height }, elementRef] = useElementDimensions();
+  const containerRef = elementRef as unknown as React.RefObject<
+    T | HTMLDivElement
+  >;
   const containerSize = { width: width || 0, height: height || 0 };
 
   const keyNavigation = useStageKeyNavigation({

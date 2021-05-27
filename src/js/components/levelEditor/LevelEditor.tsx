@@ -1,10 +1,15 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
-import { TemplateBlock, Template, SaveLevelProps } from "../../types";
+import {
+  TemplateBlock,
+  Template,
+  SaveLevelProps,
+  PartialLevel,
+} from "../../types";
 import LevelStage from "../levelStage";
 import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
-import { ElmaObject, Level, Polygon } from "elmajs";
+import { ElmaObject, Polygon } from "elmajs";
 import useEditorStageState from "../../hooks/editorHooks";
 import "./levelEditor.css";
 
@@ -33,7 +38,7 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
       objects.push(...block.objects);
     }
 
-    const level: Partial<Level> = {
+    const level: PartialLevel = {
       name: "Generated with elma.build",
       polygons,
       objects,

@@ -1,5 +1,5 @@
 import Konva from "konva";
-import { Bounds, BoundsRect, LevelElements } from "../types";
+import { Bounds, BoundsRect, PartialLevel } from "../types";
 
 export const getBoundsRect = ({ x1, y1, x2, y2 }: Bounds): BoundsRect => ({
   x: Math.min(x1, x2),
@@ -36,10 +36,7 @@ export const getDistance = (p1: Konva.Vector2d, p2: Konva.Vector2d): number => {
   return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
 };
 
-export const getLevelBounds = ({
-  polygons,
-  objects,
-}: LevelElements): Bounds => {
+export const getLevelBounds = ({ polygons, objects }: PartialLevel): Bounds => {
   let x1, y1;
   let x2, y2;
   for (const polygon of polygons) {
@@ -70,7 +67,7 @@ export const mergeBounds = (bounds1: Bounds, bounds2: Bounds): Bounds => {
   return { x1: result1.x1, y1: result1.y1, x2: result2.x2, y2: result2.y2 };
 };
 
-export const getLevelsBounds = (levels: LevelElements[]): Bounds => {
+export const getLevelsBounds = (levels: PartialLevel[]): Bounds => {
   let result: Bounds;
   for (const level of levels) {
     const levelBounds = getLevelBounds(level);
