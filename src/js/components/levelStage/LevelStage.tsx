@@ -40,12 +40,15 @@ const LevelStage: React.FC<Props> = ({
   };
 
   return (
-    <EditorStageContainer {...stageContainer}>
+    <EditorStageContainer
+      ref={stageContainer.setRef}
+      onKeyDown={stageContainer.onKeyDown}
+      onWheel={stageContainer.onWheel}
+    >
       <EditorStage
         {...stage}
         navigateTo={navigateTo}
         onMouseSelect={handleMouseSelect}
-        onWheel={stageContainer.onWheel}
       >
         <Layer>
           {blocks.map((block, index) => {

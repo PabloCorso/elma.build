@@ -57,13 +57,12 @@ const TemplateEditor: React.FC<Props> = ({
   });
 
   return (
-    <EditorStageContainer ref={stageContainer.setRef} onKeyDown={handleKeyDown}>
-      <EditorStage
-        {...stage}
-        navigateTo={navigateTo}
-        onWheel={stageContainer.onWheel}
-        {...mouseHandlers}
-      >
+    <EditorStageContainer
+      ref={stageContainer.setRef}
+      onKeyDown={handleKeyDown}
+      onWheel={stageContainer.onWheel}
+    >
+      <EditorStage {...stage} navigateTo={navigateTo} {...mouseHandlers}>
         <Layer>
           <Rect {...selectionRectProps} />
         </Layer>

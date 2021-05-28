@@ -51,12 +51,9 @@ const ConnectionsStage: React.FC<Props> = ({
     <EditorStageContainer
       ref={stageContainer.setRef}
       onKeyDown={stageContainer.onKeyDown}
+      onWheel={stageContainer.onWheel}
     >
-      <EditorStage
-        {...stage}
-        navigateTo={navigateTo}
-        onWheel={stageContainer.onWheel}
-      >
+      <EditorStage {...stage} navigateTo={navigateTo}>
         <Layer>
           {blocks.map((block) => {
             return (
