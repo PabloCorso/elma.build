@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Konva from "konva";
-import { Group, RegularPolygon } from "react-konva";
+import { RegularPolygon } from "react-konva";
 
 type Props = {
   x: number;
@@ -30,21 +30,21 @@ const VertexShape: React.FC<Props> = ({
 
   const color = isOver || selected ? "yellow" : "blue";
   return (
-    <Group>
-      <RegularPolygon
-        x={x}
-        y={y}
-        sides={3}
-        radius={radius}
-        stroke={color}
-        fill={color}
-        strokeWidth={strokeWidth}
-        hitStrokeWidth={strokeWidth * 1.5}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={onClick}
-      />
-    </Group>
+    <RegularPolygon
+      x={x}
+      y={y}
+      sides={3}
+      radius={radius}
+      stroke={color}
+      fill={color}
+      strokeWidth={strokeWidth}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      hitStrokeWidth={0}
+      shadowForStrokeEnabled={false}
+      perfectDrawEnabled={false}
+    />
   );
 };
 

@@ -67,7 +67,11 @@ export type TemplateBlock = {
   instance?: string;
 } & LevelElements;
 
-export type Template = { name: string; blocks: TemplateBlock[] };
+export type Template = {
+  name: string;
+  blocks: TemplateBlock[];
+  connections: VertexConnection[];
+};
 
 export type VertexConnection = { v1: Vertex; v2: Vertex };
 

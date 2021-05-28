@@ -15,6 +15,9 @@ const ConnectionShape: React.FC<Props> = ({ connection, strokeWidth }) => {
       ]}
       stroke="green"
       strokeWidth={strokeWidth}
+      hitStrokeWidth={0}
+      shadowForStrokeEnabled={false}
+      fillEnabled={false}
     />
   );
 };

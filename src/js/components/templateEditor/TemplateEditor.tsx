@@ -76,7 +76,11 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
   const handleCreateTemplate = (event: React.FormEvent) => {
     event.preventDefault();
     if (templateName) {
-      createTemplate({ name: templateName, blocks: templateBlocks });
+      createTemplate({
+        name: templateName,
+        blocks: templateBlocks,
+        connections,
+      });
     }
   };
 

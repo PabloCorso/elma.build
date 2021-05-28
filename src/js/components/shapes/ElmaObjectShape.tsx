@@ -28,6 +28,8 @@ const ElmaObjectShape: React.FC<Props> = ({
       stroke={strokeValue}
       element={{ type: ShapeElementType.ElmaObject, data: elmaObject }}
       selectable
+      hitStrokeWidth={0}
+      shadowForStrokeEnabled={false}
       {...props}
     />
   );

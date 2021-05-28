@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Konva from "konva";
 import { Layer, Stage, StageProps } from "react-konva";
 import { NavigateTo } from "../../types";
@@ -21,32 +21,35 @@ const EditorStage: React.FC<Props> = ({
   onWheel,
   ...stageProps
 }) => {
-  const handleWheel = (event: Konva.KonvaEventObject<WheelEvent>) => {
-    event.evt.preventDefault();
+  const handleWheel = useCallback(
+    (event: Konva.KonvaEventObject<WheelEvent>) => {
+      event.evt.preventDefault();
 
-    const scaleBy = 1.1;
-    const stage = event.target.getStage();
-    const oldScale = stage.scaleX();
-    const mousePointTo = {
-      x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
-      y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale,
-    };
+      const scaleBy = 1.1;
+      const stage = event.target.getStage();
+      const oldScale = stage.scaleX();
+      const mousePointTo = {
+        x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
+        y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale,
+      };
 
-    const newScale =
-      event.evt.deltaY <= 0 ? oldScale * scaleBy : oldScale / scaleBy;
-    const newStageX = -(
-      mousePointTo.x -
-      stage.getPointerPosition().x / newScale
-    );
-    const newStageY = -(
-      mousePointTo.y -
-      stage.getPointerPosition().y / newScale
-    );
+      const newScale =
+        event.evt.deltaY <= 0 ? oldScale * scaleBy : oldScale / scaleBy;
+      const newStageX = -(
+        mousePointTo.x -
+        stage.getPointerPosition().x / newScale
+      );
+      const newStageY = -(
+        mousePointTo.y -
+        stage.getPointerPosition().y / newScale
+      );
 
-    navigateTo({ x: newStageX, y: newStageY }, newScale);
+      navigateTo({ x: newStageX, y: newStageY }, newScale);
 
-    onWheel && onWheel(event);
-  };
+      onWheel && onWheel(event);
+    },
+    [navigateTo, onWheel]
+  );
 
   return (
     <Stage
@@ -60,7 +63,7 @@ const EditorStage: React.FC<Props> = ({
       style={{ backgroundColor: "lightgray", ...style }}
       {...stageProps}
     >
-      <Layer>
+      <Layer listening={false}>
         <LineAxis strokeWidth={1 / stageScale} />
       </Layer>
       {children}

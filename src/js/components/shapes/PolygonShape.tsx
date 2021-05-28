@@ -19,6 +19,8 @@ const PolygonShape: React.FC<Props> = ({
       element={{ type: ShapeElementType.Polygon, data: polygon }}
       closed
       selectable
+      hitStrokeWidth={0}
+      shadowForStrokeEnabled={false}
       {...props}
     ></Line>
   );

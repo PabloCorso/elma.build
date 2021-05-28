@@ -46,6 +46,7 @@ const ConnectionsStage: React.FC<Props> = ({
     }
   };
 
+  const [hoveredBlock, setHoveredBlock] = useState<TemplateBlock>();
   return (
     <EditorStageContainer
       ref={stageContainer.setRef}
@@ -59,40 +60,54 @@ const ConnectionsStage: React.FC<Props> = ({
         <Layer>
           {blocks.map((block) => {
             return (
-              <Group key={block.instance}>
+              <Group
+                key={block.instance}
+                draggable
+                onMouseEnter={() => {
+                  setHoveredBlock(block);
+                }}
+                onMouseLeave={() => {
+                  setHoveredBlock(null);
+                }}
+              >
                 {block.polygons.map((polygon) => {
                   return (
-                    <>
+                    <React.Fragment key={polygon.id}>
                       <PolygonShape
-                        key={polygon.id}
                         name={polygon.id}
                         polygon={polygon}
                         stroke="black"
                         strokeWidth={1 / stage.scale}
                       />
                       {polygon.vertices.map((vertex) => {
+                        const isBlockHovered =
+                          hoveredBlock &&
+                          hoveredBlock.id === block.id &&
+                          hoveredBlock.instance === block.instance;
                         const selected =
                           selectedVertex &&
                           selectedVertex.id === vertex.id &&
                           block.instance === selectedVertex.instance;
                         return (
-                          <VertexShape
-                            key={vertex.id}
-                            radius={4 / stage.scale}
-                            strokeWidth={1 / stage.scale}
-                            x={vertex.x}
-                            y={vertex.y}
-                            onClick={() => {
-                              handleClickVertex({
-                                ...vertex,
-                                instance: block.instance,
-                              });
-                            }}
-                            selected={selected}
-                          />
+                          (isBlockHovered || selected) && (
+                            <VertexShape
+                              key={vertex.id}
+                              radius={5 / stage.scale}
+                              strokeWidth={1 / stage.scale}
+                              x={vertex.x}
+                              y={vertex.y}
+                              onClick={() => {
+                                handleClickVertex({
+                                  ...vertex,
+                                  instance: block.instance,
+                                });
+                              }}
+                              selected={selected}
+                            />
+                          )
                         );
                       })}
-                    </>
+                    </React.Fragment>
                   );
                 })}
                 {block.objects.map((levelObject) => {
@@ -106,6 +121,7 @@ const ConnectionsStage: React.FC<Props> = ({
                 })}
                 {connections.map((connection) => (
                   <ConnectionShape
+                    key={`connection_${connection.v1.id}_${connection.v1.instance}_to_${connection.v2.id}_${connection.v2.instance}`}
                     connection={connection}
                     strokeWidth={1 / stage.scale}
                   />
