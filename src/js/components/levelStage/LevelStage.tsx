@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import Konva from "konva";
-import { Group, Layer } from "react-konva";
+import { Group, Layer, Rect } from "react-konva";
 import {
   EditorStageState,
   useCenterLevelOnMount,
 } from "../../hooks/editorHooks";
-import { ShapeNode, TemplateBlock } from "../../types";
+import { TemplateBlock } from "../../types";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../editorStageContainer/EditorStageContainer";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
+import VertexShape from "../vertexShape";
+import { getLevelBoundsRect, shiftTemplateBlock } from "../../utils";
 
 type Props = {
   blocks: TemplateBlock[];
   templateBlocks: TemplateBlock[];
   stageState: EditorStageState<HTMLDivElement>;
+  connectionsById: { [key: string]: { [key: string]: string } };
 };
 
 const LevelStage: React.FC<Props> = ({
   blocks,
   templateBlocks,
   stageState,
+  connectionsById,
 }) => {
   const { stage, stageContainer, navigateTo, fitBoundsRect } = stageState;
 
@@ -30,13 +34,28 @@ const LevelStage: React.FC<Props> = ({
     fitBoundsRect,
   });
 
-  const [selectedNodes, setSelectedNodes] = useState<ShapeNode[]>([]);
-
-  const handleMouseSelect = (
-    _event: Konva.KonvaEventObject<MouseEvent>,
-    nodes: Konva.Node[]
+  const [rect, setRect] = useState<unknown>();
+  const handleDragMove = (
+    block: TemplateBlock,
+    event: Konva.KonvaEventObject<DragEvent>
   ) => {
-    setSelectedNodes(nodes);
+    const shift = {
+      x: event.target.x(), //+ block.origin.x,
+      y: event.target.y(), //+ block.origin.y,
+    };
+    const shiftedBlock = shiftTemplateBlock(block, shift);
+    setRect(shiftedBlock);
+    for (const polygon of block.polygons) {
+      const connection = connectionsById[polygon.id];
+      if (connection) {
+        for (const vertex of polygon.vertices) {
+          const vertexConnection = connection[vertex.id];
+          if (vertexConnection) {
+            console.log({ vertexConnection });
+          }
+        }
+      }
+    }
   };
 
   return (
@@ -45,41 +64,56 @@ const LevelStage: React.FC<Props> = ({
       onKeyDown={stageContainer.onKeyDown}
       onWheel={stageContainer.onWheel}
     >
-      <EditorStage
-        {...stage}
-        navigateTo={navigateTo}
-        onMouseSelect={handleMouseSelect}
-      >
+      <EditorStage {...stage} navigateTo={navigateTo}>
         <Layer>
+          {rect && (
+            <Rect
+              {...getLevelBoundsRect(rect)}
+              stroke="red"
+              strokeWidth={1 / stage.scale}
+            />
+          )}
           {blocks.map((block, index) => {
             return (
-              <Group key={`${block.name}_${index}`}>
-                {block.polygons.map((polygon, index) => {
-                  const id = `${block.name}_polygon_${index}`;
-                  const isSelected = selectedNodes.some(
-                    (node) => node.attrs.id === id
-                  );
+              <Group
+                key={`${block.id}_${index}`}
+                draggable
+                onDragMove={(event) => {
+                  handleDragMove(block, event);
+                }}
+              >
+                {block.polygons.map((polygon) => {
+                  const verticesById: { [key: string]: string } =
+                    connectionsById[polygon.id];
                   return (
-                    <PolygonShape
-                      key={index}
-                      name={id}
-                      id={id}
-                      polygon={polygon}
-                      stroke={isSelected ? "yellow" : "black"}
-                      strokeWidth={1 / stage.scale}
-                    />
+                    <React.Fragment key={polygon.id}>
+                      <PolygonShape
+                        name={polygon.id}
+                        polygon={polygon}
+                        strokeWidth={1 / stage.scale}
+                      />
+                      {verticesById &&
+                        polygon.vertices.map((vertex) => {
+                          return (
+                            verticesById[vertex.id] && (
+                              <VertexShape
+                                key={vertex.id}
+                                radius={5 / stage.scale}
+                                x={vertex.x}
+                                y={vertex.y}
+                                strokeWidth={1 / stage.scale}
+                              />
+                            )
+                          );
+                        })}
+                    </React.Fragment>
                   );
                 })}
                 {block.objects.map((levelObject) => {
-                  const isSelected = selectedNodes.some(
-                    (node) => node.attrs.id === levelObject.id
-                  );
                   return (
                     <ElmaObjectShape
                       key={levelObject.id}
-                      id={levelObject.id}
                       elmaObject={levelObject}
-                      stroke={isSelected ? "yellow" : "default"}
                       strokeWidth={1 / stage.scale}
                     />
                   );

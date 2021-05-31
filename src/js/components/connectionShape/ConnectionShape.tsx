@@ -1,8 +1,8 @@
 import React from "react";
 import { Line } from "react-konva";
-import { VertexConnection } from "../../types";
+import { BlockConnection } from "../../types";
 
-type Props = { connection: VertexConnection; strokeWidth: number };
+type Props = { connection: BlockConnection; strokeWidth: number };
 
 const ConnectionShape: React.FC<Props> = ({ connection, strokeWidth }) => {
   return (

@@ -1,5 +1,5 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   TemplateBlock,
   Template,
@@ -12,6 +12,7 @@ import LevelStage from "../levelStage";
 import CardsList from "../cardsList";
 import BlockCard from "../blockCard";
 import useEditorStageState from "../../hooks/editorHooks";
+import { shiftTemplateBlockFromOverlap } from "../../utils";
 import "./levelEditor.css";
 
 type Props = {
@@ -26,7 +27,16 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
   const [stageBlocks, setStageBlocks] = useState<TemplateBlock[]>([]);
 
   const handleClickBlock = (block: TemplateBlock) => {
-    setStageBlocks((state) => [...state, block]);
+    const instancedBlock = {
+      ...block,
+      instance: `${block.id}_${stageBlocks.length}`,
+    };
+    const shiftedBlock = shiftTemplateBlockFromOverlap(
+      instancedBlock,
+      stageBlocks
+    );
+
+    setStageBlocks((state) => [...state, shiftedBlock]);
   };
 
   const handleCreateLevel = (event: React.FormEvent) => {
@@ -50,6 +60,22 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
     createLevel({ filename: levelName, level });
   };
 
+  // const connectionsById = useMemo(() => {
+  //   const result: { [key: string]: { [key: string]: string } } = {};
+  //   for (const connection of template.connections) {
+  //     result[connection.v1.polygonId] = {
+  //       ...result[connection.v1.polygonId],
+  //       [connection.v1.id]: connection.v2.id,
+  //     };
+  //     result[connection.v2.polygonId] = {
+  //       ...result[connection.v2.polygonId],
+  //       [connection.v2.id]: connection.v1.id,
+  //     };
+  //   }
+
+  //   return result;
+  // }, [template.connections]);
+
   return (
     <div className="level-editor">
       <div className="level-editor__toolbar">
@@ -70,11 +96,12 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
         </form>
       </div>
       <div className="level-editor__stage">
-        <LevelStage
+        {/* <LevelStage
           blocks={stageBlocks}
           templateBlocks={template.blocks}
           stageState={stageState}
-        />
+          connectionsById={connectionsById}
+        /> */}
       </div>
       <CardsList className="level-editor__blocks">
         {template.blocks.map((block, index) => (

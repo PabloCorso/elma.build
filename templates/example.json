@@ -1,0 +1,104 @@
+{
+  "example1": {
+    "name": "Template name",
+    "filename": "template01",
+    "blocks": {
+      "ids": ["block_0", "block_1"],
+      "byId": {
+        "block_0": {
+          "name": "Start",
+          "polygons": {
+            "ids": ["block_0_polygon_0"],
+            "byId": {
+              "block_0_polygon_0": {
+                "grass": false,
+                "vertices": {
+                  "ids": [
+                    "block_0_polygon_0_vertex_0",
+                    "block_0_polygon_0_vertex_1",
+                    "block_0_polygon_0_vertex_2"
+                  ],
+                  "byId": {
+                    "block_0_polygon_0_vertex_0": { "x": 0, "y": 0 },
+                    "block_0_polygon_0_vertex_1": { "x": 0, "y": 0 },
+                    "block_0_polygon_0_vertex_2": { "x": 0, "y": 0 }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "block_1": {
+          "name": "End",
+          "polygons": {
+            "ids": ["block_1_polygon_0"],
+            "byId": {
+              "block_1_polygon_0": {
+                "grass": false,
+                "vertices": {
+                  "ids": [
+                    "block_1_polygon_0_vertex_0",
+                    "block_1_polygon_0_vertex_1",
+                    "block_1_polygon_0_vertex_2"
+                  ],
+                  "byId": {
+                    "block_1_polygon_0_vertex_0": { "x": 0, "y": 0 },
+                    "block_1_polygon_0_vertex_1": { "x": 0, "y": 0 },
+                    "block_1_polygon_0_vertex_2": { "x": 0, "y": 0 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "connectionBlocks": {
+      "instances": ["block_0_0", "block_1_1"],
+      "byInstance": {
+        "block_0_0": {
+          "blockId": "block_0",
+          "origin": { "x": 0, "y": 0 },
+          "connectedBlocks": {
+            "ids": ["block_1_1"],
+            "byId": {
+              "block_1_1": {
+                "connectedVertices": {
+                  "ids": [
+                    "block_0_polygon_0_vertex_0",
+                    "block_0_polygon_0_vertex_1"
+                  ],
+                  "byid": {
+                    "block_0_polygon_0_vertex_0": "block_1_polygon_0_vertex_0",
+                    "block_0_polygon_0_vertex_1": "block_1_polygon_0_vertex_1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "block_1_1": {
+          "blockId": "block_1",
+          "origin": { "x": 0, "y": 0 },
+          "connectedBlocks": {
+            "ids": ["block_0_0"],
+            "byId": {
+              "block_0_0": {
+                "connectedVertices": {
+                  "ids": [
+                    "block_1_polygon_0_vertex_0",
+                    "block_1_polygon_0_vertex_1"
+                  ],
+                  "byid": {
+                    "block_1_polygon_0_vertex_0": "block_0_polygon_0_vertex_0",
+                    "block_1_polygon_0_vertex_1": "block_0_polygon_0_vertex_1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

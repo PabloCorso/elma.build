@@ -4,7 +4,12 @@ import {
   EditorStageState,
   useCenterLevelOnMount,
 } from "../../hooks/editorHooks";
-import { Vertex, TemplateBlock, VertexConnection } from "../../types";
+import {
+  TemplateBlock,
+  ConnectionBlock,
+  VertexBlockSelection,
+} from "../../types";
+import { getConnectionShiftedBlock } from "../../utils";
 import ConnectionShape from "../connectionShape";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../editorStageContainer/EditorStageContainer";
@@ -12,18 +17,19 @@ import { ElmaObjectShape, PolygonShape } from "../shapes";
 import VertexShape from "../vertexShape";
 
 type Props = {
-  blocks: TemplateBlock[];
-  templateBlocks: TemplateBlock[];
   stageState: EditorStageState<HTMLDivElement>;
-  createConnection: (v1: Vertex, v2: Vertex) => void;
-  connections?: VertexConnection[];
+  connectionBlocks: ConnectionBlock[];
+  templateBlocks: TemplateBlock[];
+  createConnection: (
+    fromVertex: VertexBlockSelection,
+    toVertex: VertexBlockSelection
+  ) => void;
 };
 
 const ConnectionsStage: React.FC<Props> = ({
-  blocks,
-  templateBlocks,
   stageState,
-  connections,
+  connectionBlocks,
+  templateBlocks,
   createConnection,
 }) => {
   const { stage, stageContainer, navigateTo, fitBoundsRect } = stageState;
@@ -35,18 +41,20 @@ const ConnectionsStage: React.FC<Props> = ({
     fitBoundsRect,
   });
 
-  const [selectedVertex, setSelectedVertex] = useState<Vertex>();
+  const [selectedVertex, setSelectedVertex] = useState<VertexBlockSelection>();
 
-  const handleClickVertex = (selection: Vertex) => {
-    if (selectedVertex) {
-      createConnection(selectedVertex, selection);
+  const handleClickVertex = (selection: VertexBlockSelection) => {
+    const isOtherBlock =
+      selectedVertex && selectedVertex.instance !== selection.instance;
+    if (isOtherBlock) {
       setSelectedVertex(null);
+      createConnection(selectedVertex, selection);
     } else {
       setSelectedVertex(selection);
     }
   };
 
-  const [hoveredBlock, setHoveredBlock] = useState<TemplateBlock>();
+  const [hoveredBlock, setHoveredBlock] = useState<ConnectionBlock>();
   return (
     <EditorStageContainer
       ref={stageContainer.setRef}
@@ -55,13 +63,15 @@ const ConnectionsStage: React.FC<Props> = ({
     >
       <EditorStage {...stage} navigateTo={navigateTo}>
         <Layer>
-          {blocks.map((block) => {
+          {connectionBlocks.map((connectionBlock) => {
+            const block = getConnectionShiftedBlock(connectionBlock);
+            const instance = connectionBlock.instance;
             return (
               <Group
-                key={block.instance}
+                key={connectionBlock.instance}
                 draggable
                 onMouseEnter={() => {
-                  setHoveredBlock(block);
+                  setHoveredBlock(connectionBlock);
                 }}
                 onMouseLeave={() => {
                   setHoveredBlock(null);
@@ -78,13 +88,11 @@ const ConnectionsStage: React.FC<Props> = ({
                       />
                       {polygon.vertices.map((vertex) => {
                         const isBlockHovered =
-                          hoveredBlock &&
-                          hoveredBlock.id === block.id &&
-                          hoveredBlock.instance === block.instance;
+                          hoveredBlock && hoveredBlock.instance === instance;
                         const selected =
                           selectedVertex &&
-                          selectedVertex.id === vertex.id &&
-                          block.instance === selectedVertex.instance;
+                          selectedVertex.vertex.id === vertex.id &&
+                          selectedVertex.instance === instance;
                         return (
                           (isBlockHovered || selected) && (
                             <VertexShape
@@ -94,10 +102,7 @@ const ConnectionsStage: React.FC<Props> = ({
                               x={vertex.x}
                               y={vertex.y}
                               onClick={() => {
-                                handleClickVertex({
-                                  ...vertex,
-                                  instance: block.instance,
-                                });
+                                handleClickVertex({ vertex, instance });
                               }}
                               selected={selected}
                             />
@@ -116,13 +121,6 @@ const ConnectionsStage: React.FC<Props> = ({
                     />
                   );
                 })}
-                {connections.map((connection) => (
-                  <ConnectionShape
-                    key={`connection_${connection.v1.id}_${connection.v1.instance}_to_${connection.v2.id}_${connection.v2.instance}`}
-                    connection={connection}
-                    strokeWidth={1 / stage.scale}
-                  />
-                ))}
               </Group>
             );
           })}

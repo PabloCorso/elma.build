@@ -6,8 +6,8 @@ type Props = {
   x: number;
   y: number;
   strokeWidth: number;
+  radius: number;
   sides?: number;
-  radius?: number;
   selected?: boolean;
   onClick?: (event: Konva.KonvaEventObject<MouseEvent>) => void;
 };
@@ -17,6 +17,7 @@ const VertexShape: React.FC<Props> = ({
   y,
   strokeWidth,
   radius,
+  sides = 3,
   selected = false,
   onClick,
 }) => {
@@ -33,10 +34,11 @@ const VertexShape: React.FC<Props> = ({
     <RegularPolygon
       x={x}
       y={y}
-      sides={3}
-      radius={radius}
       stroke={color}
+      radius={radius}
+      sides={sides}
       fill={color}
+      rotation={180}
       strokeWidth={strokeWidth}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

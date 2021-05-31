@@ -4,8 +4,8 @@ import {
   BlockElement,
   Template,
   PartialLevel,
-  VertexConnection,
-  Vertex,
+  ConnectionBlock,
+  VertexBlockSelection,
 } from "../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
 import TemplateStage from "../templateStage";
@@ -15,9 +15,10 @@ import BlockCard from "../blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
 import {
   getLevelBoundsRect,
-  getLevelsBoundsRect,
   parseBlockElements,
-  shiftTemplateBlock,
+  getTemplateBlockOverlapShift,
+  getConnectionShiftedBlock,
+  addConnection,
 } from "../../utils";
 import TabPanel from "../tabPanel";
 import useEditorStageState from "../../hooks/editorHooks";
@@ -38,26 +39,28 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
   const connectionsStage = useEditorStageState<HTMLDivElement>();
 
   const [templateBlocks, setTemplateBlocks] = useState<TemplateBlock[]>([]);
-  const [connectionBlocks, setConnectionBlocks] = useState<TemplateBlock[]>([]);
-  const [connections, setConnections] = useState<VertexConnection[]>([]);
+  const [connectionBlocks, setConnectionBlocks] = useState<ConnectionBlock[]>(
+    []
+  );
 
-  const addBlockToConnections = (block: TemplateBlock) => {
-    const instancedBlock = {
-      ...block,
-      instance: `${block.id}_${connectionBlocks.length}`,
+  const addConnectionBlock = (block: TemplateBlock) => {
+    const instance = `${block.id}_${connectionBlocks.length}`;
+    const shift = getTemplateBlockOverlapShift(
+      connectionBlocks.map(getConnectionShiftedBlock)
+    );
+    const origin = { x: shift.x + shift.width, y: 0 };
+    const connectionBlock: ConnectionBlock = {
+      block,
+      instance,
+      origin,
+      connectedBlocks: [],
     };
-    const shiftedBlock = shiftTemplateBlock(instancedBlock, connectionBlocks);
-    setConnectionBlocks((state) => [...state, shiftedBlock]);
-
-    const newBoundsRect = getLevelsBoundsRect([
-      ...connectionBlocks,
-      shiftedBlock,
-    ]);
-    connectionsStage.fitBoundsRect({
-      ...newBoundsRect,
-      x: -newBoundsRect.x,
-      y: -newBoundsRect.y,
-    });
+    setConnectionBlocks((state) => [...state, connectionBlock]);
+    // connectionsStage.fitBoundsRect({
+    //   ...newBoundsRect,
+    //   x: -newBoundsRect.x,
+    //   y: -newBoundsRect.y,
+    // });
   };
 
   const handleCreateBlock = (elements: BlockElement[]) => {
@@ -69,7 +72,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
       ...parseBlockElements(blockId, elements),
     };
     setTemplateBlocks((state) => [...state, newBlock]);
-    addBlockToConnections(newBlock);
+    addConnectionBlock(newBlock);
   };
 
   const [templateName, setTemplateName] = useState("");
@@ -79,7 +82,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
       createTemplate({
         name: templateName,
         blocks: templateBlocks,
-        connections,
+        connectionBlocks,
       });
     }
   };
@@ -91,13 +94,20 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
 
   const handleClickBlock = (block: TemplateBlock) => {
     if (tabIndex === TemplateStageTab.Connections) {
-      addBlockToConnections(block);
+      addConnectionBlock(block);
     }
   };
 
-  const handleCreateConnection = (v1: Vertex, v2: Vertex) => {
-    setConnections((state) => [...state, { v1, v2 }]);
+  const handleCreateConnection = (
+    from: VertexBlockSelection,
+    to: VertexBlockSelection
+  ) => {
+    setConnectionBlocks((state) =>
+      addConnection({ connectionBlocks: state, from, to })
+    );
   };
+
+  console.log({ connectionBlocks });
 
   return (
     <div className="template-editor">
@@ -153,11 +163,10 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
           </TabPanel>
           <TabPanel value={TemplateStageTab.Connections} index={tabIndex}>
             <ConnectionsStage
-              blocks={connectionBlocks}
-              templateBlocks={templateBlocks}
               stageState={connectionsStage}
+              templateBlocks={templateBlocks}
+              connectionBlocks={connectionBlocks}
               createConnection={handleCreateConnection}
-              connections={connections}
             />
           </TabPanel>
         </div>

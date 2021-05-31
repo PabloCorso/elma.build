@@ -1,5 +1,11 @@
-import { Bounds, BoundsRect, LevelElements, PartialLevel } from "../types";
-import { getBoundsRect, mergeBounds } from "./shapeUtils";
+import {
+  Bounds,
+  BoundsRect,
+  LevelBlockElements,
+  LevelElements,
+  PartialLevel,
+} from "../types";
+import { EmptyBoundsRect, getBoundsRect, mergeBounds } from "./shapeUtils";
 
 export const getLevelBounds = ({
   polygons = [],
@@ -53,7 +59,7 @@ export const getLevelsBoundsRect = (
 
 export const resetLevelPosition = (
   level: PartialLevel,
-  shift: BoundsRect = { x: 0, y: 0, width: 0, height: 0 }
+  shift: BoundsRect = EmptyBoundsRect
 ): PartialLevel => {
   const levelBoundsRect = getLevelBoundsRect(level);
   const xReset = levelBoundsRect.x * -1;
@@ -78,7 +84,8 @@ export const resetLevelPosition = (
   return { ...level, polygons, objects };
 };
 
-export const resetLevelElementsPosition = (
-  elements: LevelElements,
-  shift?: BoundsRect
-): LevelElements => resetLevelPosition(elements, shift) as LevelElements;
+export function resetLevelElementsPosition<
+  T extends LevelElements | LevelBlockElements
+>(elements: T, shift?: BoundsRect): T {
+  return resetLevelPosition(elements, shift) as T;
+}
