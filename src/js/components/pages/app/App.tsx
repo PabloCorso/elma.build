@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
-import { SaveLevelProps, Template, PartialLevel } from "../../types";
-import { resetLevelPosition } from "../../utils";
+import { SaveLevelProps, Template, PartialLevel } from "../../../types";
+import { resetLevelPosition } from "../../../utils";
 import "./app.css";
 
 const App: React.FC = () => {

@@ -6,12 +6,12 @@ import {
   PartialLevel,
   ConnectionBlock,
   VertexBlockSelection,
-} from "../../types";
+} from "../../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
-import TemplateStage from "../templateStage";
-import ConnectionsStage from "../connectionsStage";
-import CardsList from "../cardsList";
-import BlockCard from "../blockCard";
+import TemplateStage from "../../organisms/templateStage";
+import ConnectionsStage from "../../organisms/connectionsStage";
+import CardsList from "../../molecules/cardsList";
+import BlockCard from "../../molecules/blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
 import {
   getLevelBoundsRect,
@@ -19,9 +19,9 @@ import {
   getTemplateBlockOverlapShift,
   getConnectionShiftedBlock,
   addConnection,
-} from "../../utils";
-import TabPanel from "../tabPanel";
-import useEditorStageState from "../../hooks/editorHooks";
+} from "../../../utils";
+import TabPanel from "../../atoms/tabPanel";
+import useEditorStageState from "../../../hooks/editorHooks";
 import "./templateEditor.css";
 
 enum TemplateStageTab {

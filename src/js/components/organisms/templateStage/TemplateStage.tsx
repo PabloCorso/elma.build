@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Layer, Rect } from "react-konva";
-import { ElmaObjectShape, PolygonShape } from "../shapes";
-import { BlockElement, ShapeNode, PartialLevel } from "../../types";
+import { BlockElement, ShapeNode, PartialLevel } from "../../../types";
 import EditorStage from "../editorStage";
 import {
   EditorStageState,
   useCenterLevelOnMount,
   useSelectionRect,
-} from "../../hooks/editorHooks";
-import EditorStageContainer from "../editorStageContainer";
+} from "../../../hooks/editorHooks";
+import EditorStageContainer from "../../atoms/editorStageContainer";
+import ElmaObjectShape from "../../molecules/elmaObjectShape";
+import PolygonShape from "../../molecules/polygonShape";
 
 type Props = {
   level: PartialLevel;

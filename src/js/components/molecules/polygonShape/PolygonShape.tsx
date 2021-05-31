@@ -1,7 +1,7 @@
 import React from "react";
 import Konva from "konva";
 import { Line } from "react-konva";
-import { ShapeElementType, Polygon } from "../../types";
+import { ShapeElementType, Polygon } from "../../../types";
 
 export type Props = Omit<Konva.LineConfig, "points"> & {
   polygon: Polygon;

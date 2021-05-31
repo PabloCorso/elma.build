@@ -4,13 +4,14 @@ import { Group, Layer, Rect } from "react-konva";
 import {
   EditorStageState,
   useCenterLevelOnMount,
-} from "../../hooks/editorHooks";
-import { TemplateBlock } from "../../types";
+} from "../../../hooks/editorHooks";
+import { TemplateBlock } from "../../../types";
 import EditorStage from "../editorStage";
-import EditorStageContainer from "../editorStageContainer/EditorStageContainer";
-import { ElmaObjectShape, PolygonShape } from "../shapes";
-import VertexShape from "../vertexShape";
-import { getLevelBoundsRect, shiftTemplateBlock } from "../../utils";
+import EditorStageContainer from "../../atoms/editorStageContainer";
+import VertexShape from "../../molecules/vertexShape";
+import { getLevelBoundsRect, shiftTemplateBlock } from "../../../utils";
+import ElmaObjectShape from "../../molecules/elmaObjectShape";
+import PolygonShape from "../../molecules/polygonShape";
 
 type Props = {
   blocks: TemplateBlock[];

@@ -7,12 +7,12 @@ import {
   PartialLevel,
   ElmaObject,
   Polygon,
-} from "../../types";
-import LevelStage from "../levelStage";
-import CardsList from "../cardsList";
-import BlockCard from "../blockCard";
-import useEditorStageState from "../../hooks/editorHooks";
-import { shiftTemplateBlockFromOverlap } from "../../utils";
+} from "../../../types";
+import LevelStage from "../../organisms/levelStage";
+import CardsList from "../../molecules/cardsList";
+import BlockCard from "../../molecules/blockCard";
+import useEditorStageState from "../../../hooks/editorHooks";
+import { shiftTemplateBlockFromOverlap } from "../../../utils";
 import "./levelEditor.css";
 
 type Props = {

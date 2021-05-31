@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./js/components/app";
+import App from "./js/components/pages/app";
 import { ElectronApi } from "./js/types";
 
 declare global {

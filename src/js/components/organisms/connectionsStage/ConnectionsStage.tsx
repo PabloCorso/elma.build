@@ -3,17 +3,18 @@ import { Group, Layer } from "react-konva";
 import {
   EditorStageState,
   useCenterLevelOnMount,
-} from "../../hooks/editorHooks";
+} from "../../../hooks/editorHooks";
 import {
   TemplateBlock,
   ConnectionBlock,
   VertexBlockSelection,
-} from "../../types";
-import { getConnectionShiftedBlock } from "../../utils";
+} from "../../../types";
+import { getConnectionShiftedBlock } from "../../../utils";
 import EditorStage from "../editorStage";
-import EditorStageContainer from "../editorStageContainer/EditorStageContainer";
-import { ElmaObjectShape, PolygonShape } from "../shapes";
-import VertexShape from "../vertexShape";
+import EditorStageContainer from "../../atoms/editorStageContainer";
+import VertexShape from "../../molecules/vertexShape";
+import ElmaObjectShape from "../../molecules/elmaObjectShape";
+import PolygonShape from "../../molecules/polygonShape";
 
 type Props = {
   stageState: EditorStageState<HTMLDivElement>;

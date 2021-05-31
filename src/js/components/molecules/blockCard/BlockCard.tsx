@@ -1,6 +1,6 @@
 import React from "react";
 import { Paper, Typography } from "@material-ui/core";
-import { TemplateBlock } from "../../types";
+import { TemplateBlock } from "../../../types";
 import EditableText from "../editableText";
 import "./blockCard.css";
 

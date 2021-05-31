@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import Konva from "konva";
 import { Layer, Stage, StageProps } from "react-konva";
-import { NavigateTo } from "../../types";
-import { LineAxis } from "../helperShapes";
+import { NavigateTo } from "../../../types";
+import { LineAxis } from "../../molecules/helperShapes";
 
 type Props = Omit<StageProps, "scale"> & {
   scale: number;
