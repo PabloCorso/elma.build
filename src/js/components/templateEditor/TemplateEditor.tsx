@@ -56,11 +56,6 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
       connectedBlocks: [],
     };
     setConnectionBlocks((state) => [...state, connectionBlock]);
-    // connectionsStage.fitBoundsRect({
-    //   ...newBoundsRect,
-    //   x: -newBoundsRect.x,
-    //   y: -newBoundsRect.y,
-    // });
   };
 
   const handleCreateBlock = (elements: BlockElement[]) => {
@@ -106,8 +101,6 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
       addConnection({ connectionBlocks: state, from, to })
     );
   };
-
-  console.log({ connectionBlocks });
 
   return (
     <div className="template-editor">

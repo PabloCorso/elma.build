@@ -129,16 +129,24 @@ export const addConnection = ({
       let connectedBlock: ConnectedBlock = connection.connectedBlocks.find(
         (block) => block.toInstance === to.instance
       );
-      const connectedVertex = {
+      const newConnectedVertex = {
         fromVertex: from.vertex,
         toVertex: to.vertex,
       };
       if (connectedBlock) {
-        connectedBlock.connectedVertices.push(connectedVertex);
+        const existsConnection = connectedBlock.connectedVertices.find(
+          (connectedVertex) =>
+            connectedVertex.fromVertex.id ===
+              newConnectedVertex.fromVertex.id &&
+            connectedVertex.toVertex.id === newConnectedVertex.toVertex.id
+        );
+        if (!existsConnection) {
+          connectedBlock.connectedVertices.push(newConnectedVertex);
+        }
       } else {
         connectedBlock = {
           toInstance: to.instance,
-          connectedVertices: [connectedVertex],
+          connectedVertices: [newConnectedVertex],
         };
         connection.connectedBlocks.push(connectedBlock);
       }
@@ -146,16 +154,24 @@ export const addConnection = ({
       let connectedBlock: ConnectedBlock = connection.connectedBlocks.find(
         (block) => block.toInstance === from.instance
       );
-      const connectedVertex = {
+      const newConnectedVertex = {
         fromVertex: to.vertex,
         toVertex: from.vertex,
       };
       if (connectedBlock) {
-        connectedBlock.connectedVertices.push(connectedVertex);
+        const existsConnection = connectedBlock.connectedVertices.find(
+          (connectedVertex) =>
+            connectedVertex.fromVertex.id ===
+              newConnectedVertex.fromVertex.id &&
+            connectedVertex.toVertex.id === newConnectedVertex.toVertex.id
+        );
+        if (!existsConnection) {
+          connectedBlock.connectedVertices.push(newConnectedVertex);
+        }
       } else {
         connectedBlock = {
           toInstance: from.instance,
-          connectedVertices: [connectedVertex],
+          connectedVertices: [newConnectedVertex],
         };
         connection.connectedBlocks.push(connectedBlock);
       }

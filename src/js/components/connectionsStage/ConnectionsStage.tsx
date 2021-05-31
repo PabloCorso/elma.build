@@ -10,7 +10,6 @@ import {
   VertexBlockSelection,
 } from "../../types";
 import { getConnectionShiftedBlock } from "../../utils";
-import ConnectionShape from "../connectionShape";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../editorStageContainer/EditorStageContainer";
 import { ElmaObjectShape, PolygonShape } from "../shapes";
