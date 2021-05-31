@@ -8,8 +8,6 @@ import {
   LevelBlockElements,
   Point,
   ConnectionBlock,
-  VertexBlockSelection,
-  ConnectedBlock,
 } from "../types";
 import { getLevelsBoundsRect, resetLevelElementsPosition } from "./levelUtils";
 import { EmptyBoundsRect } from "./shapeUtils";
@@ -25,20 +23,16 @@ export const parseBlockElements = (
       const data = element.data as PolygonBlock;
       const polygonId = `${blockId}_polygon_${polygons.length}`;
       const vertices = data.vertices.map((vertex, index) => ({
-        blockId,
-        polygonId,
         id: `${polygonId}_vertex_${index}`,
         ...vertex,
       }));
       polygons.push({
-        blockId,
         id: polygonId,
         grass: data.grass,
         vertices,
       });
     } else if (element.type === ShapeElementType.ElmaObject) {
       objects.push({
-        blockId,
         id: `${blockId}_object_${objects.length}`,
         ...(element.data as ElmaObjectBlock),
       });
@@ -113,72 +107,15 @@ export const shiftTemplateBlockFromOverlap = (
   return shiftTemplateBlock(templateBlock, shift);
 };
 
-export const addConnection = ({
-  connectionBlocks,
-  from,
-  to,
-}: {
-  connectionBlocks: ConnectionBlock[];
-  from: VertexBlockSelection;
-  to: VertexBlockSelection;
-}): ConnectionBlock[] => {
-  const connections = [];
-  for (const connectionBlock of connectionBlocks) {
-    const connection = { ...connectionBlock };
-    if (connection.instance === from.instance) {
-      let connectedBlock: ConnectedBlock = connection.connectedBlocks.find(
-        (block) => block.toInstance === to.instance
-      );
-      const newConnectedVertex = {
-        fromVertex: from.vertex,
-        toVertex: to.vertex,
-      };
-      if (connectedBlock) {
-        const existsConnection = connectedBlock.connectedVertices.find(
-          (connectedVertex) =>
-            connectedVertex.fromVertex.id ===
-              newConnectedVertex.fromVertex.id &&
-            connectedVertex.toVertex.id === newConnectedVertex.toVertex.id
-        );
-        if (!existsConnection) {
-          connectedBlock.connectedVertices.push(newConnectedVertex);
-        }
-      } else {
-        connectedBlock = {
-          toInstance: to.instance,
-          connectedVertices: [newConnectedVertex],
-        };
-        connection.connectedBlocks.push(connectedBlock);
-      }
-    } else if (connection.instance === to.instance) {
-      let connectedBlock: ConnectedBlock = connection.connectedBlocks.find(
-        (block) => block.toInstance === from.instance
-      );
-      const newConnectedVertex = {
-        fromVertex: to.vertex,
-        toVertex: from.vertex,
-      };
-      if (connectedBlock) {
-        const existsConnection = connectedBlock.connectedVertices.find(
-          (connectedVertex) =>
-            connectedVertex.fromVertex.id ===
-              newConnectedVertex.fromVertex.id &&
-            connectedVertex.toVertex.id === newConnectedVertex.toVertex.id
-        );
-        if (!existsConnection) {
-          connectedBlock.connectedVertices.push(newConnectedVertex);
-        }
-      } else {
-        connectedBlock = {
-          toInstance: from.instance,
-          connectedVertices: [newConnectedVertex],
-        };
-        connection.connectedBlocks.push(connectedBlock);
-      }
-    }
-
-    connections.push(connection);
-  }
-
-  return connections;
+export const createTemplateBlock = (
+  blockElements: BlockElement[],
+  blockIndex = 0
+): TemplateBlock => {
+  const blockId = `block_${blockIndex}`;
+  const newBlock: TemplateBlock = {
+    id: blockId,
+    name: `Block ${blockIndex + 1}`,
+    ...parseBlockElements(blockId, blockElements),
+  };
+  return newBlock;
 };

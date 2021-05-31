@@ -4,6 +4,7 @@ import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
 import { SaveLevelProps, Template, PartialLevel } from "../../../types";
 import { resetLevelPosition } from "../../../utils";
+import { TemplateState } from "../templateEditor/templateStore";
 import "./app.css";
 
 const App: React.FC = () => {
@@ -17,7 +18,7 @@ const App: React.FC = () => {
     setTemplatesFolder(folder);
   };
 
-  const handleCreateTemplate = (template: Template) => {
+  const handleSaveTemplate = (template: TemplateState) => {
     window.electron.saveTemplate(template);
     updateTemplatesFolder();
   };
@@ -84,7 +85,7 @@ const App: React.FC = () => {
       </div>
       <div className="app__template-editor">
         {level && (
-          <TemplateEditor level={level} createTemplate={handleCreateTemplate} />
+          <TemplateEditor level={level} saveTemplate={handleSaveTemplate} />
         )}
         {template && (
           <LevelEditor template={template} createLevel={handleCreateLevel} />

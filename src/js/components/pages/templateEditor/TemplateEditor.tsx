@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import {
   TemplateBlock,
   BlockElement,
-  Template,
   PartialLevel,
-  ConnectionBlock,
   VertexBlockSelection,
 } from "../../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
@@ -15,13 +13,23 @@ import BlockCard from "../../molecules/blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
 import {
   getLevelBoundsRect,
-  parseBlockElements,
   getTemplateBlockOverlapShift,
   getConnectionShiftedBlock,
-  addConnection,
+  createTemplateBlock,
 } from "../../../utils";
 import TabPanel from "../../atoms/tabPanel";
 import useEditorStageState from "../../../hooks/editorHooks";
+import editorTemplateReducer, {
+  initialState,
+  addConnection,
+  addConnectionBlock,
+  addTemplateBlock,
+  setTemplateName,
+  renameTemplateBlock,
+  useConnectionBlocksSelector,
+  useTemplateBlocksSelector,
+  TemplateState,
+} from "./templateStore";
 import "./templateEditor.css";
 
 enum TemplateStageTab {
@@ -31,54 +39,38 @@ enum TemplateStageTab {
 
 type Props = {
   level: PartialLevel;
-  createTemplate: (template: Template) => void;
+  saveTemplate: (template: TemplateState) => void;
 };
 
-const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
+const TemplateEditor: React.FC<Props> = ({ level, saveTemplate }) => {
   const templateStage = useEditorStageState<HTMLDivElement>();
   const connectionsStage = useEditorStageState<HTMLDivElement>();
 
-  const [templateBlocks, setTemplateBlocks] = useState<TemplateBlock[]>([]);
-  const [connectionBlocks, setConnectionBlocks] = useState<ConnectionBlock[]>(
-    []
+  const [templateState, dispatch] = useReducer(
+    editorTemplateReducer,
+    initialState
   );
+  const templateBlocks = useTemplateBlocksSelector(templateState);
+  const connectionBlocks = useConnectionBlocksSelector(templateState);
 
-  const addConnectionBlock = (block: TemplateBlock) => {
-    const instance = `${block.id}_${connectionBlocks.length}`;
+  const createConnectionBlock = (block: TemplateBlock) => {
     const shift = getTemplateBlockOverlapShift(
       connectionBlocks.map(getConnectionShiftedBlock)
     );
     const origin = { x: shift.x + shift.width, y: 0 };
-    const connectionBlock: ConnectionBlock = {
-      block,
-      instance,
-      origin,
-      connectedBlocks: [],
-    };
-    setConnectionBlocks((state) => [...state, connectionBlock]);
+    dispatch(addConnectionBlock(block, origin));
   };
 
   const handleCreateBlock = (elements: BlockElement[]) => {
-    const blockIndex = templateBlocks.length;
-    const blockId = `block_${blockIndex}`;
-    const newBlock: TemplateBlock = {
-      id: blockId,
-      name: `Block ${blockIndex + 1}`,
-      ...parseBlockElements(blockId, elements),
-    };
-    setTemplateBlocks((state) => [...state, newBlock]);
-    addConnectionBlock(newBlock);
+    const newBlock = createTemplateBlock(elements, templateBlocks.length);
+    dispatch(addTemplateBlock(newBlock));
+    createConnectionBlock(newBlock);
   };
 
-  const [templateName, setTemplateName] = useState("");
-  const handleCreateTemplate = (event: React.FormEvent) => {
+  const handleSaveTemplate = (event: React.FormEvent) => {
     event.preventDefault();
-    if (templateName) {
-      createTemplate({
-        name: templateName,
-        blocks: templateBlocks,
-        connectionBlocks,
-      });
+    if (templateState.name) {
+      saveTemplate(templateState);
     }
   };
 
@@ -89,7 +81,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
 
   const handleClickBlock = (block: TemplateBlock) => {
     if (tabIndex === TemplateStageTab.Connections) {
-      addConnectionBlock(block);
+      createConnectionBlock(block);
     }
   };
 
@@ -97,9 +89,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
     from: VertexBlockSelection,
     to: VertexBlockSelection
   ) => {
-    setConnectionBlocks((state) =>
-      addConnection({ connectionBlocks: state, from, to })
-    );
+    dispatch(addConnection(from, to));
   };
 
   return (
@@ -121,12 +111,14 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
           className="template-editor__info"
           noValidate
           autoComplete="off"
-          onSubmit={handleCreateTemplate}
+          onSubmit={handleSaveTemplate}
         >
           <TextField
             label="Template name"
-            value={templateName}
-            onChange={(event) => setTemplateName(event.target.value)}
+            value={templateState.name}
+            onChange={(event) => {
+              dispatch(setTemplateName(event.target.value));
+            }}
           />
           <Button
             type="submit"
@@ -173,10 +165,7 @@ const TemplateEditor: React.FC<Props> = ({ level, createTemplate }) => {
               handleClickBlock(block);
             }}
             onRename={(name) => {
-              const newBlocks = templateBlocks.map((item) =>
-                item.id === block.id ? { ...item, name } : item
-              );
-              setTemplateBlocks(newBlocks);
+              dispatch(renameTemplateBlock(block.id, name));
             }}
             readonly={tabIndex === TemplateStageTab.Connections}
           />

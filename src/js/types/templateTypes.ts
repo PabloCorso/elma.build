@@ -12,17 +12,14 @@ export type BlockElement = {
 
 export type VertexBlock = Vertex & {
   id: string;
-  blockId: string;
-  polygonId: string;
 };
 
 export type PolygonBlock = Omit<Polygon, "vertices"> & {
   id: string;
-  blockId: string;
   vertices: VertexBlock[];
 };
 
-export type ElmaObjectBlock = ElmaObject & { id: string; blockId: string };
+export type ElmaObjectBlock = ElmaObject & { id: string };
 
 export type LevelBlockElements = {
   polygons: PolygonBlock[];

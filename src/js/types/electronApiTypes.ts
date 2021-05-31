@@ -1,3 +1,4 @@
+import { TemplateState } from "../components/pages/templateEditor/templateStore";
 import { PartialLevel } from "./elmaTypes";
 import { Template } from "./templateTypes";
 
@@ -10,7 +11,7 @@ export type ElectronApi = {
   saveLevel: (level: SaveLevelProps) => boolean;
   readAllLevels: () => string[];
   readLevel: (name: string) => PartialLevel;
-  saveTemplate: ({ name, blocks }: Template) => boolean;
+  saveTemplate: ({ name, blocks }: TemplateState) => boolean;
   readAllTemplates: () => string[];
   readTemplate: (name: string) => Template;
 };
