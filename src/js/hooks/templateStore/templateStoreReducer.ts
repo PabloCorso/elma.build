@@ -19,7 +19,6 @@ const initStoredByInstance = function <T>(): StoredByInstance<T> {
 
 export const initialState: TemplateState = {
   name: "",
-  filename: "",
   blocks: initStoredById(),
   polygons: initStoredById(),
   vertices: initStoredById(),
