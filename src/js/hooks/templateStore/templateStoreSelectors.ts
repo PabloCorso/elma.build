@@ -4,10 +4,10 @@ import {
   ConnectedVertex,
   ConnectionBlock,
   TemplateBlock,
-} from "../../../../types";
-import { TemplateState } from "./templateStoreTypes";
+} from "../../types";
+import { StoredTemplate } from "../../types/templateStoreTypes";
 
-const selectTemplateBlock = (state: TemplateState, blockId: string) => {
+const selectTemplateBlock = (state: StoredTemplate, blockId: string) => {
   const storedBlock = state.blocks.byId[blockId];
   const block: TemplateBlock = {
     id: blockId,
@@ -31,13 +31,13 @@ const selectTemplateBlock = (state: TemplateState, blockId: string) => {
   return block;
 };
 
-const selectTemplateBlocks = (state: TemplateState) => {
+const selectTemplateBlocks = (state: StoredTemplate) => {
   return state.blocks.allIds.map((blockId) =>
     selectTemplateBlock(state, blockId)
   );
 };
 
-const selectConnectionBlocks = (state: TemplateState) => {
+const selectConnectionBlocks = (state: StoredTemplate) => {
   return state.connectionBlocks.allInstances.map((instance) => {
     const storedConnectionBlock = state.connectionBlocks.byInstance[instance];
     const block = selectTemplateBlock(state, storedConnectionBlock.blockId);
@@ -79,7 +79,7 @@ const selectConnectionBlocks = (state: TemplateState) => {
 };
 
 export const useConnectionBlocksSelector = (
-  state: TemplateState
+  state: StoredTemplate
 ): ConnectionBlock[] =>
   useMemo(
     () => selectConnectionBlocks(state),
@@ -93,7 +93,7 @@ export const useConnectionBlocksSelector = (
   );
 
 export const useTemplateBlocksSelector = (
-  state: TemplateState
+  state: StoredTemplate
 ): TemplateBlock[] =>
   useMemo(
     () => selectTemplateBlocks(state),

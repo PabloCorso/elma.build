@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
-import { SaveLevelProps, Template, PartialLevel } from "../../../types";
+import {
+  SaveLevelProps,
+  Template,
+  PartialLevel,
+  StoredTemplate,
+} from "../../../types";
 import { resetLevelPosition } from "../../../utils";
-import { TemplateState } from "../templateEditor/templateStore";
 import "./app.css";
 
 const App: React.FC = () => {
@@ -18,7 +22,7 @@ const App: React.FC = () => {
     setTemplatesFolder(folder);
   };
 
-  const handleSaveTemplate = (template: TemplateState) => {
+  const handleSaveTemplate = (template: StoredTemplate) => {
     window.electron.saveTemplate(template);
     updateTemplatesFolder();
   };

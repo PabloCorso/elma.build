@@ -5,7 +5,7 @@ import {
   TemplateBlock,
   Vertex,
   VertexBlockSelection,
-} from "../../../../types";
+} from ".";
 
 export type StoredById<T> = {
   allIds: string[];
@@ -38,15 +38,18 @@ export type StoreConnectionBlock = {
   connectedBlocks: StoredByInstance<StoredConnectedBlock>;
 };
 
-export type TemplateState = {
+export type StoredTemplate = {
   name: string;
-  filename: string;
   blocks: StoredById<StoredBlock>;
   polygons: StoredById<StoredPolygon>;
   vertices: StoredById<Vertex>;
   objects: StoredById<ElmaObject>;
   connectionBlocks: StoredByInstance<StoreConnectionBlock>;
 };
+
+export type TemplateState = {
+  filename: string;
+} & StoredTemplate;
 
 export enum TemplateActions {
   AddConnection = "template/add_connection",

@@ -1,4 +1,4 @@
-import { VertexBlockSelection } from "../../../../types";
+import { VertexBlockSelection } from "../../types";
 import {
   StoreConnectionBlock,
   StoredBlock,
@@ -7,7 +7,7 @@ import {
   TemplateAction,
   TemplateActions,
   TemplateState,
-} from "./templateStoreTypes";
+} from "../../types/templateStoreTypes";
 
 const initStoredById = function <T>(): StoredById<T> {
   return { allIds: [], byId: {} };

@@ -4,6 +4,7 @@ import {
   BlockElement,
   PartialLevel,
   VertexBlockSelection,
+  StoredTemplate,
 } from "../../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
 import TemplateStage from "../../organisms/templateStage";
@@ -28,8 +29,7 @@ import editorTemplateReducer, {
   renameTemplateBlock,
   useConnectionBlocksSelector,
   useTemplateBlocksSelector,
-  TemplateState,
-} from "./templateStore";
+} from "../../../hooks/templateStore";
 import "./templateEditor.css";
 
 enum TemplateStageTab {
@@ -39,7 +39,7 @@ enum TemplateStageTab {
 
 type Props = {
   level: PartialLevel;
-  saveTemplate: (template: TemplateState) => void;
+  saveTemplate: (template: StoredTemplate) => void;
 };
 
 const TemplateEditor: React.FC<Props> = ({ level, saveTemplate }) => {

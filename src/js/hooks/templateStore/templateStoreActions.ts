@@ -1,5 +1,8 @@
-import { Point, TemplateBlock, VertexBlockSelection } from "../../../../types";
-import { TemplateAction, TemplateActions } from "./templateStoreTypes";
+import { Point, TemplateBlock, VertexBlockSelection } from "../../types";
+import {
+  TemplateAction,
+  TemplateActions,
+} from "../../types/templateStoreTypes";
 
 export const addConnection = (
   from: VertexBlockSelection,

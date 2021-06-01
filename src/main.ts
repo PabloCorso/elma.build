@@ -4,8 +4,7 @@ import installExtension, {
 } from "electron-devtools-installer";
 import fs from "fs";
 import { Level } from "elmajs";
-import { ElectronApis, SaveLevelProps } from "./js/types";
-import { TemplateState } from "./js/components/pages/templateEditor/templateStore";
+import { ElectronApis, SaveLevelProps, StoredTemplate } from "./js/types";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -95,7 +94,7 @@ ipcMain.on(ElectronApis.ReadLevel, (event, name: string) => {
 });
 
 ipcMain.on(ElectronApis.SaveTemplate, (event, template: string) => {
-  const parsedTemplate: TemplateState = JSON.parse(template);
+  const parsedTemplate: StoredTemplate = JSON.parse(template);
   fs.writeFileSync(
     `${templatesFolderPath}/${parsedTemplate.name}.json`,
     template
