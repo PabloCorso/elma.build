@@ -39,7 +39,7 @@ enum TemplateStageTab {
 
 type Props = {
   level: PartialLevel;
-  saveTemplate: (template: StoredTemplate) => void;
+  saveTemplate: (filename: string, template: StoredTemplate) => void;
 };
 
 const TemplateEditor: React.FC<Props> = ({ level, saveTemplate }) => {
@@ -70,7 +70,7 @@ const TemplateEditor: React.FC<Props> = ({ level, saveTemplate }) => {
   const handleSaveTemplate = (event: React.FormEvent) => {
     event.preventDefault();
     if (templateState.name) {
-      saveTemplate(templateState);
+      saveTemplate(templateState.name, templateState);
     }
   };
 

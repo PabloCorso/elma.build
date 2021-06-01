@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
-import {
-  SaveLevelProps,
-  Template,
-  PartialLevel,
-  StoredTemplate,
-} from "../../../types";
+import { PartialLevel, StoredTemplate } from "../../../types";
 import { resetLevelPosition } from "../../../utils";
 import "./app.css";
 
@@ -15,15 +10,15 @@ const App: React.FC = () => {
   const [levFolder, setLevFolder] = useState<string[]>([]);
   const [templatesFolder, setTemplatesFolder] = useState<string[]>([]);
   const [level, setLevel] = useState<PartialLevel>();
-  const [template, setTemplate] = useState<Template>();
+  const [template, setTemplate] = useState<StoredTemplate>();
 
   const updateTemplatesFolder = () => {
     const folder = window.electron.readAllTemplates();
     setTemplatesFolder(folder);
   };
 
-  const handleSaveTemplate = (template: StoredTemplate) => {
-    window.electron.saveTemplate(template);
+  const handleSaveTemplate = (filename: string, template: StoredTemplate) => {
+    window.electron.saveTemplate({ filename, template });
     updateTemplatesFolder();
   };
 
@@ -32,8 +27,8 @@ const App: React.FC = () => {
     setLevFolder(folder);
   };
 
-  const handleCreateLevel = (data: SaveLevelProps) => {
-    window.electron.saveLevel(data);
+  const handleCreateLevel = (filename: string, level: PartialLevel) => {
+    window.electron.saveLevel({ filename, level });
     updateLevFolder();
   };
 

@@ -4,7 +4,7 @@ import installExtension, {
 } from "electron-devtools-installer";
 import fs from "fs";
 import { Level } from "elmajs";
-import { ElectronApis, SaveLevelProps, StoredTemplate } from "./js/types";
+import { ElectronApis, SaveLevelData, SaveTemplateData } from "./js/types";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -70,7 +70,7 @@ const templatesFolderPath =
 const defaultLevelName = "Generated with elma.build";
 
 ipcMain.on(ElectronApis.SaveLevel, (event, data: string) => {
-  const { filename, level: parsedLevel } = JSON.parse(data) as SaveLevelProps;
+  const { filename, level: parsedLevel } = JSON.parse(data) as SaveLevelData;
   const level = new Level();
   level.name = parsedLevel.name || defaultLevelName;
   level.polygons = parsedLevel.polygons || [];
@@ -93,11 +93,11 @@ ipcMain.on(ElectronApis.ReadLevel, (event, name: string) => {
   event.returnValue = JSON.stringify(level);
 });
 
-ipcMain.on(ElectronApis.SaveTemplate, (event, template: string) => {
-  const parsedTemplate: StoredTemplate = JSON.parse(template);
+ipcMain.on(ElectronApis.SaveTemplate, (event, data: string) => {
+  const { filename, template }: SaveTemplateData = JSON.parse(data);
   fs.writeFileSync(
-    `${templatesFolderPath}/${parsedTemplate.name}.json`,
-    template
+    `${templatesFolderPath}/${filename}.json`,
+    JSON.stringify(template)
   );
   event.returnValue = true;
 });
@@ -112,6 +112,5 @@ ipcMain.on(ElectronApis.ReadTemplate, (event, name: string) => {
     `${templatesFolderPath}/${name}`,
     "utf8"
   );
-  const template = JSON.parse(templateFile);
-  event.returnValue = JSON.stringify(template);
+  event.returnValue = templateFile;
 });

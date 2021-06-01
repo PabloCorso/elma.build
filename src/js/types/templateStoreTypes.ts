@@ -47,9 +47,7 @@ export type StoredTemplate = {
   connectionBlocks: StoredByInstance<StoreConnectionBlock>;
 };
 
-export type TemplateState = {
-  filename: string;
-} & StoredTemplate;
+export type TemplateState = StoredTemplate;
 
 export enum TemplateActions {
   AddConnection = "template/add_connection",

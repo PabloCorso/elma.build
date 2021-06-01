@@ -1,12 +1,11 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import {
   TemplateBlock,
-  Template,
-  SaveLevelProps,
   PartialLevel,
   ElmaObject,
   Polygon,
+  StoredTemplate,
 } from "../../../types";
 import LevelStage from "../../organisms/levelStage";
 import CardsList from "../../molecules/cardsList";
@@ -16,8 +15,8 @@ import { shiftTemplateBlockFromOverlap } from "../../../utils";
 import "./levelEditor.css";
 
 type Props = {
-  template: Template;
-  createLevel: (props: SaveLevelProps) => void;
+  template: StoredTemplate;
+  createLevel: (filename: string, level: PartialLevel) => void;
 };
 
 const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
@@ -57,7 +56,7 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
       sky: "groud",
     };
 
-    createLevel({ filename: levelName, level });
+    createLevel(levelName, level);
   };
 
   // const connectionsById = useMemo(() => {
@@ -103,7 +102,7 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
           connectionsById={connectionsById}
         /> */}
       </div>
-      <CardsList className="level-editor__blocks">
+      {/* <CardsList className="level-editor__blocks">
         {template.blocks.map((block, index) => (
           <BlockCard
             key={index}
@@ -114,7 +113,7 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
             readonly
           />
         ))}
-      </CardsList>
+      </CardsList> */}
     </div>
   );
 };

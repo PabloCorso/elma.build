@@ -1,19 +1,23 @@
 import { PartialLevel } from "./elmaTypes";
-import { Template } from "./templateTypes";
 import { StoredTemplate } from "./templateStoreTypes";
 
-export type SaveLevelProps = {
+export type SaveLevelData = {
   filename: string;
   level: PartialLevel;
 };
 
+export type SaveTemplateData = {
+  filename: string;
+  template: StoredTemplate;
+};
+
 export type ElectronApi = {
-  saveLevel: (level: SaveLevelProps) => boolean;
+  saveLevel: (data: SaveLevelData) => boolean;
   readAllLevels: () => string[];
   readLevel: (name: string) => PartialLevel;
-  saveTemplate: ({ name, blocks }: StoredTemplate) => boolean;
+  saveTemplate: (data: SaveTemplateData) => boolean;
   readAllTemplates: () => string[];
-  readTemplate: (name: string) => Template;
+  readTemplate: (filename: string) => StoredTemplate;
 };
 
 export enum ElectronApis {
