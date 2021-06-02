@@ -1,1 +1,1 @@
-export { default as initializeMainApi } from "./mainApi";
+export { default as getMenuTemplate } from "./menuTemplate";

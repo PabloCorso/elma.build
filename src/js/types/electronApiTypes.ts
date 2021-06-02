@@ -23,15 +23,6 @@ export type ElectronApi = {
   readAllTemplates: () => string[];
 };
 
-export enum ElectronApis {
-  SaveLevel = "save-level",
-  ReadAllLevels = "read-all-levels",
-  ReadLevel = "read-level",
-  SaveTemplate = "save-template",
-  ReadAllTemplates = "read-all-templates",
-  ReadTemplate = "read-template",
-}
-
 export enum WebContentsChannels {
   AppMenuEvent = "web-content/app-menu",
 }

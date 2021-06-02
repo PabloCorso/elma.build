@@ -1,9 +1,8 @@
-import { app, BrowserWindow, ipcMain, Menu } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";
-import { initializeMainApi } from "./js/electron";
-import getMenuTemplate from "./js/electron/menuTemplate";
+import { getMenuTemplate } from "./js/electron";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -65,5 +64,3 @@ app.on("activate", () => {
     createWindow();
   }
 });
-
-initializeMainApi(ipcMain);
