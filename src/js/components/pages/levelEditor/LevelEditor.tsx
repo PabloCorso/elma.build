@@ -89,11 +89,11 @@ const LevelEditor: React.FC<Props> = ({
           connectionsById={{}}
         />
       </div>
-      <CardsList className="level-editor__blocks">
+      <div className="level-editor__blocks">
         {templates.map((template) => {
           const blocks = selectTemplateBlocks(template);
           return (
-            <CardsList key={template.name}>
+            <CardsList key={template.name} title={template.name}>
               {blocks.map((block, index) => (
                 <BlockCard
                   key={index}
@@ -107,7 +107,7 @@ const LevelEditor: React.FC<Props> = ({
             </CardsList>
           );
         })}
-      </CardsList>
+      </div>
     </div>
   );
 };

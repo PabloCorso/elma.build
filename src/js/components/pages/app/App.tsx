@@ -7,9 +7,10 @@ import { useEventListener } from "../../../hooks";
 import "./app.css";
 
 const App: React.FC = () => {
-  const [templatesFolder, setTemplatesFolder] = useState<string[]>([]);
   const [level, setLevel] = useState<PartialLevel>();
+  const [templatesFolder, setTemplatesFolder] = useState<string[]>();
   const [templates, setTemplates] = useState<StoredTemplate[]>([]);
+  const [isTemplating, setIsTemplating] = useState(false);
 
   useEffect(() => {
     if (templatesFolder) {
@@ -24,7 +25,10 @@ const App: React.FC = () => {
     }
   }, [templatesFolder]);
 
-  const [isTemplating, setIsTemplating] = useState(false);
+  useEffect(function initialize() {
+    const folder = window.electron.readAllTemplates();
+    setTemplatesFolder(folder);
+  }, []);
 
   useEventListener("app-menu", (event: CustomEvent) => {
     const appMenuEvent = event.detail as AppMenuEvents;
@@ -45,8 +49,6 @@ const App: React.FC = () => {
 
   const handleSaveTemplate = (filename: string, template: StoredTemplate) => {
     window.electron.saveTemplate({ filename, template });
-    const folder = window.electron.readAllTemplates();
-    setTemplatesFolder(folder);
   };
 
   const handleSaveLevel = (filename: string, level: PartialLevel) => {

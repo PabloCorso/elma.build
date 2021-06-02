@@ -28,4 +28,10 @@
 
 .level-editor__blocks {
   grid-area: level-blocks;
+  overflow-y: auto;
+  padding: 20px 0;
+}
+
+.level-editor__blocks > .cards-list:not(:last-child) {
+  margin-bottom: 20px;
 }

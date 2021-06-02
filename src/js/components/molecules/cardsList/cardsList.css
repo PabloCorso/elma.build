@@ -1,10 +1,20 @@
 .cards-list {
   display: flex;
-  overflow-x: auto;
-  align-items: center;
-  padding: 0 12px;
+  flex-direction: column;
 }
 
-.cards-list > :not(:last-child) {
+.cards-list__title {
+  margin-bottom: 12px;
+}
+
+.cards-list__items {
+  display: flex;
+  overflow-x: auto;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px 4px;
+}
+
+.cards-list__items > :not(:last-child) {
   margin-right: 12px;
 }

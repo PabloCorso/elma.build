@@ -8,6 +8,7 @@ declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 const isMac = process.platform === "darwin";
+const isDev = process.env.NODE_ENV !== "production";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -31,7 +32,9 @@ const createWindow = (): void => {
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
 
   mainWindow.maximize();
 };
@@ -43,7 +46,7 @@ app.on("ready", () => {
   createWindow();
   installExtension(REACT_DEVELOPER_TOOLS);
 
-  const menuTemplate = getMenuTemplate({ isMac });
+  const menuTemplate = getMenuTemplate({ isMac, isDev });
   const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(menu);
 });
