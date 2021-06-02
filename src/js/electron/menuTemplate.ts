@@ -22,13 +22,56 @@ const getMenuTemplate = ({
           );
         },
       },
-      { label: "New Template" },
+      {
+        label: "New Template",
+        accelerator: "ctrl+t",
+        click: (_menuItem, browserWindow) => {
+          browserWindow.webContents.send(
+            WebContentsChannels.AppMenuEvent,
+            AppMenuEvents.NewTemplate
+          );
+        },
+      },
       { type: "separator" },
-      { label: "Open Level" },
-      { label: "Open Template" },
+      {
+        label: "Open Level",
+        accelerator: "ctrl+o",
+        click: (_menuItem, browserWindow) => {
+          browserWindow.webContents.send(
+            WebContentsChannels.AppMenuEvent,
+            AppMenuEvents.OpenLevel
+          );
+        },
+      },
+      {
+        label: "Open Template",
+        click: (_menuItem, browserWindow) => {
+          browserWindow.webContents.send(
+            WebContentsChannels.AppMenuEvent,
+            AppMenuEvents.OpenTemplate
+          );
+        },
+      },
       { type: "separator" },
-      { label: "Save" },
-      { label: "Save As..." },
+      {
+        label: "Save",
+        accelerator: "ctrl+s",
+        click: (_menuItem, browserWindow) => {
+          browserWindow.webContents.send(
+            WebContentsChannels.AppMenuEvent,
+            AppMenuEvents.Save
+          );
+        },
+      },
+      {
+        label: "Save As...",
+        click: (_menuItem, browserWindow) => {
+          browserWindow.webContents.send(
+            WebContentsChannels.AppMenuEvent,
+            AppMenuEvents.SaveAs
+          );
+        },
+      },
       { type: "separator" },
       { role: "quit" },
     ],

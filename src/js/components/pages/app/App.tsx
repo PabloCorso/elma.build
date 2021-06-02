@@ -2,18 +2,29 @@ import React, { useState, useEffect } from "react";
 import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
-import { PartialLevel, StoredTemplate } from "../../../types";
+import { AppMenuEvents, PartialLevel, StoredTemplate } from "../../../types";
 import { resetLevelPosition } from "../../../utils";
 import { useEventListener } from "../../../hooks";
 import "./app.css";
 
 const App: React.FC = () => {
-  useEventListener("app-menu", console.log);
-
   const [levFolder, setLevFolder] = useState<string[]>([]);
   const [templatesFolder, setTemplatesFolder] = useState<string[]>([]);
   const [level, setLevel] = useState<PartialLevel>();
   const [template, setTemplate] = useState<StoredTemplate>();
+
+  useEventListener("app-menu", (event: CustomEvent) => {
+    const appMenuEvent = event.detail as AppMenuEvents;
+    switch (appMenuEvent) {
+      case AppMenuEvents.NewTemplate: {
+        console.log("new template");
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  });
 
   const updateTemplatesFolder = () => {
     const folder = window.electron.readAllTemplates();
