@@ -12,12 +12,15 @@ export type SaveTemplateData = {
 };
 
 export type ElectronApi = {
+  /** Levels */
   saveLevel: (data: SaveLevelData) => boolean;
-  readAllLevels: () => string[];
   readLevel: (name: string) => PartialLevel;
+  readAllLevels: () => string[];
+
+  /** Templates */
   saveTemplate: (data: SaveTemplateData) => boolean;
-  readAllTemplates: () => string[];
   readTemplate: (filename: string) => StoredTemplate;
+  readAllTemplates: () => string[];
 };
 
 export enum ElectronApis {
@@ -27,4 +30,18 @@ export enum ElectronApis {
   SaveTemplate = "save-template",
   ReadAllTemplates = "read-all-templates",
   ReadTemplate = "read-template",
+}
+
+export enum WebContentsChannels {
+  AppMenuEvent = "web-content/app-menu",
+}
+
+export enum AppMenuEvents {
+  NewLevel = "app-menu/new-level",
+  NewTemplate = "app-menu/new-template",
+  OpenLevel = "app-menu/open-level",
+  OpenTemplate = "app-menu/open-template",
+  Save = "app-menu/save",
+  SaveAs = "app-menu/save-as",
+  Exit = "app-menu/exit",
 }

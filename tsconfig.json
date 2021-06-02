@@ -14,7 +14,8 @@
       "*": ["node_modules/*"]
     },
     "jsx": "react",
-    "lib": ["es2019", "DOM"]
+    "lib": ["es2019", "DOM"],
+    "typeRoots": ["src/js/types"]
   },
   "include": ["src/**/*"]
 }

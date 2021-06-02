@@ -18,6 +18,7 @@
     "email": "pabcorso@gmail.com"
   },
   "license": "MIT",
+  "typings": "main.d.ts",
   "config": {
     "forge": {
       "packagerConfig": {},

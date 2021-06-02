@@ -1,13 +1,14 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, Menu } from "electron";
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";
-import fs from "fs";
-import { Level } from "elmajs";
-import { ElectronApis, SaveLevelData, SaveTemplateData } from "./js/types";
+import { initializeMainApi } from "./js/electron";
+import getMenuTemplate from "./js/electron/menuTemplate";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
+
+const isMac = process.platform === "darwin";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -15,9 +16,10 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+let mainWindow: BrowserWindow;
 const createWindow = (): void => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
     webPreferences: {
@@ -41,13 +43,17 @@ const createWindow = (): void => {
 app.on("ready", () => {
   createWindow();
   installExtension(REACT_DEVELOPER_TOOLS);
+
+  const menuTemplate = getMenuTemplate({ isMac });
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
+  if (!isMac) {
     app.quit();
   }
 });
@@ -60,57 +66,4 @@ app.on("activate", () => {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
-
-const levFolderPath =
-  "C:/Users/USER/Documents/Source/elastomania/elma.build/lev";
-const templatesFolderPath =
-  "C:/Users/USER/Documents/Source/elastomania/elma.build/templates";
-const defaultLevelName = "Generated with elma.build";
-
-ipcMain.on(ElectronApis.SaveLevel, (event, data: string) => {
-  const { filename, level: parsedLevel } = JSON.parse(data) as SaveLevelData;
-  const level = new Level();
-  level.name = parsedLevel.name || defaultLevelName;
-  level.polygons = parsedLevel.polygons || [];
-  level.objects = parsedLevel.objects || [];
-  level.ground = parsedLevel.ground || level.ground;
-  level.sky = parsedLevel.sky || level.sky;
-
-  fs.writeFileSync(`${levFolderPath}/${filename}.lev`, level.toBuffer());
-  event.returnValue = true;
-});
-
-ipcMain.on(ElectronApis.ReadAllLevels, (event) => {
-  const levFolder = fs.readdirSync(levFolderPath);
-  event.returnValue = levFolder;
-});
-
-ipcMain.on(ElectronApis.ReadLevel, (event, name: string) => {
-  const levelFile = fs.readFileSync(`${levFolderPath}/${name}`);
-  const level = Level.from(levelFile);
-  event.returnValue = JSON.stringify(level);
-});
-
-ipcMain.on(ElectronApis.SaveTemplate, (event, data: string) => {
-  const { filename, template }: SaveTemplateData = JSON.parse(data);
-  fs.writeFileSync(
-    `${templatesFolderPath}/${filename}.json`,
-    JSON.stringify(template)
-  );
-  event.returnValue = true;
-});
-
-ipcMain.on(ElectronApis.ReadAllTemplates, (event) => {
-  const templatesFolder = fs.readdirSync(templatesFolderPath);
-  event.returnValue = templatesFolder;
-});
-
-ipcMain.on(ElectronApis.ReadTemplate, (event, name: string) => {
-  const templateFile = fs.readFileSync(
-    `${templatesFolderPath}/${name}`,
-    "utf8"
-  );
-  event.returnValue = templateFile;
-});
+initializeMainApi(ipcMain);

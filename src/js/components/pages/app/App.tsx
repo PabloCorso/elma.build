@@ -4,9 +4,12 @@ import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
 import { PartialLevel, StoredTemplate } from "../../../types";
 import { resetLevelPosition } from "../../../utils";
+import { useEventListener } from "../../../hooks";
 import "./app.css";
 
 const App: React.FC = () => {
+  useEventListener("app-menu", console.log);
+
   const [levFolder, setLevFolder] = useState<string[]>([]);
   const [templatesFolder, setTemplatesFolder] = useState<string[]>([]);
   const [level, setLevel] = useState<PartialLevel>();

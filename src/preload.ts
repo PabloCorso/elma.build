@@ -1,5 +1,11 @@
 const { contextBridge, ipcRenderer } = require("electron");
-import { ElectronApis, SaveLevelData, SaveTemplateData } from "./js/types";
+import {
+  AppMenuEvents,
+  ElectronApis,
+  SaveLevelData,
+  SaveTemplateData,
+  WebContentsChannels,
+} from "./js/types";
 
 contextBridge.exposeInMainWorld("electron", {
   saveLevel: (data: SaveLevelData) => {
@@ -31,3 +37,13 @@ contextBridge.exposeInMainWorld("electron", {
     );
   },
 });
+
+ipcRenderer.on(
+  WebContentsChannels.AppMenuEvent,
+  (_event, appMenuEvent: AppMenuEvents) => {
+    const event = new CustomEvent("app-menu", {
+      detail: appMenuEvent,
+    });
+    window.dispatchEvent(event);
+  }
+);
