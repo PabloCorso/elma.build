@@ -20,11 +20,17 @@ const useCenterLevelOnMount = ({
   level,
   fitBoundsRect,
 }: Props): void => {
-  const [mountedStage, setMountedStage] = useState(false);
+  const [centeredLevel, setCenteredLevel] =
+    useState<PartialLevel | PartialLevel[]>();
+
+  const alreadyCenteredBefore = () => {
+    return isSameLevelOrLevels(level, centeredLevel);
+  };
+
   useEffect(
     function centerLevelOnMount() {
       const visibleStage = stageWidth > 0 && stageHeight > 0;
-      if (!mountedStage && visibleStage) {
+      if (visibleStage && !alreadyCenteredBefore()) {
         let levelBounds = EmptyBounds;
         if (level) {
           levelBounds = Array.isArray(level)
@@ -38,12 +44,29 @@ const useCenterLevelOnMount = ({
             x: -levelBoundsRect.x,
             y: -levelBoundsRect.y,
           });
-          setMountedStage(true);
+          setCenteredLevel(level);
         }
       }
     },
-    [stageWidth, stageHeight]
+    [level, stageWidth, stageHeight]
   );
+};
+
+const isSameLevel = (level1: PartialLevel, level2: PartialLevel) => {
+  return level1 && level2 && level1.name === level2.name;
+};
+
+const isSameLevelOrLevels = (
+  level1: PartialLevel | PartialLevel[],
+  level2: PartialLevel | PartialLevel[]
+) => {
+  if (Array.isArray(level1) && Array.isArray(level2)) {
+    return !level1.some((level, index) => !isSameLevel(level, level2[index]));
+  } else if (!Array.isArray(level1) && !Array.isArray(level2)) {
+    return isSameLevel(level1, level2);
+  }
+
+  return false;
 };
 
 export default useCenterLevelOnMount;

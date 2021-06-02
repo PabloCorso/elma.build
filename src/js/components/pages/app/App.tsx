@@ -7,7 +7,6 @@ import { useEventListener } from "../../../hooks";
 import "./app.css";
 
 const App: React.FC = () => {
-  const [levFolder, setLevFolder] = useState<string[]>([]);
   const [templatesFolder, setTemplatesFolder] = useState<string[]>([]);
   const [level, setLevel] = useState<PartialLevel>();
   const [templates, setTemplates] = useState<StoredTemplate[]>([]);
@@ -44,31 +43,15 @@ const App: React.FC = () => {
     }
   });
 
-  const updateTemplatesFolder = () => {
+  const handleSaveTemplate = (filename: string, template: StoredTemplate) => {
+    window.electron.saveTemplate({ filename, template });
     const folder = window.electron.readAllTemplates();
     setTemplatesFolder(folder);
   };
 
-  const handleSaveTemplate = (filename: string, template: StoredTemplate) => {
-    window.electron.saveTemplate({ filename, template });
-    updateTemplatesFolder();
-  };
-
-  const updateLevFolder = () => {
-    const folder = window.electron.readAllLevels();
-    setLevFolder(folder);
-  };
-
   const handleSaveLevel = (filename: string, level: PartialLevel) => {
     window.electron.saveLevel({ filename, level });
-    updateLevFolder();
   };
-
-  useEffect(function initialize() {
-    const levs = window.electron.readAllLevels();
-    setLevFolder(levs);
-    updateTemplatesFolder();
-  }, []);
 
   const handleRequestLevelImport = async () => {
     try {

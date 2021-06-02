@@ -65,13 +65,13 @@ app.on("activate", () => {
   }
 });
 
-const templatesFolderPath =
-  "C:/Users/USER/Documents/Source/elastomania/elma.build/templates";
 ipcMain.handle("read-file-dialog", async () => {
   let result = "";
   try {
     const response = await dialog.showOpenDialog({
+      defaultPath: "/lev",
       properties: ["openFile"],
+      filters: [{ name: "Level", extensions: ["lev"] }],
     });
     result = response.filePaths[0];
   } catch (error) {
