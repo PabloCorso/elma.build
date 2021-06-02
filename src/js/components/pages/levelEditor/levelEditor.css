@@ -2,7 +2,7 @@
   height: 100%;
   display: grid;
   grid-template-areas: "level-toolbar" "level-stage" "level-blocks";
-  grid-template-rows: 75px minmax(0, 1fr) 150px;
+  grid-template-rows: 75px minmax(0, 1fr) 200px;
 
   /* Fix for the stage resize */
   min-height: 0;
@@ -30,6 +30,12 @@
   grid-area: level-blocks;
   overflow-y: auto;
   padding: 20px 0;
+  scroll-snap-type: y proximity;
+  scroll-padding: 20px;
+}
+
+.level-editor__blocks > .cards-list {
+  scroll-snap-align: start;
 }
 
 .level-editor__blocks > .cards-list:not(:last-child) {
