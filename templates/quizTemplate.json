@@ -1,0 +1,4135 @@
+{
+  "name": "quizTemplate",
+  "blocks": {
+    "allIds": ["block_0", "block_1", "block_2", "block_3", "block_4"],
+    "byId": {
+      "block_0": {
+        "name": "Start",
+        "polygonIds": [
+          "block_0_polygon_0",
+          "block_0_polygon_1",
+          "block_0_polygon_2",
+          "block_0_polygon_3",
+          "block_0_polygon_4",
+          "block_0_polygon_5",
+          "block_0_polygon_6",
+          "block_0_polygon_7"
+        ],
+        "objectIds": [
+          "block_0_object_0",
+          "block_0_object_1",
+          "block_0_object_2"
+        ]
+      },
+      "block_1": {
+        "name": "Floor 1",
+        "polygonIds": [
+          "block_1_polygon_0",
+          "block_1_polygon_1",
+          "block_1_polygon_2",
+          "block_1_polygon_3",
+          "block_1_polygon_4",
+          "block_1_polygon_5",
+          "block_1_polygon_6",
+          "block_1_polygon_7"
+        ],
+        "objectIds": [
+          "block_1_object_0",
+          "block_1_object_1",
+          "block_1_object_2"
+        ]
+      },
+      "block_2": {
+        "name": "Downstairs",
+        "polygonIds": [
+          "block_2_polygon_0",
+          "block_2_polygon_1",
+          "block_2_polygon_2",
+          "block_2_polygon_3",
+          "block_2_polygon_4",
+          "block_2_polygon_5",
+          "block_2_polygon_6",
+          "block_2_polygon_7"
+        ],
+        "objectIds": [
+          "block_2_object_0",
+          "block_2_object_1",
+          "block_2_object_2"
+        ]
+      },
+      "block_3": {
+        "name": "Floor 2",
+        "polygonIds": [
+          "block_3_polygon_0",
+          "block_3_polygon_1",
+          "block_3_polygon_2",
+          "block_3_polygon_3",
+          "block_3_polygon_4",
+          "block_3_polygon_5",
+          "block_3_polygon_6",
+          "block_3_polygon_7"
+        ],
+        "objectIds": [
+          "block_3_object_0",
+          "block_3_object_1",
+          "block_3_object_2"
+        ]
+      },
+      "block_4": {
+        "name": "End",
+        "polygonIds": [
+          "block_4_polygon_0",
+          "block_4_polygon_1",
+          "block_4_polygon_2",
+          "block_4_polygon_3",
+          "block_4_polygon_4",
+          "block_4_polygon_5",
+          "block_4_polygon_6",
+          "block_4_polygon_7"
+        ],
+        "objectIds": [
+          "block_4_object_0",
+          "block_4_object_1",
+          "block_4_object_2",
+          "block_4_object_3"
+        ]
+      }
+    }
+  },
+  "polygons": {
+    "allIds": [
+      "block_0_polygon_0",
+      "block_0_polygon_1",
+      "block_0_polygon_2",
+      "block_0_polygon_3",
+      "block_0_polygon_4",
+      "block_0_polygon_5",
+      "block_0_polygon_6",
+      "block_0_polygon_7",
+      "block_1_polygon_0",
+      "block_1_polygon_1",
+      "block_1_polygon_2",
+      "block_1_polygon_3",
+      "block_1_polygon_4",
+      "block_1_polygon_5",
+      "block_1_polygon_6",
+      "block_1_polygon_7",
+      "block_2_polygon_0",
+      "block_2_polygon_1",
+      "block_2_polygon_2",
+      "block_2_polygon_3",
+      "block_2_polygon_4",
+      "block_2_polygon_5",
+      "block_2_polygon_6",
+      "block_2_polygon_7",
+      "block_3_polygon_0",
+      "block_3_polygon_1",
+      "block_3_polygon_2",
+      "block_3_polygon_3",
+      "block_3_polygon_4",
+      "block_3_polygon_5",
+      "block_3_polygon_6",
+      "block_3_polygon_7",
+      "block_4_polygon_0",
+      "block_4_polygon_1",
+      "block_4_polygon_2",
+      "block_4_polygon_3",
+      "block_4_polygon_4",
+      "block_4_polygon_5",
+      "block_4_polygon_6",
+      "block_4_polygon_7"
+    ],
+    "byId": {
+      "block_0_polygon_0": {
+        "grass": false,
+        "vertexIds": [
+          "block_0_polygon_0_vertex_0",
+          "block_0_polygon_0_vertex_1",
+          "block_0_polygon_0_vertex_2",
+          "block_0_polygon_0_vertex_3",
+          "block_0_polygon_0_vertex_4",
+          "block_0_polygon_0_vertex_5",
+          "block_0_polygon_0_vertex_6",
+          "block_0_polygon_0_vertex_7",
+          "block_0_polygon_0_vertex_8"
+        ]
+      },
+      "block_0_polygon_1": {
+        "grass": false,
+        "vertexIds": [
+          "block_0_polygon_1_vertex_0",
+          "block_0_polygon_1_vertex_1",
+          "block_0_polygon_1_vertex_2",
+          "block_0_polygon_1_vertex_3",
+          "block_0_polygon_1_vertex_4",
+          "block_0_polygon_1_vertex_5"
+        ]
+      },
+      "block_0_polygon_2": {
+        "grass": false,
+        "vertexIds": [
+          "block_0_polygon_2_vertex_0",
+          "block_0_polygon_2_vertex_1",
+          "block_0_polygon_2_vertex_2",
+          "block_0_polygon_2_vertex_3",
+          "block_0_polygon_2_vertex_4"
+        ]
+      },
+      "block_0_polygon_3": {
+        "grass": false,
+        "vertexIds": [
+          "block_0_polygon_3_vertex_0",
+          "block_0_polygon_3_vertex_1",
+          "block_0_polygon_3_vertex_2",
+          "block_0_polygon_3_vertex_3",
+          "block_0_polygon_3_vertex_4",
+          "block_0_polygon_3_vertex_5",
+          "block_0_polygon_3_vertex_6",
+          "block_0_polygon_3_vertex_7",
+          "block_0_polygon_3_vertex_8",
+          "block_0_polygon_3_vertex_9",
+          "block_0_polygon_3_vertex_10",
+          "block_0_polygon_3_vertex_11",
+          "block_0_polygon_3_vertex_12",
+          "block_0_polygon_3_vertex_13",
+          "block_0_polygon_3_vertex_14",
+          "block_0_polygon_3_vertex_15",
+          "block_0_polygon_3_vertex_16",
+          "block_0_polygon_3_vertex_17",
+          "block_0_polygon_3_vertex_18",
+          "block_0_polygon_3_vertex_19",
+          "block_0_polygon_3_vertex_20"
+        ]
+      },
+      "block_0_polygon_4": {
+        "grass": false,
+        "vertexIds": [
+          "block_0_polygon_4_vertex_0",
+          "block_0_polygon_4_vertex_1",
+          "block_0_polygon_4_vertex_2",
+          "block_0_polygon_4_vertex_3",
+          "block_0_polygon_4_vertex_4",
+          "block_0_polygon_4_vertex_5",
+          "block_0_polygon_4_vertex_6",
+          "block_0_polygon_4_vertex_7",
+          "block_0_polygon_4_vertex_8",
+          "block_0_polygon_4_vertex_9",
+          "block_0_polygon_4_vertex_10",
+          "block_0_polygon_4_vertex_11"
+        ]
+      },
+      "block_0_polygon_5": {
+        "grass": false,
+        "vertexIds": [
+          "block_0_polygon_5_vertex_0",
+          "block_0_polygon_5_vertex_1",
+          "block_0_polygon_5_vertex_2",
+          "block_0_polygon_5_vertex_3",
+          "block_0_polygon_5_vertex_4",
+          "block_0_polygon_5_vertex_5",
+          "block_0_polygon_5_vertex_6",
+          "block_0_polygon_5_vertex_7",
+          "block_0_polygon_5_vertex_8",
+          "block_0_polygon_5_vertex_9",
+          "block_0_polygon_5_vertex_10",
+          "block_0_polygon_5_vertex_11",
+          "block_0_polygon_5_vertex_12",
+          "block_0_polygon_5_vertex_13",
+          "block_0_polygon_5_vertex_14"
+        ]
+      },
+      "block_0_polygon_6": {
+        "grass": false,
+        "vertexIds": [
+          "block_0_polygon_6_vertex_0",
+          "block_0_polygon_6_vertex_1",
+          "block_0_polygon_6_vertex_2",
+          "block_0_polygon_6_vertex_3",
+          "block_0_polygon_6_vertex_4"
+        ]
+      },
+      "block_0_polygon_7": {
+        "grass": false,
+        "vertexIds": [
+          "block_0_polygon_7_vertex_0",
+          "block_0_polygon_7_vertex_1",
+          "block_0_polygon_7_vertex_2",
+          "block_0_polygon_7_vertex_3",
+          "block_0_polygon_7_vertex_4",
+          "block_0_polygon_7_vertex_5",
+          "block_0_polygon_7_vertex_6",
+          "block_0_polygon_7_vertex_7",
+          "block_0_polygon_7_vertex_8",
+          "block_0_polygon_7_vertex_9",
+          "block_0_polygon_7_vertex_10",
+          "block_0_polygon_7_vertex_11",
+          "block_0_polygon_7_vertex_12",
+          "block_0_polygon_7_vertex_13",
+          "block_0_polygon_7_vertex_14",
+          "block_0_polygon_7_vertex_15",
+          "block_0_polygon_7_vertex_16",
+          "block_0_polygon_7_vertex_17",
+          "block_0_polygon_7_vertex_18",
+          "block_0_polygon_7_vertex_19",
+          "block_0_polygon_7_vertex_20",
+          "block_0_polygon_7_vertex_21",
+          "block_0_polygon_7_vertex_22",
+          "block_0_polygon_7_vertex_23",
+          "block_0_polygon_7_vertex_24",
+          "block_0_polygon_7_vertex_25",
+          "block_0_polygon_7_vertex_26",
+          "block_0_polygon_7_vertex_27",
+          "block_0_polygon_7_vertex_28",
+          "block_0_polygon_7_vertex_29",
+          "block_0_polygon_7_vertex_30",
+          "block_0_polygon_7_vertex_31",
+          "block_0_polygon_7_vertex_32",
+          "block_0_polygon_7_vertex_33"
+        ]
+      },
+      "block_1_polygon_0": {
+        "grass": false,
+        "vertexIds": [
+          "block_1_polygon_0_vertex_0",
+          "block_1_polygon_0_vertex_1",
+          "block_1_polygon_0_vertex_2",
+          "block_1_polygon_0_vertex_3",
+          "block_1_polygon_0_vertex_4",
+          "block_1_polygon_0_vertex_5"
+        ]
+      },
+      "block_1_polygon_1": {
+        "grass": false,
+        "vertexIds": [
+          "block_1_polygon_1_vertex_0",
+          "block_1_polygon_1_vertex_1",
+          "block_1_polygon_1_vertex_2",
+          "block_1_polygon_1_vertex_3",
+          "block_1_polygon_1_vertex_4",
+          "block_1_polygon_1_vertex_5",
+          "block_1_polygon_1_vertex_6",
+          "block_1_polygon_1_vertex_7",
+          "block_1_polygon_1_vertex_8",
+          "block_1_polygon_1_vertex_9",
+          "block_1_polygon_1_vertex_10",
+          "block_1_polygon_1_vertex_11"
+        ]
+      },
+      "block_1_polygon_2": {
+        "grass": false,
+        "vertexIds": [
+          "block_1_polygon_2_vertex_0",
+          "block_1_polygon_2_vertex_1",
+          "block_1_polygon_2_vertex_2",
+          "block_1_polygon_2_vertex_3",
+          "block_1_polygon_2_vertex_4",
+          "block_1_polygon_2_vertex_5",
+          "block_1_polygon_2_vertex_6",
+          "block_1_polygon_2_vertex_7",
+          "block_1_polygon_2_vertex_8",
+          "block_1_polygon_2_vertex_9",
+          "block_1_polygon_2_vertex_10",
+          "block_1_polygon_2_vertex_11",
+          "block_1_polygon_2_vertex_12",
+          "block_1_polygon_2_vertex_13",
+          "block_1_polygon_2_vertex_14"
+        ]
+      },
+      "block_1_polygon_3": {
+        "grass": false,
+        "vertexIds": [
+          "block_1_polygon_3_vertex_0",
+          "block_1_polygon_3_vertex_1",
+          "block_1_polygon_3_vertex_2",
+          "block_1_polygon_3_vertex_3",
+          "block_1_polygon_3_vertex_4"
+        ]
+      },
+      "block_1_polygon_4": {
+        "grass": false,
+        "vertexIds": [
+          "block_1_polygon_4_vertex_0",
+          "block_1_polygon_4_vertex_1",
+          "block_1_polygon_4_vertex_2",
+          "block_1_polygon_4_vertex_3",
+          "block_1_polygon_4_vertex_4",
+          "block_1_polygon_4_vertex_5",
+          "block_1_polygon_4_vertex_6",
+          "block_1_polygon_4_vertex_7",
+          "block_1_polygon_4_vertex_8",
+          "block_1_polygon_4_vertex_9",
+          "block_1_polygon_4_vertex_10",
+          "block_1_polygon_4_vertex_11",
+          "block_1_polygon_4_vertex_12",
+          "block_1_polygon_4_vertex_13",
+          "block_1_polygon_4_vertex_14",
+          "block_1_polygon_4_vertex_15",
+          "block_1_polygon_4_vertex_16",
+          "block_1_polygon_4_vertex_17",
+          "block_1_polygon_4_vertex_18",
+          "block_1_polygon_4_vertex_19",
+          "block_1_polygon_4_vertex_20",
+          "block_1_polygon_4_vertex_21",
+          "block_1_polygon_4_vertex_22",
+          "block_1_polygon_4_vertex_23",
+          "block_1_polygon_4_vertex_24",
+          "block_1_polygon_4_vertex_25",
+          "block_1_polygon_4_vertex_26",
+          "block_1_polygon_4_vertex_27",
+          "block_1_polygon_4_vertex_28",
+          "block_1_polygon_4_vertex_29",
+          "block_1_polygon_4_vertex_30",
+          "block_1_polygon_4_vertex_31",
+          "block_1_polygon_4_vertex_32",
+          "block_1_polygon_4_vertex_33"
+        ]
+      },
+      "block_1_polygon_5": {
+        "grass": false,
+        "vertexIds": [
+          "block_1_polygon_5_vertex_0",
+          "block_1_polygon_5_vertex_1",
+          "block_1_polygon_5_vertex_2",
+          "block_1_polygon_5_vertex_3",
+          "block_1_polygon_5_vertex_4"
+        ]
+      },
+      "block_1_polygon_6": {
+        "grass": false,
+        "vertexIds": [
+          "block_1_polygon_6_vertex_0",
+          "block_1_polygon_6_vertex_1",
+          "block_1_polygon_6_vertex_2",
+          "block_1_polygon_6_vertex_3",
+          "block_1_polygon_6_vertex_4",
+          "block_1_polygon_6_vertex_5",
+          "block_1_polygon_6_vertex_6",
+          "block_1_polygon_6_vertex_7",
+          "block_1_polygon_6_vertex_8",
+          "block_1_polygon_6_vertex_9",
+          "block_1_polygon_6_vertex_10",
+          "block_1_polygon_6_vertex_11",
+          "block_1_polygon_6_vertex_12",
+          "block_1_polygon_6_vertex_13",
+          "block_1_polygon_6_vertex_14",
+          "block_1_polygon_6_vertex_15",
+          "block_1_polygon_6_vertex_16",
+          "block_1_polygon_6_vertex_17",
+          "block_1_polygon_6_vertex_18",
+          "block_1_polygon_6_vertex_19",
+          "block_1_polygon_6_vertex_20"
+        ]
+      },
+      "block_1_polygon_7": {
+        "grass": false,
+        "vertexIds": [
+          "block_1_polygon_7_vertex_0",
+          "block_1_polygon_7_vertex_1",
+          "block_1_polygon_7_vertex_2",
+          "block_1_polygon_7_vertex_3",
+          "block_1_polygon_7_vertex_4",
+          "block_1_polygon_7_vertex_5",
+          "block_1_polygon_7_vertex_6",
+          "block_1_polygon_7_vertex_7",
+          "block_1_polygon_7_vertex_8",
+          "block_1_polygon_7_vertex_9",
+          "block_1_polygon_7_vertex_10"
+        ]
+      },
+      "block_2_polygon_0": {
+        "grass": false,
+        "vertexIds": [
+          "block_2_polygon_0_vertex_0",
+          "block_2_polygon_0_vertex_1",
+          "block_2_polygon_0_vertex_2",
+          "block_2_polygon_0_vertex_3",
+          "block_2_polygon_0_vertex_4",
+          "block_2_polygon_0_vertex_5",
+          "block_2_polygon_0_vertex_6"
+        ]
+      },
+      "block_2_polygon_1": {
+        "grass": false,
+        "vertexIds": [
+          "block_2_polygon_1_vertex_0",
+          "block_2_polygon_1_vertex_1",
+          "block_2_polygon_1_vertex_2",
+          "block_2_polygon_1_vertex_3",
+          "block_2_polygon_1_vertex_4",
+          "block_2_polygon_1_vertex_5",
+          "block_2_polygon_1_vertex_6",
+          "block_2_polygon_1_vertex_7",
+          "block_2_polygon_1_vertex_8",
+          "block_2_polygon_1_vertex_9",
+          "block_2_polygon_1_vertex_10",
+          "block_2_polygon_1_vertex_11",
+          "block_2_polygon_1_vertex_12",
+          "block_2_polygon_1_vertex_13",
+          "block_2_polygon_1_vertex_14",
+          "block_2_polygon_1_vertex_15",
+          "block_2_polygon_1_vertex_16",
+          "block_2_polygon_1_vertex_17",
+          "block_2_polygon_1_vertex_18",
+          "block_2_polygon_1_vertex_19",
+          "block_2_polygon_1_vertex_20",
+          "block_2_polygon_1_vertex_21",
+          "block_2_polygon_1_vertex_22",
+          "block_2_polygon_1_vertex_23",
+          "block_2_polygon_1_vertex_24",
+          "block_2_polygon_1_vertex_25"
+        ]
+      },
+      "block_2_polygon_2": {
+        "grass": false,
+        "vertexIds": [
+          "block_2_polygon_2_vertex_0",
+          "block_2_polygon_2_vertex_1",
+          "block_2_polygon_2_vertex_2",
+          "block_2_polygon_2_vertex_3",
+          "block_2_polygon_2_vertex_4",
+          "block_2_polygon_2_vertex_5",
+          "block_2_polygon_2_vertex_6",
+          "block_2_polygon_2_vertex_7",
+          "block_2_polygon_2_vertex_8",
+          "block_2_polygon_2_vertex_9",
+          "block_2_polygon_2_vertex_10",
+          "block_2_polygon_2_vertex_11"
+        ]
+      },
+      "block_2_polygon_3": {
+        "grass": false,
+        "vertexIds": [
+          "block_2_polygon_3_vertex_0",
+          "block_2_polygon_3_vertex_1",
+          "block_2_polygon_3_vertex_2",
+          "block_2_polygon_3_vertex_3",
+          "block_2_polygon_3_vertex_4",
+          "block_2_polygon_3_vertex_5",
+          "block_2_polygon_3_vertex_6",
+          "block_2_polygon_3_vertex_7",
+          "block_2_polygon_3_vertex_8",
+          "block_2_polygon_3_vertex_9",
+          "block_2_polygon_3_vertex_10",
+          "block_2_polygon_3_vertex_11",
+          "block_2_polygon_3_vertex_12",
+          "block_2_polygon_3_vertex_13",
+          "block_2_polygon_3_vertex_14"
+        ]
+      },
+      "block_2_polygon_4": {
+        "grass": false,
+        "vertexIds": [
+          "block_2_polygon_4_vertex_0",
+          "block_2_polygon_4_vertex_1",
+          "block_2_polygon_4_vertex_2",
+          "block_2_polygon_4_vertex_3",
+          "block_2_polygon_4_vertex_4"
+        ]
+      },
+      "block_2_polygon_5": {
+        "grass": false,
+        "vertexIds": [
+          "block_2_polygon_5_vertex_0",
+          "block_2_polygon_5_vertex_1",
+          "block_2_polygon_5_vertex_2",
+          "block_2_polygon_5_vertex_3",
+          "block_2_polygon_5_vertex_4",
+          "block_2_polygon_5_vertex_5",
+          "block_2_polygon_5_vertex_6",
+          "block_2_polygon_5_vertex_7",
+          "block_2_polygon_5_vertex_8",
+          "block_2_polygon_5_vertex_9",
+          "block_2_polygon_5_vertex_10",
+          "block_2_polygon_5_vertex_11",
+          "block_2_polygon_5_vertex_12",
+          "block_2_polygon_5_vertex_13",
+          "block_2_polygon_5_vertex_14",
+          "block_2_polygon_5_vertex_15",
+          "block_2_polygon_5_vertex_16",
+          "block_2_polygon_5_vertex_17",
+          "block_2_polygon_5_vertex_18",
+          "block_2_polygon_5_vertex_19",
+          "block_2_polygon_5_vertex_20",
+          "block_2_polygon_5_vertex_21",
+          "block_2_polygon_5_vertex_22",
+          "block_2_polygon_5_vertex_23",
+          "block_2_polygon_5_vertex_24",
+          "block_2_polygon_5_vertex_25",
+          "block_2_polygon_5_vertex_26",
+          "block_2_polygon_5_vertex_27",
+          "block_2_polygon_5_vertex_28",
+          "block_2_polygon_5_vertex_29",
+          "block_2_polygon_5_vertex_30",
+          "block_2_polygon_5_vertex_31",
+          "block_2_polygon_5_vertex_32",
+          "block_2_polygon_5_vertex_33"
+        ]
+      },
+      "block_2_polygon_6": {
+        "grass": false,
+        "vertexIds": [
+          "block_2_polygon_6_vertex_0",
+          "block_2_polygon_6_vertex_1",
+          "block_2_polygon_6_vertex_2",
+          "block_2_polygon_6_vertex_3",
+          "block_2_polygon_6_vertex_4"
+        ]
+      },
+      "block_2_polygon_7": {
+        "grass": false,
+        "vertexIds": [
+          "block_2_polygon_7_vertex_0",
+          "block_2_polygon_7_vertex_1",
+          "block_2_polygon_7_vertex_2",
+          "block_2_polygon_7_vertex_3",
+          "block_2_polygon_7_vertex_4",
+          "block_2_polygon_7_vertex_5",
+          "block_2_polygon_7_vertex_6",
+          "block_2_polygon_7_vertex_7",
+          "block_2_polygon_7_vertex_8",
+          "block_2_polygon_7_vertex_9",
+          "block_2_polygon_7_vertex_10",
+          "block_2_polygon_7_vertex_11",
+          "block_2_polygon_7_vertex_12",
+          "block_2_polygon_7_vertex_13",
+          "block_2_polygon_7_vertex_14",
+          "block_2_polygon_7_vertex_15",
+          "block_2_polygon_7_vertex_16",
+          "block_2_polygon_7_vertex_17",
+          "block_2_polygon_7_vertex_18",
+          "block_2_polygon_7_vertex_19",
+          "block_2_polygon_7_vertex_20"
+        ]
+      },
+      "block_3_polygon_0": {
+        "grass": false,
+        "vertexIds": [
+          "block_3_polygon_0_vertex_0",
+          "block_3_polygon_0_vertex_1",
+          "block_3_polygon_0_vertex_2",
+          "block_3_polygon_0_vertex_3",
+          "block_3_polygon_0_vertex_4",
+          "block_3_polygon_0_vertex_5",
+          "block_3_polygon_0_vertex_6"
+        ]
+      },
+      "block_3_polygon_1": {
+        "grass": false,
+        "vertexIds": [
+          "block_3_polygon_1_vertex_0",
+          "block_3_polygon_1_vertex_1",
+          "block_3_polygon_1_vertex_2",
+          "block_3_polygon_1_vertex_3",
+          "block_3_polygon_1_vertex_4",
+          "block_3_polygon_1_vertex_5",
+          "block_3_polygon_1_vertex_6",
+          "block_3_polygon_1_vertex_7",
+          "block_3_polygon_1_vertex_8",
+          "block_3_polygon_1_vertex_9",
+          "block_3_polygon_1_vertex_10",
+          "block_3_polygon_1_vertex_11",
+          "block_3_polygon_1_vertex_12",
+          "block_3_polygon_1_vertex_13",
+          "block_3_polygon_1_vertex_14",
+          "block_3_polygon_1_vertex_15",
+          "block_3_polygon_1_vertex_16"
+        ]
+      },
+      "block_3_polygon_2": {
+        "grass": false,
+        "vertexIds": [
+          "block_3_polygon_2_vertex_0",
+          "block_3_polygon_2_vertex_1",
+          "block_3_polygon_2_vertex_2",
+          "block_3_polygon_2_vertex_3",
+          "block_3_polygon_2_vertex_4",
+          "block_3_polygon_2_vertex_5",
+          "block_3_polygon_2_vertex_6",
+          "block_3_polygon_2_vertex_7",
+          "block_3_polygon_2_vertex_8",
+          "block_3_polygon_2_vertex_9",
+          "block_3_polygon_2_vertex_10",
+          "block_3_polygon_2_vertex_11"
+        ]
+      },
+      "block_3_polygon_3": {
+        "grass": false,
+        "vertexIds": [
+          "block_3_polygon_3_vertex_0",
+          "block_3_polygon_3_vertex_1",
+          "block_3_polygon_3_vertex_2",
+          "block_3_polygon_3_vertex_3",
+          "block_3_polygon_3_vertex_4",
+          "block_3_polygon_3_vertex_5",
+          "block_3_polygon_3_vertex_6",
+          "block_3_polygon_3_vertex_7",
+          "block_3_polygon_3_vertex_8",
+          "block_3_polygon_3_vertex_9",
+          "block_3_polygon_3_vertex_10",
+          "block_3_polygon_3_vertex_11",
+          "block_3_polygon_3_vertex_12",
+          "block_3_polygon_3_vertex_13",
+          "block_3_polygon_3_vertex_14"
+        ]
+      },
+      "block_3_polygon_4": {
+        "grass": false,
+        "vertexIds": [
+          "block_3_polygon_4_vertex_0",
+          "block_3_polygon_4_vertex_1",
+          "block_3_polygon_4_vertex_2",
+          "block_3_polygon_4_vertex_3",
+          "block_3_polygon_4_vertex_4"
+        ]
+      },
+      "block_3_polygon_5": {
+        "grass": false,
+        "vertexIds": [
+          "block_3_polygon_5_vertex_0",
+          "block_3_polygon_5_vertex_1",
+          "block_3_polygon_5_vertex_2",
+          "block_3_polygon_5_vertex_3",
+          "block_3_polygon_5_vertex_4",
+          "block_3_polygon_5_vertex_5",
+          "block_3_polygon_5_vertex_6",
+          "block_3_polygon_5_vertex_7",
+          "block_3_polygon_5_vertex_8",
+          "block_3_polygon_5_vertex_9",
+          "block_3_polygon_5_vertex_10",
+          "block_3_polygon_5_vertex_11",
+          "block_3_polygon_5_vertex_12",
+          "block_3_polygon_5_vertex_13",
+          "block_3_polygon_5_vertex_14",
+          "block_3_polygon_5_vertex_15",
+          "block_3_polygon_5_vertex_16",
+          "block_3_polygon_5_vertex_17",
+          "block_3_polygon_5_vertex_18",
+          "block_3_polygon_5_vertex_19",
+          "block_3_polygon_5_vertex_20",
+          "block_3_polygon_5_vertex_21",
+          "block_3_polygon_5_vertex_22",
+          "block_3_polygon_5_vertex_23",
+          "block_3_polygon_5_vertex_24",
+          "block_3_polygon_5_vertex_25",
+          "block_3_polygon_5_vertex_26",
+          "block_3_polygon_5_vertex_27",
+          "block_3_polygon_5_vertex_28",
+          "block_3_polygon_5_vertex_29",
+          "block_3_polygon_5_vertex_30",
+          "block_3_polygon_5_vertex_31",
+          "block_3_polygon_5_vertex_32",
+          "block_3_polygon_5_vertex_33"
+        ]
+      },
+      "block_3_polygon_6": {
+        "grass": false,
+        "vertexIds": [
+          "block_3_polygon_6_vertex_0",
+          "block_3_polygon_6_vertex_1",
+          "block_3_polygon_6_vertex_2",
+          "block_3_polygon_6_vertex_3",
+          "block_3_polygon_6_vertex_4"
+        ]
+      },
+      "block_3_polygon_7": {
+        "grass": false,
+        "vertexIds": [
+          "block_3_polygon_7_vertex_0",
+          "block_3_polygon_7_vertex_1",
+          "block_3_polygon_7_vertex_2",
+          "block_3_polygon_7_vertex_3",
+          "block_3_polygon_7_vertex_4",
+          "block_3_polygon_7_vertex_5",
+          "block_3_polygon_7_vertex_6",
+          "block_3_polygon_7_vertex_7",
+          "block_3_polygon_7_vertex_8",
+          "block_3_polygon_7_vertex_9",
+          "block_3_polygon_7_vertex_10",
+          "block_3_polygon_7_vertex_11",
+          "block_3_polygon_7_vertex_12",
+          "block_3_polygon_7_vertex_13",
+          "block_3_polygon_7_vertex_14",
+          "block_3_polygon_7_vertex_15",
+          "block_3_polygon_7_vertex_16",
+          "block_3_polygon_7_vertex_17",
+          "block_3_polygon_7_vertex_18",
+          "block_3_polygon_7_vertex_19",
+          "block_3_polygon_7_vertex_20"
+        ]
+      },
+      "block_4_polygon_0": {
+        "grass": false,
+        "vertexIds": [
+          "block_4_polygon_0_vertex_0",
+          "block_4_polygon_0_vertex_1",
+          "block_4_polygon_0_vertex_2",
+          "block_4_polygon_0_vertex_3",
+          "block_4_polygon_0_vertex_4",
+          "block_4_polygon_0_vertex_5",
+          "block_4_polygon_0_vertex_6"
+        ]
+      },
+      "block_4_polygon_1": {
+        "grass": false,
+        "vertexIds": [
+          "block_4_polygon_1_vertex_0",
+          "block_4_polygon_1_vertex_1",
+          "block_4_polygon_1_vertex_2",
+          "block_4_polygon_1_vertex_3",
+          "block_4_polygon_1_vertex_4",
+          "block_4_polygon_1_vertex_5",
+          "block_4_polygon_1_vertex_6",
+          "block_4_polygon_1_vertex_7",
+          "block_4_polygon_1_vertex_8",
+          "block_4_polygon_1_vertex_9",
+          "block_4_polygon_1_vertex_10",
+          "block_4_polygon_1_vertex_11",
+          "block_4_polygon_1_vertex_12",
+          "block_4_polygon_1_vertex_13",
+          "block_4_polygon_1_vertex_14",
+          "block_4_polygon_1_vertex_15",
+          "block_4_polygon_1_vertex_16",
+          "block_4_polygon_1_vertex_17",
+          "block_4_polygon_1_vertex_18"
+        ]
+      },
+      "block_4_polygon_2": {
+        "grass": false,
+        "vertexIds": [
+          "block_4_polygon_2_vertex_0",
+          "block_4_polygon_2_vertex_1",
+          "block_4_polygon_2_vertex_2",
+          "block_4_polygon_2_vertex_3",
+          "block_4_polygon_2_vertex_4",
+          "block_4_polygon_2_vertex_5",
+          "block_4_polygon_2_vertex_6",
+          "block_4_polygon_2_vertex_7",
+          "block_4_polygon_2_vertex_8",
+          "block_4_polygon_2_vertex_9",
+          "block_4_polygon_2_vertex_10",
+          "block_4_polygon_2_vertex_11"
+        ]
+      },
+      "block_4_polygon_3": {
+        "grass": false,
+        "vertexIds": [
+          "block_4_polygon_3_vertex_0",
+          "block_4_polygon_3_vertex_1",
+          "block_4_polygon_3_vertex_2",
+          "block_4_polygon_3_vertex_3",
+          "block_4_polygon_3_vertex_4",
+          "block_4_polygon_3_vertex_5",
+          "block_4_polygon_3_vertex_6",
+          "block_4_polygon_3_vertex_7",
+          "block_4_polygon_3_vertex_8",
+          "block_4_polygon_3_vertex_9",
+          "block_4_polygon_3_vertex_10",
+          "block_4_polygon_3_vertex_11",
+          "block_4_polygon_3_vertex_12",
+          "block_4_polygon_3_vertex_13",
+          "block_4_polygon_3_vertex_14"
+        ]
+      },
+      "block_4_polygon_4": {
+        "grass": false,
+        "vertexIds": [
+          "block_4_polygon_4_vertex_0",
+          "block_4_polygon_4_vertex_1",
+          "block_4_polygon_4_vertex_2",
+          "block_4_polygon_4_vertex_3",
+          "block_4_polygon_4_vertex_4"
+        ]
+      },
+      "block_4_polygon_5": {
+        "grass": false,
+        "vertexIds": [
+          "block_4_polygon_5_vertex_0",
+          "block_4_polygon_5_vertex_1",
+          "block_4_polygon_5_vertex_2",
+          "block_4_polygon_5_vertex_3",
+          "block_4_polygon_5_vertex_4",
+          "block_4_polygon_5_vertex_5",
+          "block_4_polygon_5_vertex_6",
+          "block_4_polygon_5_vertex_7",
+          "block_4_polygon_5_vertex_8",
+          "block_4_polygon_5_vertex_9",
+          "block_4_polygon_5_vertex_10",
+          "block_4_polygon_5_vertex_11",
+          "block_4_polygon_5_vertex_12",
+          "block_4_polygon_5_vertex_13",
+          "block_4_polygon_5_vertex_14",
+          "block_4_polygon_5_vertex_15",
+          "block_4_polygon_5_vertex_16",
+          "block_4_polygon_5_vertex_17",
+          "block_4_polygon_5_vertex_18",
+          "block_4_polygon_5_vertex_19",
+          "block_4_polygon_5_vertex_20",
+          "block_4_polygon_5_vertex_21",
+          "block_4_polygon_5_vertex_22",
+          "block_4_polygon_5_vertex_23",
+          "block_4_polygon_5_vertex_24",
+          "block_4_polygon_5_vertex_25",
+          "block_4_polygon_5_vertex_26",
+          "block_4_polygon_5_vertex_27",
+          "block_4_polygon_5_vertex_28",
+          "block_4_polygon_5_vertex_29",
+          "block_4_polygon_5_vertex_30",
+          "block_4_polygon_5_vertex_31",
+          "block_4_polygon_5_vertex_32",
+          "block_4_polygon_5_vertex_33"
+        ]
+      },
+      "block_4_polygon_6": {
+        "grass": false,
+        "vertexIds": [
+          "block_4_polygon_6_vertex_0",
+          "block_4_polygon_6_vertex_1",
+          "block_4_polygon_6_vertex_2",
+          "block_4_polygon_6_vertex_3",
+          "block_4_polygon_6_vertex_4"
+        ]
+      },
+      "block_4_polygon_7": {
+        "grass": false,
+        "vertexIds": [
+          "block_4_polygon_7_vertex_0",
+          "block_4_polygon_7_vertex_1",
+          "block_4_polygon_7_vertex_2",
+          "block_4_polygon_7_vertex_3",
+          "block_4_polygon_7_vertex_4",
+          "block_4_polygon_7_vertex_5",
+          "block_4_polygon_7_vertex_6",
+          "block_4_polygon_7_vertex_7",
+          "block_4_polygon_7_vertex_8",
+          "block_4_polygon_7_vertex_9",
+          "block_4_polygon_7_vertex_10",
+          "block_4_polygon_7_vertex_11",
+          "block_4_polygon_7_vertex_12",
+          "block_4_polygon_7_vertex_13",
+          "block_4_polygon_7_vertex_14",
+          "block_4_polygon_7_vertex_15",
+          "block_4_polygon_7_vertex_16",
+          "block_4_polygon_7_vertex_17",
+          "block_4_polygon_7_vertex_18",
+          "block_4_polygon_7_vertex_19",
+          "block_4_polygon_7_vertex_20"
+        ]
+      }
+    }
+  },
+  "vertices": {
+    "allIds": [
+      "block_0_polygon_0_vertex_0",
+      "block_0_polygon_0_vertex_1",
+      "block_0_polygon_0_vertex_2",
+      "block_0_polygon_0_vertex_3",
+      "block_0_polygon_0_vertex_4",
+      "block_0_polygon_0_vertex_5",
+      "block_0_polygon_0_vertex_6",
+      "block_0_polygon_0_vertex_7",
+      "block_0_polygon_0_vertex_8",
+      "block_0_polygon_1_vertex_0",
+      "block_0_polygon_1_vertex_1",
+      "block_0_polygon_1_vertex_2",
+      "block_0_polygon_1_vertex_3",
+      "block_0_polygon_1_vertex_4",
+      "block_0_polygon_1_vertex_5",
+      "block_0_polygon_2_vertex_0",
+      "block_0_polygon_2_vertex_1",
+      "block_0_polygon_2_vertex_2",
+      "block_0_polygon_2_vertex_3",
+      "block_0_polygon_2_vertex_4",
+      "block_0_polygon_3_vertex_0",
+      "block_0_polygon_3_vertex_1",
+      "block_0_polygon_3_vertex_2",
+      "block_0_polygon_3_vertex_3",
+      "block_0_polygon_3_vertex_4",
+      "block_0_polygon_3_vertex_5",
+      "block_0_polygon_3_vertex_6",
+      "block_0_polygon_3_vertex_7",
+      "block_0_polygon_3_vertex_8",
+      "block_0_polygon_3_vertex_9",
+      "block_0_polygon_3_vertex_10",
+      "block_0_polygon_3_vertex_11",
+      "block_0_polygon_3_vertex_12",
+      "block_0_polygon_3_vertex_13",
+      "block_0_polygon_3_vertex_14",
+      "block_0_polygon_3_vertex_15",
+      "block_0_polygon_3_vertex_16",
+      "block_0_polygon_3_vertex_17",
+      "block_0_polygon_3_vertex_18",
+      "block_0_polygon_3_vertex_19",
+      "block_0_polygon_3_vertex_20",
+      "block_0_polygon_4_vertex_0",
+      "block_0_polygon_4_vertex_1",
+      "block_0_polygon_4_vertex_2",
+      "block_0_polygon_4_vertex_3",
+      "block_0_polygon_4_vertex_4",
+      "block_0_polygon_4_vertex_5",
+      "block_0_polygon_4_vertex_6",
+      "block_0_polygon_4_vertex_7",
+      "block_0_polygon_4_vertex_8",
+      "block_0_polygon_4_vertex_9",
+      "block_0_polygon_4_vertex_10",
+      "block_0_polygon_4_vertex_11",
+      "block_0_polygon_5_vertex_0",
+      "block_0_polygon_5_vertex_1",
+      "block_0_polygon_5_vertex_2",
+      "block_0_polygon_5_vertex_3",
+      "block_0_polygon_5_vertex_4",
+      "block_0_polygon_5_vertex_5",
+      "block_0_polygon_5_vertex_6",
+      "block_0_polygon_5_vertex_7",
+      "block_0_polygon_5_vertex_8",
+      "block_0_polygon_5_vertex_9",
+      "block_0_polygon_5_vertex_10",
+      "block_0_polygon_5_vertex_11",
+      "block_0_polygon_5_vertex_12",
+      "block_0_polygon_5_vertex_13",
+      "block_0_polygon_5_vertex_14",
+      "block_0_polygon_6_vertex_0",
+      "block_0_polygon_6_vertex_1",
+      "block_0_polygon_6_vertex_2",
+      "block_0_polygon_6_vertex_3",
+      "block_0_polygon_6_vertex_4",
+      "block_0_polygon_7_vertex_0",
+      "block_0_polygon_7_vertex_1",
+      "block_0_polygon_7_vertex_2",
+      "block_0_polygon_7_vertex_3",
+      "block_0_polygon_7_vertex_4",
+      "block_0_polygon_7_vertex_5",
+      "block_0_polygon_7_vertex_6",
+      "block_0_polygon_7_vertex_7",
+      "block_0_polygon_7_vertex_8",
+      "block_0_polygon_7_vertex_9",
+      "block_0_polygon_7_vertex_10",
+      "block_0_polygon_7_vertex_11",
+      "block_0_polygon_7_vertex_12",
+      "block_0_polygon_7_vertex_13",
+      "block_0_polygon_7_vertex_14",
+      "block_0_polygon_7_vertex_15",
+      "block_0_polygon_7_vertex_16",
+      "block_0_polygon_7_vertex_17",
+      "block_0_polygon_7_vertex_18",
+      "block_0_polygon_7_vertex_19",
+      "block_0_polygon_7_vertex_20",
+      "block_0_polygon_7_vertex_21",
+      "block_0_polygon_7_vertex_22",
+      "block_0_polygon_7_vertex_23",
+      "block_0_polygon_7_vertex_24",
+      "block_0_polygon_7_vertex_25",
+      "block_0_polygon_7_vertex_26",
+      "block_0_polygon_7_vertex_27",
+      "block_0_polygon_7_vertex_28",
+      "block_0_polygon_7_vertex_29",
+      "block_0_polygon_7_vertex_30",
+      "block_0_polygon_7_vertex_31",
+      "block_0_polygon_7_vertex_32",
+      "block_0_polygon_7_vertex_33",
+      "block_1_polygon_0_vertex_0",
+      "block_1_polygon_0_vertex_1",
+      "block_1_polygon_0_vertex_2",
+      "block_1_polygon_0_vertex_3",
+      "block_1_polygon_0_vertex_4",
+      "block_1_polygon_0_vertex_5",
+      "block_1_polygon_1_vertex_0",
+      "block_1_polygon_1_vertex_1",
+      "block_1_polygon_1_vertex_2",
+      "block_1_polygon_1_vertex_3",
+      "block_1_polygon_1_vertex_4",
+      "block_1_polygon_1_vertex_5",
+      "block_1_polygon_1_vertex_6",
+      "block_1_polygon_1_vertex_7",
+      "block_1_polygon_1_vertex_8",
+      "block_1_polygon_1_vertex_9",
+      "block_1_polygon_1_vertex_10",
+      "block_1_polygon_1_vertex_11",
+      "block_1_polygon_2_vertex_0",
+      "block_1_polygon_2_vertex_1",
+      "block_1_polygon_2_vertex_2",
+      "block_1_polygon_2_vertex_3",
+      "block_1_polygon_2_vertex_4",
+      "block_1_polygon_2_vertex_5",
+      "block_1_polygon_2_vertex_6",
+      "block_1_polygon_2_vertex_7",
+      "block_1_polygon_2_vertex_8",
+      "block_1_polygon_2_vertex_9",
+      "block_1_polygon_2_vertex_10",
+      "block_1_polygon_2_vertex_11",
+      "block_1_polygon_2_vertex_12",
+      "block_1_polygon_2_vertex_13",
+      "block_1_polygon_2_vertex_14",
+      "block_1_polygon_3_vertex_0",
+      "block_1_polygon_3_vertex_1",
+      "block_1_polygon_3_vertex_2",
+      "block_1_polygon_3_vertex_3",
+      "block_1_polygon_3_vertex_4",
+      "block_1_polygon_4_vertex_0",
+      "block_1_polygon_4_vertex_1",
+      "block_1_polygon_4_vertex_2",
+      "block_1_polygon_4_vertex_3",
+      "block_1_polygon_4_vertex_4",
+      "block_1_polygon_4_vertex_5",
+      "block_1_polygon_4_vertex_6",
+      "block_1_polygon_4_vertex_7",
+      "block_1_polygon_4_vertex_8",
+      "block_1_polygon_4_vertex_9",
+      "block_1_polygon_4_vertex_10",
+      "block_1_polygon_4_vertex_11",
+      "block_1_polygon_4_vertex_12",
+      "block_1_polygon_4_vertex_13",
+      "block_1_polygon_4_vertex_14",
+      "block_1_polygon_4_vertex_15",
+      "block_1_polygon_4_vertex_16",
+      "block_1_polygon_4_vertex_17",
+      "block_1_polygon_4_vertex_18",
+      "block_1_polygon_4_vertex_19",
+      "block_1_polygon_4_vertex_20",
+      "block_1_polygon_4_vertex_21",
+      "block_1_polygon_4_vertex_22",
+      "block_1_polygon_4_vertex_23",
+      "block_1_polygon_4_vertex_24",
+      "block_1_polygon_4_vertex_25",
+      "block_1_polygon_4_vertex_26",
+      "block_1_polygon_4_vertex_27",
+      "block_1_polygon_4_vertex_28",
+      "block_1_polygon_4_vertex_29",
+      "block_1_polygon_4_vertex_30",
+      "block_1_polygon_4_vertex_31",
+      "block_1_polygon_4_vertex_32",
+      "block_1_polygon_4_vertex_33",
+      "block_1_polygon_5_vertex_0",
+      "block_1_polygon_5_vertex_1",
+      "block_1_polygon_5_vertex_2",
+      "block_1_polygon_5_vertex_3",
+      "block_1_polygon_5_vertex_4",
+      "block_1_polygon_6_vertex_0",
+      "block_1_polygon_6_vertex_1",
+      "block_1_polygon_6_vertex_2",
+      "block_1_polygon_6_vertex_3",
+      "block_1_polygon_6_vertex_4",
+      "block_1_polygon_6_vertex_5",
+      "block_1_polygon_6_vertex_6",
+      "block_1_polygon_6_vertex_7",
+      "block_1_polygon_6_vertex_8",
+      "block_1_polygon_6_vertex_9",
+      "block_1_polygon_6_vertex_10",
+      "block_1_polygon_6_vertex_11",
+      "block_1_polygon_6_vertex_12",
+      "block_1_polygon_6_vertex_13",
+      "block_1_polygon_6_vertex_14",
+      "block_1_polygon_6_vertex_15",
+      "block_1_polygon_6_vertex_16",
+      "block_1_polygon_6_vertex_17",
+      "block_1_polygon_6_vertex_18",
+      "block_1_polygon_6_vertex_19",
+      "block_1_polygon_6_vertex_20",
+      "block_1_polygon_7_vertex_0",
+      "block_1_polygon_7_vertex_1",
+      "block_1_polygon_7_vertex_2",
+      "block_1_polygon_7_vertex_3",
+      "block_1_polygon_7_vertex_4",
+      "block_1_polygon_7_vertex_5",
+      "block_1_polygon_7_vertex_6",
+      "block_1_polygon_7_vertex_7",
+      "block_1_polygon_7_vertex_8",
+      "block_1_polygon_7_vertex_9",
+      "block_1_polygon_7_vertex_10",
+      "block_2_polygon_0_vertex_0",
+      "block_2_polygon_0_vertex_1",
+      "block_2_polygon_0_vertex_2",
+      "block_2_polygon_0_vertex_3",
+      "block_2_polygon_0_vertex_4",
+      "block_2_polygon_0_vertex_5",
+      "block_2_polygon_0_vertex_6",
+      "block_2_polygon_1_vertex_0",
+      "block_2_polygon_1_vertex_1",
+      "block_2_polygon_1_vertex_2",
+      "block_2_polygon_1_vertex_3",
+      "block_2_polygon_1_vertex_4",
+      "block_2_polygon_1_vertex_5",
+      "block_2_polygon_1_vertex_6",
+      "block_2_polygon_1_vertex_7",
+      "block_2_polygon_1_vertex_8",
+      "block_2_polygon_1_vertex_9",
+      "block_2_polygon_1_vertex_10",
+      "block_2_polygon_1_vertex_11",
+      "block_2_polygon_1_vertex_12",
+      "block_2_polygon_1_vertex_13",
+      "block_2_polygon_1_vertex_14",
+      "block_2_polygon_1_vertex_15",
+      "block_2_polygon_1_vertex_16",
+      "block_2_polygon_1_vertex_17",
+      "block_2_polygon_1_vertex_18",
+      "block_2_polygon_1_vertex_19",
+      "block_2_polygon_1_vertex_20",
+      "block_2_polygon_1_vertex_21",
+      "block_2_polygon_1_vertex_22",
+      "block_2_polygon_1_vertex_23",
+      "block_2_polygon_1_vertex_24",
+      "block_2_polygon_1_vertex_25",
+      "block_2_polygon_2_vertex_0",
+      "block_2_polygon_2_vertex_1",
+      "block_2_polygon_2_vertex_2",
+      "block_2_polygon_2_vertex_3",
+      "block_2_polygon_2_vertex_4",
+      "block_2_polygon_2_vertex_5",
+      "block_2_polygon_2_vertex_6",
+      "block_2_polygon_2_vertex_7",
+      "block_2_polygon_2_vertex_8",
+      "block_2_polygon_2_vertex_9",
+      "block_2_polygon_2_vertex_10",
+      "block_2_polygon_2_vertex_11",
+      "block_2_polygon_3_vertex_0",
+      "block_2_polygon_3_vertex_1",
+      "block_2_polygon_3_vertex_2",
+      "block_2_polygon_3_vertex_3",
+      "block_2_polygon_3_vertex_4",
+      "block_2_polygon_3_vertex_5",
+      "block_2_polygon_3_vertex_6",
+      "block_2_polygon_3_vertex_7",
+      "block_2_polygon_3_vertex_8",
+      "block_2_polygon_3_vertex_9",
+      "block_2_polygon_3_vertex_10",
+      "block_2_polygon_3_vertex_11",
+      "block_2_polygon_3_vertex_12",
+      "block_2_polygon_3_vertex_13",
+      "block_2_polygon_3_vertex_14",
+      "block_2_polygon_4_vertex_0",
+      "block_2_polygon_4_vertex_1",
+      "block_2_polygon_4_vertex_2",
+      "block_2_polygon_4_vertex_3",
+      "block_2_polygon_4_vertex_4",
+      "block_2_polygon_5_vertex_0",
+      "block_2_polygon_5_vertex_1",
+      "block_2_polygon_5_vertex_2",
+      "block_2_polygon_5_vertex_3",
+      "block_2_polygon_5_vertex_4",
+      "block_2_polygon_5_vertex_5",
+      "block_2_polygon_5_vertex_6",
+      "block_2_polygon_5_vertex_7",
+      "block_2_polygon_5_vertex_8",
+      "block_2_polygon_5_vertex_9",
+      "block_2_polygon_5_vertex_10",
+      "block_2_polygon_5_vertex_11",
+      "block_2_polygon_5_vertex_12",
+      "block_2_polygon_5_vertex_13",
+      "block_2_polygon_5_vertex_14",
+      "block_2_polygon_5_vertex_15",
+      "block_2_polygon_5_vertex_16",
+      "block_2_polygon_5_vertex_17",
+      "block_2_polygon_5_vertex_18",
+      "block_2_polygon_5_vertex_19",
+      "block_2_polygon_5_vertex_20",
+      "block_2_polygon_5_vertex_21",
+      "block_2_polygon_5_vertex_22",
+      "block_2_polygon_5_vertex_23",
+      "block_2_polygon_5_vertex_24",
+      "block_2_polygon_5_vertex_25",
+      "block_2_polygon_5_vertex_26",
+      "block_2_polygon_5_vertex_27",
+      "block_2_polygon_5_vertex_28",
+      "block_2_polygon_5_vertex_29",
+      "block_2_polygon_5_vertex_30",
+      "block_2_polygon_5_vertex_31",
+      "block_2_polygon_5_vertex_32",
+      "block_2_polygon_5_vertex_33",
+      "block_2_polygon_6_vertex_0",
+      "block_2_polygon_6_vertex_1",
+      "block_2_polygon_6_vertex_2",
+      "block_2_polygon_6_vertex_3",
+      "block_2_polygon_6_vertex_4",
+      "block_2_polygon_7_vertex_0",
+      "block_2_polygon_7_vertex_1",
+      "block_2_polygon_7_vertex_2",
+      "block_2_polygon_7_vertex_3",
+      "block_2_polygon_7_vertex_4",
+      "block_2_polygon_7_vertex_5",
+      "block_2_polygon_7_vertex_6",
+      "block_2_polygon_7_vertex_7",
+      "block_2_polygon_7_vertex_8",
+      "block_2_polygon_7_vertex_9",
+      "block_2_polygon_7_vertex_10",
+      "block_2_polygon_7_vertex_11",
+      "block_2_polygon_7_vertex_12",
+      "block_2_polygon_7_vertex_13",
+      "block_2_polygon_7_vertex_14",
+      "block_2_polygon_7_vertex_15",
+      "block_2_polygon_7_vertex_16",
+      "block_2_polygon_7_vertex_17",
+      "block_2_polygon_7_vertex_18",
+      "block_2_polygon_7_vertex_19",
+      "block_2_polygon_7_vertex_20",
+      "block_3_polygon_0_vertex_0",
+      "block_3_polygon_0_vertex_1",
+      "block_3_polygon_0_vertex_2",
+      "block_3_polygon_0_vertex_3",
+      "block_3_polygon_0_vertex_4",
+      "block_3_polygon_0_vertex_5",
+      "block_3_polygon_0_vertex_6",
+      "block_3_polygon_1_vertex_0",
+      "block_3_polygon_1_vertex_1",
+      "block_3_polygon_1_vertex_2",
+      "block_3_polygon_1_vertex_3",
+      "block_3_polygon_1_vertex_4",
+      "block_3_polygon_1_vertex_5",
+      "block_3_polygon_1_vertex_6",
+      "block_3_polygon_1_vertex_7",
+      "block_3_polygon_1_vertex_8",
+      "block_3_polygon_1_vertex_9",
+      "block_3_polygon_1_vertex_10",
+      "block_3_polygon_1_vertex_11",
+      "block_3_polygon_1_vertex_12",
+      "block_3_polygon_1_vertex_13",
+      "block_3_polygon_1_vertex_14",
+      "block_3_polygon_1_vertex_15",
+      "block_3_polygon_1_vertex_16",
+      "block_3_polygon_2_vertex_0",
+      "block_3_polygon_2_vertex_1",
+      "block_3_polygon_2_vertex_2",
+      "block_3_polygon_2_vertex_3",
+      "block_3_polygon_2_vertex_4",
+      "block_3_polygon_2_vertex_5",
+      "block_3_polygon_2_vertex_6",
+      "block_3_polygon_2_vertex_7",
+      "block_3_polygon_2_vertex_8",
+      "block_3_polygon_2_vertex_9",
+      "block_3_polygon_2_vertex_10",
+      "block_3_polygon_2_vertex_11",
+      "block_3_polygon_3_vertex_0",
+      "block_3_polygon_3_vertex_1",
+      "block_3_polygon_3_vertex_2",
+      "block_3_polygon_3_vertex_3",
+      "block_3_polygon_3_vertex_4",
+      "block_3_polygon_3_vertex_5",
+      "block_3_polygon_3_vertex_6",
+      "block_3_polygon_3_vertex_7",
+      "block_3_polygon_3_vertex_8",
+      "block_3_polygon_3_vertex_9",
+      "block_3_polygon_3_vertex_10",
+      "block_3_polygon_3_vertex_11",
+      "block_3_polygon_3_vertex_12",
+      "block_3_polygon_3_vertex_13",
+      "block_3_polygon_3_vertex_14",
+      "block_3_polygon_4_vertex_0",
+      "block_3_polygon_4_vertex_1",
+      "block_3_polygon_4_vertex_2",
+      "block_3_polygon_4_vertex_3",
+      "block_3_polygon_4_vertex_4",
+      "block_3_polygon_5_vertex_0",
+      "block_3_polygon_5_vertex_1",
+      "block_3_polygon_5_vertex_2",
+      "block_3_polygon_5_vertex_3",
+      "block_3_polygon_5_vertex_4",
+      "block_3_polygon_5_vertex_5",
+      "block_3_polygon_5_vertex_6",
+      "block_3_polygon_5_vertex_7",
+      "block_3_polygon_5_vertex_8",
+      "block_3_polygon_5_vertex_9",
+      "block_3_polygon_5_vertex_10",
+      "block_3_polygon_5_vertex_11",
+      "block_3_polygon_5_vertex_12",
+      "block_3_polygon_5_vertex_13",
+      "block_3_polygon_5_vertex_14",
+      "block_3_polygon_5_vertex_15",
+      "block_3_polygon_5_vertex_16",
+      "block_3_polygon_5_vertex_17",
+      "block_3_polygon_5_vertex_18",
+      "block_3_polygon_5_vertex_19",
+      "block_3_polygon_5_vertex_20",
+      "block_3_polygon_5_vertex_21",
+      "block_3_polygon_5_vertex_22",
+      "block_3_polygon_5_vertex_23",
+      "block_3_polygon_5_vertex_24",
+      "block_3_polygon_5_vertex_25",
+      "block_3_polygon_5_vertex_26",
+      "block_3_polygon_5_vertex_27",
+      "block_3_polygon_5_vertex_28",
+      "block_3_polygon_5_vertex_29",
+      "block_3_polygon_5_vertex_30",
+      "block_3_polygon_5_vertex_31",
+      "block_3_polygon_5_vertex_32",
+      "block_3_polygon_5_vertex_33",
+      "block_3_polygon_6_vertex_0",
+      "block_3_polygon_6_vertex_1",
+      "block_3_polygon_6_vertex_2",
+      "block_3_polygon_6_vertex_3",
+      "block_3_polygon_6_vertex_4",
+      "block_3_polygon_7_vertex_0",
+      "block_3_polygon_7_vertex_1",
+      "block_3_polygon_7_vertex_2",
+      "block_3_polygon_7_vertex_3",
+      "block_3_polygon_7_vertex_4",
+      "block_3_polygon_7_vertex_5",
+      "block_3_polygon_7_vertex_6",
+      "block_3_polygon_7_vertex_7",
+      "block_3_polygon_7_vertex_8",
+      "block_3_polygon_7_vertex_9",
+      "block_3_polygon_7_vertex_10",
+      "block_3_polygon_7_vertex_11",
+      "block_3_polygon_7_vertex_12",
+      "block_3_polygon_7_vertex_13",
+      "block_3_polygon_7_vertex_14",
+      "block_3_polygon_7_vertex_15",
+      "block_3_polygon_7_vertex_16",
+      "block_3_polygon_7_vertex_17",
+      "block_3_polygon_7_vertex_18",
+      "block_3_polygon_7_vertex_19",
+      "block_3_polygon_7_vertex_20",
+      "block_4_polygon_0_vertex_0",
+      "block_4_polygon_0_vertex_1",
+      "block_4_polygon_0_vertex_2",
+      "block_4_polygon_0_vertex_3",
+      "block_4_polygon_0_vertex_4",
+      "block_4_polygon_0_vertex_5",
+      "block_4_polygon_0_vertex_6",
+      "block_4_polygon_1_vertex_0",
+      "block_4_polygon_1_vertex_1",
+      "block_4_polygon_1_vertex_2",
+      "block_4_polygon_1_vertex_3",
+      "block_4_polygon_1_vertex_4",
+      "block_4_polygon_1_vertex_5",
+      "block_4_polygon_1_vertex_6",
+      "block_4_polygon_1_vertex_7",
+      "block_4_polygon_1_vertex_8",
+      "block_4_polygon_1_vertex_9",
+      "block_4_polygon_1_vertex_10",
+      "block_4_polygon_1_vertex_11",
+      "block_4_polygon_1_vertex_12",
+      "block_4_polygon_1_vertex_13",
+      "block_4_polygon_1_vertex_14",
+      "block_4_polygon_1_vertex_15",
+      "block_4_polygon_1_vertex_16",
+      "block_4_polygon_1_vertex_17",
+      "block_4_polygon_1_vertex_18",
+      "block_4_polygon_2_vertex_0",
+      "block_4_polygon_2_vertex_1",
+      "block_4_polygon_2_vertex_2",
+      "block_4_polygon_2_vertex_3",
+      "block_4_polygon_2_vertex_4",
+      "block_4_polygon_2_vertex_5",
+      "block_4_polygon_2_vertex_6",
+      "block_4_polygon_2_vertex_7",
+      "block_4_polygon_2_vertex_8",
+      "block_4_polygon_2_vertex_9",
+      "block_4_polygon_2_vertex_10",
+      "block_4_polygon_2_vertex_11",
+      "block_4_polygon_3_vertex_0",
+      "block_4_polygon_3_vertex_1",
+      "block_4_polygon_3_vertex_2",
+      "block_4_polygon_3_vertex_3",
+      "block_4_polygon_3_vertex_4",
+      "block_4_polygon_3_vertex_5",
+      "block_4_polygon_3_vertex_6",
+      "block_4_polygon_3_vertex_7",
+      "block_4_polygon_3_vertex_8",
+      "block_4_polygon_3_vertex_9",
+      "block_4_polygon_3_vertex_10",
+      "block_4_polygon_3_vertex_11",
+      "block_4_polygon_3_vertex_12",
+      "block_4_polygon_3_vertex_13",
+      "block_4_polygon_3_vertex_14",
+      "block_4_polygon_4_vertex_0",
+      "block_4_polygon_4_vertex_1",
+      "block_4_polygon_4_vertex_2",
+      "block_4_polygon_4_vertex_3",
+      "block_4_polygon_4_vertex_4",
+      "block_4_polygon_5_vertex_0",
+      "block_4_polygon_5_vertex_1",
+      "block_4_polygon_5_vertex_2",
+      "block_4_polygon_5_vertex_3",
+      "block_4_polygon_5_vertex_4",
+      "block_4_polygon_5_vertex_5",
+      "block_4_polygon_5_vertex_6",
+      "block_4_polygon_5_vertex_7",
+      "block_4_polygon_5_vertex_8",
+      "block_4_polygon_5_vertex_9",
+      "block_4_polygon_5_vertex_10",
+      "block_4_polygon_5_vertex_11",
+      "block_4_polygon_5_vertex_12",
+      "block_4_polygon_5_vertex_13",
+      "block_4_polygon_5_vertex_14",
+      "block_4_polygon_5_vertex_15",
+      "block_4_polygon_5_vertex_16",
+      "block_4_polygon_5_vertex_17",
+      "block_4_polygon_5_vertex_18",
+      "block_4_polygon_5_vertex_19",
+      "block_4_polygon_5_vertex_20",
+      "block_4_polygon_5_vertex_21",
+      "block_4_polygon_5_vertex_22",
+      "block_4_polygon_5_vertex_23",
+      "block_4_polygon_5_vertex_24",
+      "block_4_polygon_5_vertex_25",
+      "block_4_polygon_5_vertex_26",
+      "block_4_polygon_5_vertex_27",
+      "block_4_polygon_5_vertex_28",
+      "block_4_polygon_5_vertex_29",
+      "block_4_polygon_5_vertex_30",
+      "block_4_polygon_5_vertex_31",
+      "block_4_polygon_5_vertex_32",
+      "block_4_polygon_5_vertex_33",
+      "block_4_polygon_6_vertex_0",
+      "block_4_polygon_6_vertex_1",
+      "block_4_polygon_6_vertex_2",
+      "block_4_polygon_6_vertex_3",
+      "block_4_polygon_6_vertex_4",
+      "block_4_polygon_7_vertex_0",
+      "block_4_polygon_7_vertex_1",
+      "block_4_polygon_7_vertex_2",
+      "block_4_polygon_7_vertex_3",
+      "block_4_polygon_7_vertex_4",
+      "block_4_polygon_7_vertex_5",
+      "block_4_polygon_7_vertex_6",
+      "block_4_polygon_7_vertex_7",
+      "block_4_polygon_7_vertex_8",
+      "block_4_polygon_7_vertex_9",
+      "block_4_polygon_7_vertex_10",
+      "block_4_polygon_7_vertex_11",
+      "block_4_polygon_7_vertex_12",
+      "block_4_polygon_7_vertex_13",
+      "block_4_polygon_7_vertex_14",
+      "block_4_polygon_7_vertex_15",
+      "block_4_polygon_7_vertex_16",
+      "block_4_polygon_7_vertex_17",
+      "block_4_polygon_7_vertex_18",
+      "block_4_polygon_7_vertex_19",
+      "block_4_polygon_7_vertex_20"
+    ],
+    "byId": {
+      "block_0_polygon_0_vertex_0": {
+        "x": 5.131803767826753,
+        "y": 8.205703507113725
+      },
+      "block_0_polygon_0_vertex_1": { "x": 5.244861891971752, "y": 0 },
+      "block_0_polygon_0_vertex_2": {
+        "x": 9.797079920396541,
+        "y": 0.06738844096420848
+      },
+      "block_0_polygon_0_vertex_3": {
+        "x": 9.693407117006117,
+        "y": 6.2877566443905835
+      },
+      "block_0_polygon_0_vertex_4": {
+        "x": 13.308474097409928,
+        "y": 2.869140475968578
+      },
+      "block_0_polygon_0_vertex_5": {
+        "x": 15.673236917126133,
+        "y": 6.6363890236833925
+      },
+      "block_0_polygon_0_vertex_6": {
+        "x": 14.630686601174673,
+        "y": 21.274686818446767
+      },
+      "block_0_polygon_0_vertex_7": {
+        "x": 0.7796194388234596,
+        "y": 21.78532364332291
+      },
+      "block_0_polygon_0_vertex_8": { "x": 0, "y": 8.827740327456354 },
+      "block_0_polygon_1_vertex_0": {
+        "x": 4.120042439452462,
+        "y": 17.657668239645375
+      },
+      "block_0_polygon_1_vertex_1": {
+        "x": 11.205154853894115,
+        "y": 17.48745168812458
+      },
+      "block_0_polygon_1_vertex_2": {
+        "x": 11.439192695635057,
+        "y": 12.381072014241042
+      },
+      "block_0_polygon_1_vertex_3": {
+        "x": 7.545572874670896,
+        "y": 12.678942914491259
+      },
+      "block_0_polygon_1_vertex_4": {
+        "x": 6.6094060524093265,
+        "y": 12.657661451919367
+      },
+      "block_0_polygon_1_vertex_5": {
+        "x": 3.843449958778862,
+        "y": 12.487447652795808
+      },
+      "block_0_polygon_2_vertex_0": {
+        "x": 4.743377902208792,
+        "y": 14.43900699127461
+      },
+      "block_0_polygon_2_vertex_1": {
+        "x": 4.672625966965185,
+        "y": 14.62797183502461
+      },
+      "block_0_polygon_2_vertex_2": {
+        "x": 4.891034164129721,
+        "y": 14.62797183502461
+      },
+      "block_0_polygon_2_vertex_3": {
+        "x": 4.823797830044256,
+        "y": 14.449553884156003
+      },
+      "block_0_polygon_2_vertex_4": {
+        "x": 4.778094716965185,
+        "y": 14.315960146076932
+      },
+      "block_0_polygon_3_vertex_0": {
+        "x": 4.825995095669256,
+        "y": 14.248284317143217
+      },
+      "block_0_polygon_3_vertex_1": {
+        "x": 5.069295553969411,
+        "y": 14.842748447923185
+      },
+      "block_0_polygon_3_vertex_2": {
+        "x": 5.344556876121985,
+        "y": 14.840875921922134
+      },
+      "block_0_polygon_3_vertex_3": {
+        "x": 5.344556876121985,
+        "y": 14.388469911701932
+      },
+      "block_0_polygon_3_vertex_4": {
+        "x": 5.269630082546698,
+        "y": 14.442962087281003
+      },
+      "block_0_polygon_3_vertex_5": {
+        "x": 5.18635369151734,
+        "y": 14.483831204064145
+      },
+      "block_0_polygon_3_vertex_6": {
+        "x": 5.18635369151734,
+        "y": 14.407366372235074
+      },
+      "block_0_polygon_3_vertex_7": {
+        "x": 5.302369304596411,
+        "y": 14.331780410893217
+      },
+      "block_0_polygon_3_vertex_8": {
+        "x": 5.372681804596411,
+        "y": 14.245647646076932
+      },
+      "block_0_polygon_3_vertex_9": {
+        "x": 5.423658438621985,
+        "y": 14.245647646076932
+      },
+      "block_0_polygon_3_vertex_10": {
+        "x": 5.423658438621985,
+        "y": 14.892522610314145
+      },
+      "block_0_polygon_3_vertex_11": {
+        "x": 5.344556876121985,
+        "y": 14.892522610314145
+      },
+      "block_0_polygon_3_vertex_12": {
+        "x": 5.344556876121985,
+        "y": 14.86838564795508
+      },
+      "block_0_polygon_3_vertex_13": {
+        "x": 5.080523389858641,
+        "y": 14.870181794120157
+      },
+      "block_0_polygon_3_vertex_14": {
+        "x": 5.089666970669256,
+        "y": 14.892522610314145
+      },
+      "block_0_polygon_3_vertex_15": {
+        "x": 4.992547818123327,
+        "y": 14.892522610314145
+      },
+      "block_0_polygon_3_vertex_16": {
+        "x": 4.917401351629721,
+        "y": 14.697405434735074
+      },
+      "block_0_polygon_3_vertex_17": {
+        "x": 4.6480165949454175,
+        "y": 14.697405434735074
+      },
+      "block_0_polygon_3_vertex_18": {
+        "x": 4.577264629899489,
+        "y": 14.892522610314145
+      },
+      "block_0_polygon_3_vertex_19": {
+        "x": 4.486737293087842,
+        "y": 14.892522610314145
+      },
+      "block_0_polygon_3_vertex_20": {
+        "x": 4.734149404465185,
+        "y": 14.248284317143217
+      },
+      "block_0_polygon_4_vertex_0": {
+        "x": 7.391681240730804,
+        "y": 13.06563143666365
+      },
+      "block_0_polygon_4_vertex_1": {
+        "x": 7.32883943789534,
+        "y": 13.260528879719757
+      },
+      "block_0_polygon_4_vertex_2": {
+        "x": 7.391022058063072,
+        "y": 13.45344881947615
+      },
+      "block_0_polygon_4_vertex_3": {
+        "x": 7.549884350829643,
+        "y": 13.520685123759293
+      },
+      "block_0_polygon_4_vertex_4": {
+        "x": 7.636017175250572,
+        "y": 13.503546463805222
+      },
+      "block_0_polygon_4_vertex_5": {
+        "x": 7.551642181211037,
+        "y": 13.46663241322615
+      },
+      "block_0_polygon_4_vertex_6": {
+        "x": 7.572296472125572,
+        "y": 13.404669510680222
+      },
+      "block_0_polygon_4_vertex_7": {
+        "x": 7.694024981790108,
+        "y": 13.466192948180222
+      },
+      "block_0_polygon_4_vertex_8": {
+        "x": 7.769171478086037,
+        "y": 13.26008944447615
+      },
+      "block_0_polygon_4_vertex_9": {
+        "x": 7.74258452826075,
+        "y": 13.123419510680222
+      },
+      "block_0_polygon_4_vertex_10": {
+        "x": 7.664801360898537,
+        "y": 13.03267245228865
+      },
+      "block_0_polygon_4_vertex_11": {
+        "x": 7.549884350829643,
+        "y": 13.000372635680222
+      },
+      "block_0_polygon_5_vertex_0": {
+        "x": 7.7102847712569655,
+        "y": 12.96939121420958
+      },
+      "block_0_polygon_5_vertex_1": {
+        "x": 7.81948882513575,
+        "y": 13.08804355795958
+      },
+      "block_0_polygon_5_vertex_2": {
+        "x": 7.857062103086037,
+        "y": 13.26008944447615
+      },
+      "block_0_polygon_5_vertex_3": {
+        "x": 7.832892181211037,
+        "y": 13.403131412821793
+      },
+      "block_0_polygon_5_vertex_4": {
+        "x": 7.759942950540108,
+        "y": 13.513653861838364
+      },
+      "block_0_polygon_5_vertex_5": {
+        "x": 7.869366766744179,
+        "y": 13.573419498759293
+      },
+      "block_0_polygon_5_vertex_6": {
+        "x": 7.8443179743819655,
+        "y": 13.632745670634293
+      },
+      "block_0_polygon_5_vertex_7": {
+        "x": 7.7058902400069655,
+        "y": 13.553644108134293
+      },
+      "block_0_polygon_5_vertex_8": {
+        "x": 7.547687085204643,
+        "y": 13.593634354430222
+      },
+      "block_0_polygon_5_vertex_9": {
+        "x": 7.389044524961037,
+        "y": 13.551446842509293
+      },
+      "block_0_polygon_5_vertex_10": {
+        "x": 7.2794009687834205,
+        "y": 13.432794498759293
+      },
+      "block_0_polygon_5_vertex_11": {
+        "x": 7.2409488203459205,
+        "y": 13.260528879719757
+      },
+      "block_0_polygon_5_vertex_12": {
+        "x": 7.279620693855804,
+        "y": 13.08694492514708
+      },
+      "block_0_polygon_5_vertex_13": {
+        "x": 7.389703692727608,
+        "y": 12.96785311635115
+      },
+      "block_0_polygon_5_vertex_14": {
+        "x": 7.549444915586037,
+        "y": 12.926983999568009
+      },
+      "block_0_polygon_6_vertex_0": {
+        "x": 9.988632664842598,
+        "y": 14.3374257769825
+      },
+      "block_0_polygon_6_vertex_1": {
+        "x": 9.917880729598991,
+        "y": 14.5263906207325
+      },
+      "block_0_polygon_6_vertex_2": {
+        "x": 10.136288926763527,
+        "y": 14.5263906207325
+      },
+      "block_0_polygon_6_vertex_3": {
+        "x": 10.069052592678062,
+        "y": 14.347972669863893
+      },
+      "block_0_polygon_6_vertex_4": {
+        "x": 10.023349479598991,
+        "y": 14.214378931784822
+      },
+      "block_0_polygon_7_vertex_0": {
+        "x": 10.071249858303062,
+        "y": 14.146703095400525
+      },
+      "block_0_polygon_7_vertex_1": {
+        "x": 10.319352104542219,
+        "y": 14.752899601939177
+      },
+      "block_0_polygon_7_vertex_2": {
+        "x": 10.367132863863532,
+        "y": 14.753582184215205
+      },
+      "block_0_polygon_7_vertex_3": {
+        "x": 10.370085016651146,
+        "y": 14.736009755397035
+      },
+      "block_0_polygon_7_vertex_4": {
+        "x": 10.422160223884575,
+        "y": 14.650316396022035
+      },
+      "block_0_polygon_7_vertex_5": {
+        "x": 10.525651410980217,
+        "y": 14.5527578082325
+      },
+      "block_0_polygon_7_vertex_6": {
+        "x": 10.667594806118004,
+        "y": 14.416307606959535
+      },
+      "block_0_polygon_7_vertex_7": {
+        "x": 10.704508856697075,
+        "y": 14.321166017317964
+      },
+      "block_0_polygon_7_vertex_8": {
+        "x": 10.670890704555504,
+        "y": 14.241844752097322
+      },
+      "block_0_polygon_7_vertex_9": {
+        "x": 10.583219782276146,
+        "y": 14.209544935488893
+      },
+      "block_0_polygon_7_vertex_10": {
+        "x": 10.491813556118004,
+        "y": 14.243822255397035
+      },
+      "block_0_polygon_7_vertex_11": {
+        "x": 10.457096771163933,
+        "y": 14.338744142317964
+      },
+      "block_0_polygon_7_vertex_12": {
+        "x": 10.375797943038933,
+        "y": 14.330394544863893
+      },
+      "block_0_polygon_7_vertex_13": {
+        "x": 10.438639716072075,
+        "y": 14.191747048163606
+      },
+      "block_0_polygon_7_vertex_14": {
+        "x": 10.584977582855217,
+        "y": 14.144066424334241
+      },
+      "block_0_polygon_7_vertex_15": {
+        "x": 10.731754974288933,
+        "y": 14.195482411647035
+      },
+      "block_0_polygon_7_vertex_16": {
+        "x": 10.785807684822075,
+        "y": 14.322923817897035
+      },
+      "block_0_polygon_7_vertex_17": {
+        "x": 10.769987300796501,
+        "y": 14.3989492144825
+      },
+      "block_0_polygon_7_vertex_18": {
+        "x": 10.717472747726433,
+        "y": 14.47761131193657
+      },
+      "block_0_polygon_7_vertex_19": {
+        "x": 10.595524505538933,
+        "y": 14.590990224147035
+      },
+      "block_0_polygon_7_vertex_20": {
+        "x": 10.504118219776146,
+        "y": 14.672069349551393
+      },
+      "block_0_polygon_7_vertex_21": {
+        "x": 10.470719770355217,
+        "y": 14.714916029238893
+      },
+      "block_0_polygon_7_vertex_22": {
+        "x": 10.786686614913933,
+        "y": 14.714916029238893
+      },
+      "block_0_polygon_7_vertex_23": {
+        "x": 10.786686614913933,
+        "y": 14.790941396022035
+      },
+      "block_0_polygon_7_vertex_24": {
+        "x": 10.360856548709862,
+        "y": 14.790941396022035
+      },
+      "block_0_polygon_7_vertex_25": {
+        "x": 10.36344413698788,
+        "y": 14.775539005259205
+      },
+      "block_0_polygon_7_vertex_26": {
+        "x": 10.328413069960902,
+        "y": 14.775038561444532
+      },
+      "block_0_polygon_7_vertex_27": {
+        "x": 10.334921733303062,
+        "y": 14.790941396022035
+      },
+      "block_0_polygon_7_vertex_28": {
+        "x": 10.237802580757133,
+        "y": 14.790941396022035
+      },
+      "block_0_polygon_7_vertex_29": {
+        "x": 10.162656114263527,
+        "y": 14.595824220442964
+      },
+      "block_0_polygon_7_vertex_30": {
+        "x": 9.893271357579223,
+        "y": 14.595824220442964
+      },
+      "block_0_polygon_7_vertex_31": {
+        "x": 9.822519399983875,
+        "y": 14.790941396022035
+      },
+      "block_0_polygon_7_vertex_32": {
+        "x": 9.731992055721648,
+        "y": 14.790941396022035
+      },
+      "block_0_polygon_7_vertex_33": {
+        "x": 9.979404167098991,
+        "y": 14.146703095400525
+      },
+      "block_1_polygon_0_vertex_0": {
+        "x": 12.474238140362786,
+        "y": 17.717962713393405
+      },
+      "block_1_polygon_0_vertex_1": {
+        "x": 19.55935055480444,
+        "y": 17.54774616187261
+      },
+      "block_1_polygon_0_vertex_2": {
+        "x": 19.79338839654538,
+        "y": 12.441366487989072
+      },
+      "block_1_polygon_0_vertex_3": {
+        "x": 15.89976857558122,
+        "y": 12.739237388239289
+      },
+      "block_1_polygon_0_vertex_4": {
+        "x": 14.96360175331965,
+        "y": 12.717955925667397
+      },
+      "block_1_polygon_0_vertex_5": {
+        "x": 12.197645659689186,
+        "y": 12.547742126543838
+      },
+      "block_1_polygon_1_vertex_0": {
+        "x": 15.745876941641129,
+        "y": 13.12592591041168
+      },
+      "block_1_polygon_1_vertex_1": {
+        "x": 15.683035138805664,
+        "y": 13.320823353467787
+      },
+      "block_1_polygon_1_vertex_2": {
+        "x": 15.745217758973396,
+        "y": 13.51374329322418
+      },
+      "block_1_polygon_1_vertex_3": {
+        "x": 15.904080051739967,
+        "y": 13.580979597507323
+      },
+      "block_1_polygon_1_vertex_4": {
+        "x": 15.990212876160896,
+        "y": 13.563840937553252
+      },
+      "block_1_polygon_1_vertex_5": {
+        "x": 15.90583788212136,
+        "y": 13.52692688697418
+      },
+      "block_1_polygon_1_vertex_6": {
+        "x": 15.926492173035896,
+        "y": 13.464963984428252
+      },
+      "block_1_polygon_1_vertex_7": {
+        "x": 16.048220682700432,
+        "y": 13.526487421928252
+      },
+      "block_1_polygon_1_vertex_8": {
+        "x": 16.12336717899636,
+        "y": 13.32038391822418
+      },
+      "block_1_polygon_1_vertex_9": {
+        "x": 16.096780229171074,
+        "y": 13.183713984428252
+      },
+      "block_1_polygon_1_vertex_10": {
+        "x": 16.01899706180886,
+        "y": 13.09296692603668
+      },
+      "block_1_polygon_1_vertex_11": {
+        "x": 15.904080051739967,
+        "y": 13.060667109428252
+      },
+      "block_1_polygon_2_vertex_0": {
+        "x": 16.06448047216729,
+        "y": 13.02968568795761
+      },
+      "block_1_polygon_2_vertex_1": {
+        "x": 16.173684526046074,
+        "y": 13.14833803170761
+      },
+      "block_1_polygon_2_vertex_2": {
+        "x": 16.21125780399636,
+        "y": 13.32038391822418
+      },
+      "block_1_polygon_2_vertex_3": {
+        "x": 16.18708788212136,
+        "y": 13.463425886569823
+      },
+      "block_1_polygon_2_vertex_4": {
+        "x": 16.114138651450432,
+        "y": 13.573948335586394
+      },
+      "block_1_polygon_2_vertex_5": {
+        "x": 16.223562467654503,
+        "y": 13.633713972507323
+      },
+      "block_1_polygon_2_vertex_6": {
+        "x": 16.19851367529229,
+        "y": 13.693040144382323
+      },
+      "block_1_polygon_2_vertex_7": {
+        "x": 16.06008594091729,
+        "y": 13.613938581882323
+      },
+      "block_1_polygon_2_vertex_8": {
+        "x": 15.901882786114967,
+        "y": 13.653928828178252
+      },
+      "block_1_polygon_2_vertex_9": {
+        "x": 15.74324022587136,
+        "y": 13.611741316257323
+      },
+      "block_1_polygon_2_vertex_10": {
+        "x": 15.633596669693745,
+        "y": 13.493088972507323
+      },
+      "block_1_polygon_2_vertex_11": {
+        "x": 15.595144521256245,
+        "y": 13.320823353467787
+      },
+      "block_1_polygon_2_vertex_12": {
+        "x": 15.633816394766129,
+        "y": 13.14723939889511
+      },
+      "block_1_polygon_2_vertex_13": {
+        "x": 15.743899393637932,
+        "y": 13.02814759009918
+      },
+      "block_1_polygon_2_vertex_14": {
+        "x": 15.90364061649636,
+        "y": 12.987278473316039
+      },
+      "block_1_polygon_3_vertex_0": {
+        "x": 18.342828365752922,
+        "y": 14.39772025073053
+      },
+      "block_1_polygon_3_vertex_1": {
+        "x": 18.272076430509316,
+        "y": 14.58668509448053
+      },
+      "block_1_polygon_3_vertex_2": {
+        "x": 18.49048462767385,
+        "y": 14.58668509448053
+      },
+      "block_1_polygon_3_vertex_3": {
+        "x": 18.423248293588387,
+        "y": 14.408267143611923
+      },
+      "block_1_polygon_3_vertex_4": {
+        "x": 18.377545180509316,
+        "y": 14.274673405532852
+      },
+      "block_1_polygon_4_vertex_0": {
+        "x": 18.425445559213387,
+        "y": 14.206997569148555
+      },
+      "block_1_polygon_4_vertex_1": {
+        "x": 18.673547805452543,
+        "y": 14.813194075687207
+      },
+      "block_1_polygon_4_vertex_2": {
+        "x": 18.721328564773856,
+        "y": 14.813876657963235
+      },
+      "block_1_polygon_4_vertex_3": {
+        "x": 18.72428071756147,
+        "y": 14.796304229145065
+      },
+      "block_1_polygon_4_vertex_4": {
+        "x": 18.7763559247949,
+        "y": 14.710610869770065
+      },
+      "block_1_polygon_4_vertex_5": {
+        "x": 18.87984711189054,
+        "y": 14.61305228198053
+      },
+      "block_1_polygon_4_vertex_6": {
+        "x": 19.021790507028328,
+        "y": 14.476602080707565
+      },
+      "block_1_polygon_4_vertex_7": {
+        "x": 19.0587045576074,
+        "y": 14.381460491065994
+      },
+      "block_1_polygon_4_vertex_8": {
+        "x": 19.025086405465828,
+        "y": 14.302139225845352
+      },
+      "block_1_polygon_4_vertex_9": {
+        "x": 18.93741548318647,
+        "y": 14.269839409236923
+      },
+      "block_1_polygon_4_vertex_10": {
+        "x": 18.846009257028328,
+        "y": 14.304116729145065
+      },
+      "block_1_polygon_4_vertex_11": {
+        "x": 18.811292472074257,
+        "y": 14.399038616065994
+      },
+      "block_1_polygon_4_vertex_12": {
+        "x": 18.729993643949257,
+        "y": 14.390689018611923
+      },
+      "block_1_polygon_4_vertex_13": {
+        "x": 18.7928354169824,
+        "y": 14.252041521911636
+      },
+      "block_1_polygon_4_vertex_14": {
+        "x": 18.93917328376554,
+        "y": 14.204360898082271
+      },
+      "block_1_polygon_4_vertex_15": {
+        "x": 19.085950675199257,
+        "y": 14.255776885395065
+      },
+      "block_1_polygon_4_vertex_16": {
+        "x": 19.1400033857324,
+        "y": 14.383218291645065
+      },
+      "block_1_polygon_4_vertex_17": {
+        "x": 19.124183001706825,
+        "y": 14.45924368823053
+      },
+      "block_1_polygon_4_vertex_18": {
+        "x": 19.071668448636757,
+        "y": 14.5379057856846
+      },
+      "block_1_polygon_4_vertex_19": {
+        "x": 18.949720206449257,
+        "y": 14.651284697895065
+      },
+      "block_1_polygon_4_vertex_20": {
+        "x": 18.85831392068647,
+        "y": 14.732363823299423
+      },
+      "block_1_polygon_4_vertex_21": {
+        "x": 18.82491547126554,
+        "y": 14.775210502986923
+      },
+      "block_1_polygon_4_vertex_22": {
+        "x": 19.140882315824257,
+        "y": 14.775210502986923
+      },
+      "block_1_polygon_4_vertex_23": {
+        "x": 19.140882315824257,
+        "y": 14.851235869770065
+      },
+      "block_1_polygon_4_vertex_24": {
+        "x": 18.715052249620186,
+        "y": 14.851235869770065
+      },
+      "block_1_polygon_4_vertex_25": {
+        "x": 18.717639837898204,
+        "y": 14.835833479007235
+      },
+      "block_1_polygon_4_vertex_26": {
+        "x": 18.682608770871227,
+        "y": 14.835333035192562
+      },
+      "block_1_polygon_4_vertex_27": {
+        "x": 18.689117434213387,
+        "y": 14.851235869770065
+      },
+      "block_1_polygon_4_vertex_28": {
+        "x": 18.591998281667458,
+        "y": 14.851235869770065
+      },
+      "block_1_polygon_4_vertex_29": {
+        "x": 18.51685181517385,
+        "y": 14.656118694190994
+      },
+      "block_1_polygon_4_vertex_30": {
+        "x": 18.247467058489548,
+        "y": 14.656118694190994
+      },
+      "block_1_polygon_4_vertex_31": {
+        "x": 18.1767151008942,
+        "y": 14.851235869770065
+      },
+      "block_1_polygon_4_vertex_32": {
+        "x": 18.086187756631972,
+        "y": 14.851235869770065
+      },
+      "block_1_polygon_4_vertex_33": {
+        "x": 18.333599868009316,
+        "y": 14.206997569148555
+      },
+      "block_1_polygon_5_vertex_0": {
+        "x": 13.018184093086191,
+        "y": 14.468457933508006
+      },
+      "block_1_polygon_5_vertex_1": {
+        "x": 12.947432157842584,
+        "y": 14.657422777258006
+      },
+      "block_1_polygon_5_vertex_2": {
+        "x": 13.16584035500712,
+        "y": 14.657422777258006
+      },
+      "block_1_polygon_5_vertex_3": {
+        "x": 13.098604020921655,
+        "y": 14.4790048263894
+      },
+      "block_1_polygon_5_vertex_4": {
+        "x": 13.052900907842584,
+        "y": 14.345411088310328
+      },
+      "block_1_polygon_6_vertex_0": {
+        "x": 13.100801286546655,
+        "y": 14.277735259376612
+      },
+      "block_1_polygon_6_vertex_1": {
+        "x": 13.34410174484681,
+        "y": 14.872199390156581
+      },
+      "block_1_polygon_6_vertex_2": {
+        "x": 13.619363066999384,
+        "y": 14.87032686415553
+      },
+      "block_1_polygon_6_vertex_3": {
+        "x": 13.619363066999384,
+        "y": 14.417920853935328
+      },
+      "block_1_polygon_6_vertex_4": {
+        "x": 13.544436273424097,
+        "y": 14.4724130295144
+      },
+      "block_1_polygon_6_vertex_5": {
+        "x": 13.461159882394739,
+        "y": 14.513282146297541
+      },
+      "block_1_polygon_6_vertex_6": {
+        "x": 13.461159882394739,
+        "y": 14.43681731446847
+      },
+      "block_1_polygon_6_vertex_7": {
+        "x": 13.57717549547381,
+        "y": 14.361231353126612
+      },
+      "block_1_polygon_6_vertex_8": {
+        "x": 13.64748799547381,
+        "y": 14.275098588310328
+      },
+      "block_1_polygon_6_vertex_9": {
+        "x": 13.698464629499384,
+        "y": 14.275098588310328
+      },
+      "block_1_polygon_6_vertex_10": {
+        "x": 13.698464629499384,
+        "y": 14.921973552547541
+      },
+      "block_1_polygon_6_vertex_11": {
+        "x": 13.619363066999384,
+        "y": 14.921973552547541
+      },
+      "block_1_polygon_6_vertex_12": {
+        "x": 13.619363066999384,
+        "y": 14.897836590188476
+      },
+      "block_1_polygon_6_vertex_13": {
+        "x": 13.35532958073604,
+        "y": 14.899632736353553
+      },
+      "block_1_polygon_6_vertex_14": {
+        "x": 13.364473161546655,
+        "y": 14.921973552547541
+      },
+      "block_1_polygon_6_vertex_15": {
+        "x": 13.267354009000726,
+        "y": 14.921973552547541
+      },
+      "block_1_polygon_6_vertex_16": {
+        "x": 13.19220754250712,
+        "y": 14.72685637696847
+      },
+      "block_1_polygon_6_vertex_17": {
+        "x": 12.922822785822817,
+        "y": 14.72685637696847
+      },
+      "block_1_polygon_6_vertex_18": {
+        "x": 12.852070820776888,
+        "y": 14.921973552547541
+      },
+      "block_1_polygon_6_vertex_19": {
+        "x": 12.76154348396524,
+        "y": 14.921973552547541
+      },
+      "block_1_polygon_6_vertex_20": {
+        "x": 13.008955595342584,
+        "y": 14.277735259376612
+      },
+      "block_1_polygon_7_vertex_0": {
+        "x": 24.009150006405633,
+        "y": 6.695842577895718
+      },
+      "block_1_polygon_7_vertex_1": {
+        "x": 22.966599690454174,
+        "y": 21.3341403726591
+      },
+      "block_1_polygon_7_vertex_2": {
+        "x": 9.11553252810296,
+        "y": 21.844777197535244
+      },
+      "block_1_polygon_7_vertex_3": {
+        "x": 8.3359130892795,
+        "y": 8.88719388166868
+      },
+      "block_1_polygon_7_vertex_4": {
+        "x": 13.467716857106254,
+        "y": 8.26515706132605
+      },
+      "block_1_polygon_7_vertex_5": {
+        "x": 13.530281614160074,
+        "y": 3.7242375098941807
+      },
+      "block_1_polygon_7_vertex_6": {
+        "x": 2.53191324891327,
+        "y": 4.127657830657569
+      },
+      "block_1_polygon_7_vertex_7": { "x": 0, "y": 0.34042721493906924 },
+      "block_1_polygon_7_vertex_8": { "x": 18.191491323267186, "y": 0 },
+      "block_1_polygon_7_vertex_9": {
+        "x": 18.029320206285618,
+        "y": 6.347210198602909
+      },
+      "block_1_polygon_7_vertex_10": {
+        "x": 21.64438718668943,
+        "y": 2.9285940301809035
+      },
+      "block_2_polygon_0_vertex_0": {
+        "x": 11.732214103577604,
+        "y": 39.808737341137416
+      },
+      "block_2_polygon_0_vertex_1": {
+        "x": 13.306674852829943,
+        "y": 39.83001242899533
+      },
+      "block_2_polygon_0_vertex_2": {
+        "x": 18.90242255267809,
+        "y": 39.9789502909278
+      },
+      "block_2_polygon_0_vertex_3": {
+        "x": 19.200293376721206,
+        "y": 34.766184125616235
+      },
+      "block_2_polygon_0_vertex_4": {
+        "x": 15.98753174694879,
+        "y": 34.97895665250354
+      },
+      "block_2_polygon_0_vertex_5": {
+        "x": 15.136466687302928,
+        "y": 34.95767278737583
+      },
+      "block_2_polygon_0_vertex_6": {
+        "x": 11.476889755091463,
+        "y": 34.68107716217665
+      },
+      "block_2_polygon_1_vertex_0": {
+        "x": 12.723976139393983,
+        "y": 20.255326804984946
+      },
+      "block_2_polygon_1_vertex_1": {
+        "x": 3.6388697321004173,
+        "y": 13.72340412987353
+      },
+      "block_2_polygon_1_vertex_2": {
+        "x": 3.617587766093024,
+        "y": 13.70212724200627
+      },
+      "block_2_polygon_1_vertex_3": {
+        "x": 12.872913072911189,
+        "y": 8.148937446472814
+      },
+      "block_2_polygon_1_vertex_4": {
+        "x": 12.660143833566593,
+        "y": 3.9787229147845267
+      },
+      "block_2_polygon_1_vertex_5": {
+        "x": 2.364762819716205,
+        "y": 4.384123815160478
+      },
+      "block_2_polygon_1_vertex_6": { "x": 0, "y": 0.6168752674456641 },
+      "block_2_polygon_1_vertex_7": { "x": 17.63887153723762, "y": 0 },
+      "block_2_polygon_1_vertex_8": {
+        "x": 17.681415661390687,
+        "y": 0.40426308586174287
+      },
+      "block_2_polygon_1_vertex_9": {
+        "x": 17.93674037844569,
+        "y": 10.234046514806806
+      },
+      "block_2_polygon_1_vertex_10": {
+        "x": 10.979294318320413,
+        "y": 13.765964607572272
+      },
+      "block_2_polygon_1_vertex_11": {
+        "x": 11.404820071214758,
+        "y": 14.02127669661948
+      },
+      "block_2_polygon_1_vertex_12": {
+        "x": 17.78780463802518,
+        "y": 17.8936188758027
+      },
+      "block_2_polygon_1_vertex_13": {
+        "x": 17.83035651619103,
+        "y": 18.14893543769017
+      },
+      "block_2_polygon_1_vertex_14": {
+        "x": 17.803293633979152,
+        "y": 30.789278435237705
+      },
+      "block_2_polygon_1_vertex_15": {
+        "x": 23.15774487039188,
+        "y": 32.212997819373044
+      },
+      "block_2_polygon_1_vertex_16": {
+        "x": 23.179017029263164,
+        "y": 32.34066004085409
+      },
+      "block_2_polygon_1_vertex_17": {
+        "x": 22.32795241452031,
+        "y": 44.08533608030906
+      },
+      "block_2_polygon_1_vertex_18": {
+        "x": 21.753490371723714,
+        "y": 44.106615285885056
+      },
+      "block_2_polygon_1_vertex_19": {
+        "x": 8.264129802794656,
+        "y": 43.61725001259725
+      },
+      "block_2_polygon_1_vertex_20": {
+        "x": 8.2215754414581,
+        "y": 43.468318245468225
+      },
+      "block_2_polygon_1_vertex_21": {
+        "x": 7.20663374822027,
+        "y": 29.07526603567944
+      },
+      "block_2_polygon_1_vertex_22": {
+        "x": 7.2817556369611225,
+        "y": 24.86607438981207
+      },
+      "block_2_polygon_1_vertex_23": {
+        "x": 8.972528055869503,
+        "y": 25.167998036045717
+      },
+      "block_2_polygon_1_vertex_24": {
+        "x": 9.757529536076959,
+        "y": 25.409536953032628
+      },
+      "block_2_polygon_1_vertex_25": {
+        "x": 13.157739504063798,
+        "y": 27.340657589738967
+      },
+      "block_2_polygon_2_vertex_0": {
+        "x": 15.049226839900427,
+        "y": 35.610272876726675
+      },
+      "block_2_polygon_2_vertex_1": {
+        "x": 14.986385037064963,
+        "y": 35.80517031978278
+      },
+      "block_2_polygon_2_vertex_2": {
+        "x": 15.048567657232695,
+        "y": 35.998090259539175
+      },
+      "block_2_polygon_2_vertex_3": {
+        "x": 15.207429949999266,
+        "y": 36.06532656382232
+      },
+      "block_2_polygon_2_vertex_4": {
+        "x": 15.293562774420195,
+        "y": 36.04818790386825
+      },
+      "block_2_polygon_2_vertex_5": {
+        "x": 15.20918778038066,
+        "y": 36.011273853289175
+      },
+      "block_2_polygon_2_vertex_6": {
+        "x": 15.229842071295195,
+        "y": 35.94931095074325
+      },
+      "block_2_polygon_2_vertex_7": {
+        "x": 15.35157058095973,
+        "y": 36.01083438824325
+      },
+      "block_2_polygon_2_vertex_8": {
+        "x": 15.42671707725566,
+        "y": 35.804730884539175
+      },
+      "block_2_polygon_2_vertex_9": {
+        "x": 15.400130127430373,
+        "y": 35.66806095074325
+      },
+      "block_2_polygon_2_vertex_10": {
+        "x": 15.32234696006816,
+        "y": 35.577313892351675
+      },
+      "block_2_polygon_2_vertex_11": {
+        "x": 15.207429949999266,
+        "y": 35.54501407574325
+      },
+      "block_2_polygon_3_vertex_0": {
+        "x": 15.367830370426589,
+        "y": 35.514032654272604
+      },
+      "block_2_polygon_3_vertex_1": {
+        "x": 15.477034424305373,
+        "y": 35.632684998022604
+      },
+      "block_2_polygon_3_vertex_2": {
+        "x": 15.51460770225566,
+        "y": 35.804730884539175
+      },
+      "block_2_polygon_3_vertex_3": {
+        "x": 15.49043778038066,
+        "y": 35.94777285288482
+      },
+      "block_2_polygon_3_vertex_4": {
+        "x": 15.41748854970973,
+        "y": 36.05829530190139
+      },
+      "block_2_polygon_3_vertex_5": {
+        "x": 15.526912365913802,
+        "y": 36.11806093882232
+      },
+      "block_2_polygon_3_vertex_6": {
+        "x": 15.501863573551589,
+        "y": 36.17738711069732
+      },
+      "block_2_polygon_3_vertex_7": {
+        "x": 15.363435839176589,
+        "y": 36.09828554819732
+      },
+      "block_2_polygon_3_vertex_8": {
+        "x": 15.205232684374266,
+        "y": 36.13827579449325
+      },
+      "block_2_polygon_3_vertex_9": {
+        "x": 15.04659012413066,
+        "y": 36.09608828257232
+      },
+      "block_2_polygon_3_vertex_10": {
+        "x": 14.936946567953044,
+        "y": 35.97743593882232
+      },
+      "block_2_polygon_3_vertex_11": {
+        "x": 14.898494419515544,
+        "y": 35.80517031978278
+      },
+      "block_2_polygon_3_vertex_12": {
+        "x": 14.937166293025427,
+        "y": 35.631586365210104
+      },
+      "block_2_polygon_3_vertex_13": {
+        "x": 15.04724929189723,
+        "y": 35.512494556414175
+      },
+      "block_2_polygon_3_vertex_14": {
+        "x": 15.20699051475566,
+        "y": 35.47162543963103
+      },
+      "block_2_polygon_4_vertex_0": {
+        "x": 17.64617826401222,
+        "y": 36.88206721704553
+      },
+      "block_2_polygon_4_vertex_1": {
+        "x": 17.575426328768614,
+        "y": 37.07103206079553
+      },
+      "block_2_polygon_4_vertex_2": {
+        "x": 17.79383452593315,
+        "y": 37.07103206079553
+      },
+      "block_2_polygon_4_vertex_3": {
+        "x": 17.726598191847685,
+        "y": 36.892614109926924
+      },
+      "block_2_polygon_4_vertex_4": {
+        "x": 17.680895078768614,
+        "y": 36.75902037184785
+      },
+      "block_2_polygon_5_vertex_0": {
+        "x": 17.728795457472685,
+        "y": 36.69134453546355
+      },
+      "block_2_polygon_5_vertex_1": {
+        "x": 17.976897703711842,
+        "y": 37.29754104200221
+      },
+      "block_2_polygon_5_vertex_2": {
+        "x": 18.024678463033155,
+        "y": 37.298223624278236
+      },
+      "block_2_polygon_5_vertex_3": {
+        "x": 18.02763061582077,
+        "y": 37.28065119546007
+      },
+      "block_2_polygon_5_vertex_4": {
+        "x": 18.079705823054198,
+        "y": 37.19495783608507
+      },
+      "block_2_polygon_5_vertex_5": {
+        "x": 18.18319701014984,
+        "y": 37.09739924829553
+      },
+      "block_2_polygon_5_vertex_6": {
+        "x": 18.325140405287627,
+        "y": 36.96094904702257
+      },
+      "block_2_polygon_5_vertex_7": {
+        "x": 18.362054455866698,
+        "y": 36.865807457380996
+      },
+      "block_2_polygon_5_vertex_8": {
+        "x": 18.328436303725127,
+        "y": 36.78648619216035
+      },
+      "block_2_polygon_5_vertex_9": {
+        "x": 18.24076538144577,
+        "y": 36.754186375551924
+      },
+      "block_2_polygon_5_vertex_10": {
+        "x": 18.149359155287627,
+        "y": 36.78846369546007
+      },
+      "block_2_polygon_5_vertex_11": {
+        "x": 18.114642370333556,
+        "y": 36.883385582380996
+      },
+      "block_2_polygon_5_vertex_12": {
+        "x": 18.033343542208556,
+        "y": 36.875035984926924
+      },
+      "block_2_polygon_5_vertex_13": {
+        "x": 18.096185315241698,
+        "y": 36.73638848822663
+      },
+      "block_2_polygon_5_vertex_14": {
+        "x": 18.24252318202484,
+        "y": 36.688707864397266
+      },
+      "block_2_polygon_5_vertex_15": {
+        "x": 18.389300573458556,
+        "y": 36.74012385171006
+      },
+      "block_2_polygon_5_vertex_16": {
+        "x": 18.443353283991698,
+        "y": 36.86756525796007
+      },
+      "block_2_polygon_5_vertex_17": {
+        "x": 18.427532899966124,
+        "y": 36.94359065454553
+      },
+      "block_2_polygon_5_vertex_18": {
+        "x": 18.375018346896056,
+        "y": 37.0222527519996
+      },
+      "block_2_polygon_5_vertex_19": {
+        "x": 18.253070104708556,
+        "y": 37.13563166421007
+      },
+      "block_2_polygon_5_vertex_20": {
+        "x": 18.16166381894577,
+        "y": 37.216710789614424
+      },
+      "block_2_polygon_5_vertex_21": {
+        "x": 18.12826536952484,
+        "y": 37.259557469301924
+      },
+      "block_2_polygon_5_vertex_22": {
+        "x": 18.444232214083556,
+        "y": 37.259557469301924
+      },
+      "block_2_polygon_5_vertex_23": {
+        "x": 18.444232214083556,
+        "y": 37.33558283608507
+      },
+      "block_2_polygon_5_vertex_24": {
+        "x": 18.018402147879485,
+        "y": 37.33558283608507
+      },
+      "block_2_polygon_5_vertex_25": {
+        "x": 18.020989736157503,
+        "y": 37.32018044532224
+      },
+      "block_2_polygon_5_vertex_26": {
+        "x": 17.985958669130525,
+        "y": 37.319680001507564
+      },
+      "block_2_polygon_5_vertex_27": {
+        "x": 17.992467332472685,
+        "y": 37.33558283608507
+      },
+      "block_2_polygon_5_vertex_28": {
+        "x": 17.895348179926756,
+        "y": 37.33558283608507
+      },
+      "block_2_polygon_5_vertex_29": {
+        "x": 17.82020171343315,
+        "y": 37.140465660505996
+      },
+      "block_2_polygon_5_vertex_30": {
+        "x": 17.550816956748847,
+        "y": 37.140465660505996
+      },
+      "block_2_polygon_5_vertex_31": {
+        "x": 17.480064999153498,
+        "y": 37.33558283608507
+      },
+      "block_2_polygon_5_vertex_32": {
+        "x": 17.38953765489127,
+        "y": 37.33558283608507
+      },
+      "block_2_polygon_5_vertex_33": {
+        "x": 17.636949766268614,
+        "y": 36.69134453546355
+      },
+      "block_2_polygon_6_vertex_0": {
+        "x": 12.32153399134549,
+        "y": 36.95280489982301
+      },
+      "block_2_polygon_6_vertex_1": {
+        "x": 12.250782056101883,
+        "y": 37.14176974357301
+      },
+      "block_2_polygon_6_vertex_2": {
+        "x": 12.469190253266419,
+        "y": 37.14176974357301
+      },
+      "block_2_polygon_6_vertex_3": {
+        "x": 12.401953919180954,
+        "y": 36.9633517927044
+      },
+      "block_2_polygon_6_vertex_4": {
+        "x": 12.356250806101883,
+        "y": 36.82975805462533
+      },
+      "block_2_polygon_7_vertex_0": {
+        "x": 12.404151184805954,
+        "y": 36.762082225691614
+      },
+      "block_2_polygon_7_vertex_1": {
+        "x": 12.647451643106109,
+        "y": 37.35654635647158
+      },
+      "block_2_polygon_7_vertex_2": {
+        "x": 12.922712965258683,
+        "y": 37.35467383047053
+      },
+      "block_2_polygon_7_vertex_3": {
+        "x": 12.922712965258683,
+        "y": 36.90226782025033
+      },
+      "block_2_polygon_7_vertex_4": {
+        "x": 12.847786171683396,
+        "y": 36.9567599958294
+      },
+      "block_2_polygon_7_vertex_5": {
+        "x": 12.764509780654038,
+        "y": 36.99762911261254
+      },
+      "block_2_polygon_7_vertex_6": {
+        "x": 12.764509780654038,
+        "y": 36.92116428078347
+      },
+      "block_2_polygon_7_vertex_7": {
+        "x": 12.880525393733109,
+        "y": 36.845578319441614
+      },
+      "block_2_polygon_7_vertex_8": {
+        "x": 12.950837893733109,
+        "y": 36.75944555462533
+      },
+      "block_2_polygon_7_vertex_9": {
+        "x": 13.001814527758683,
+        "y": 36.75944555462533
+      },
+      "block_2_polygon_7_vertex_10": {
+        "x": 13.001814527758683,
+        "y": 37.40632051886254
+      },
+      "block_2_polygon_7_vertex_11": {
+        "x": 12.922712965258683,
+        "y": 37.40632051886254
+      },
+      "block_2_polygon_7_vertex_12": {
+        "x": 12.922712965258683,
+        "y": 37.38218355650348
+      },
+      "block_2_polygon_7_vertex_13": {
+        "x": 12.658679478995339,
+        "y": 37.383979702668555
+      },
+      "block_2_polygon_7_vertex_14": {
+        "x": 12.667823059805954,
+        "y": 37.40632051886254
+      },
+      "block_2_polygon_7_vertex_15": {
+        "x": 12.570703907260025,
+        "y": 37.40632051886254
+      },
+      "block_2_polygon_7_vertex_16": {
+        "x": 12.495557440766419,
+        "y": 37.21120334328347
+      },
+      "block_2_polygon_7_vertex_17": {
+        "x": 12.226172684082115,
+        "y": 37.21120334328347
+      },
+      "block_2_polygon_7_vertex_18": {
+        "x": 12.155420719036186,
+        "y": 37.40632051886254
+      },
+      "block_2_polygon_7_vertex_19": {
+        "x": 12.06489338222454,
+        "y": 37.40632051886254
+      },
+      "block_2_polygon_7_vertex_20": {
+        "x": 12.312305493601883,
+        "y": 36.762082225691614
+      },
+      "block_3_polygon_0_vertex_0": {
+        "x": 4.525580355357334,
+        "y": 16.4680800222108
+      },
+      "block_3_polygon_0_vertex_1": {
+        "x": 6.100041104609659,
+        "y": 16.489355110068715
+      },
+      "block_3_polygon_0_vertex_2": {
+        "x": 11.69578880445789,
+        "y": 16.63829297200118
+      },
+      "block_3_polygon_0_vertex_3": {
+        "x": 11.993659628501035,
+        "y": 11.425526806689618
+      },
+      "block_3_polygon_0_vertex_4": {
+        "x": 8.780897998728534,
+        "y": 11.638299333576924
+      },
+      "block_3_polygon_0_vertex_5": {
+        "x": 7.929832939082644,
+        "y": 11.61701546844921
+      },
+      "block_3_polygon_0_vertex_6": {
+        "x": 4.270256006871193,
+        "y": 11.340419843250032
+      },
+      "block_3_polygon_1_vertex_0": {
+        "x": 23.586404632455768,
+        "y": 0.5679971806050901
+      },
+      "block_3_polygon_1_vertex_1": {
+        "x": 23.507876957212744,
+        "y": 4.776517214354833
+      },
+      "block_3_polygon_1_vertex_2": {
+        "x": 10.972389139012392,
+        "y": 4.000001630894033
+      },
+      "block_3_polygon_1_vertex_3": {
+        "x": 10.596659885758925,
+        "y": 7.448621116311088
+      },
+      "block_3_polygon_1_vertex_4": {
+        "x": 15.951111122171682,
+        "y": 8.872340500446427
+      },
+      "block_3_polygon_1_vertex_5": {
+        "x": 15.972383281042966,
+        "y": 9.000002721927473
+      },
+      "block_3_polygon_1_vertex_6": {
+        "x": 15.12131866630014,
+        "y": 20.744678761382445
+      },
+      "block_3_polygon_1_vertex_7": {
+        "x": 14.546856623503515,
+        "y": 20.76595796695844
+      },
+      "block_3_polygon_1_vertex_8": {
+        "x": 1.0574960545743863,
+        "y": 20.276592693670636
+      },
+      "block_3_polygon_1_vertex_9": {
+        "x": 1.0149416932378301,
+        "y": 20.12766092654161
+      },
+      "block_3_polygon_1_vertex_10": { "x": 0, "y": 5.734608716752824 },
+      "block_3_polygon_1_vertex_11": {
+        "x": 0.07512188874085268,
+        "y": 1.525417070885453
+      },
+      "block_3_polygon_1_vertex_12": {
+        "x": 1.7658943076492335,
+        "y": 1.8273407171190996
+      },
+      "block_3_polygon_1_vertex_13": {
+        "x": 2.550895787856689,
+        "y": 2.068879634106011
+      },
+      "block_3_polygon_1_vertex_14": {
+        "x": 5.951105755843514,
+        "y": 4.00000027081235
+      },
+      "block_3_polygon_1_vertex_15": {
+        "x": 6.29153363859146,
+        "y": 0.021276816969958645
+      },
+      "block_3_polygon_1_vertex_16": { "x": 6.908552956851395, "y": 0 },
+      "block_3_polygon_2_vertex_0": {
+        "x": 8.001849993154138,
+        "y": 12.200193767927644
+      },
+      "block_3_polygon_2_vertex_1": {
+        "x": 7.939008190318674,
+        "y": 12.39509121098375
+      },
+      "block_3_polygon_2_vertex_2": {
+        "x": 8.001190810486406,
+        "y": 12.588011150740144
+      },
+      "block_3_polygon_2_vertex_3": {
+        "x": 8.160053103252977,
+        "y": 12.655247455023286
+      },
+      "block_3_polygon_2_vertex_4": {
+        "x": 8.246185927673906,
+        "y": 12.638108795069215
+      },
+      "block_3_polygon_2_vertex_5": {
+        "x": 8.16181093363437,
+        "y": 12.601194744490144
+      },
+      "block_3_polygon_2_vertex_6": {
+        "x": 8.182465224548906,
+        "y": 12.539231841944215
+      },
+      "block_3_polygon_2_vertex_7": {
+        "x": 8.304193734213442,
+        "y": 12.600755279444215
+      },
+      "block_3_polygon_2_vertex_8": {
+        "x": 8.37934023050937,
+        "y": 12.394651775740144
+      },
+      "block_3_polygon_2_vertex_9": {
+        "x": 8.352753280684084,
+        "y": 12.257981841944215
+      },
+      "block_3_polygon_2_vertex_10": {
+        "x": 8.27497011332187,
+        "y": 12.167234783552644
+      },
+      "block_3_polygon_2_vertex_11": {
+        "x": 8.160053103252977,
+        "y": 12.134934966944215
+      },
+      "block_3_polygon_3_vertex_0": {
+        "x": 8.3204535236803,
+        "y": 12.103953545473573
+      },
+      "block_3_polygon_3_vertex_1": {
+        "x": 8.429657577559084,
+        "y": 12.222605889223573
+      },
+      "block_3_polygon_3_vertex_2": {
+        "x": 8.46723085550937,
+        "y": 12.394651775740144
+      },
+      "block_3_polygon_3_vertex_3": {
+        "x": 8.44306093363437,
+        "y": 12.537693744085786
+      },
+      "block_3_polygon_3_vertex_4": {
+        "x": 8.370111702963442,
+        "y": 12.648216193102357
+      },
+      "block_3_polygon_3_vertex_5": {
+        "x": 8.479535519167513,
+        "y": 12.707981830023286
+      },
+      "block_3_polygon_3_vertex_6": {
+        "x": 8.4544867268053,
+        "y": 12.767308001898286
+      },
+      "block_3_polygon_3_vertex_7": {
+        "x": 8.3160589924303,
+        "y": 12.688206439398286
+      },
+      "block_3_polygon_3_vertex_8": {
+        "x": 8.157855837627977,
+        "y": 12.728196685694215
+      },
+      "block_3_polygon_3_vertex_9": {
+        "x": 7.999213277384371,
+        "y": 12.686009173773286
+      },
+      "block_3_polygon_3_vertex_10": {
+        "x": 7.889569721206755,
+        "y": 12.567356830023286
+      },
+      "block_3_polygon_3_vertex_11": {
+        "x": 7.851117572769255,
+        "y": 12.39509121098375
+      },
+      "block_3_polygon_3_vertex_12": {
+        "x": 7.8897894462791385,
+        "y": 12.221507256411073
+      },
+      "block_3_polygon_3_vertex_13": {
+        "x": 7.999872445150942,
+        "y": 12.102415447615144
+      },
+      "block_3_polygon_3_vertex_14": {
+        "x": 8.15961366800937,
+        "y": 12.061546330832002
+      },
+      "block_3_polygon_4_vertex_0": {
+        "x": 10.598801417265932,
+        "y": 13.4719881082465
+      },
+      "block_3_polygon_4_vertex_1": {
+        "x": 10.528049482022325,
+        "y": 13.6609529519965
+      },
+      "block_3_polygon_4_vertex_2": {
+        "x": 10.746457679186861,
+        "y": 13.6609529519965
+      },
+      "block_3_polygon_4_vertex_3": {
+        "x": 10.679221345101396,
+        "y": 13.482535001127893
+      },
+      "block_3_polygon_4_vertex_4": {
+        "x": 10.633518232022325,
+        "y": 13.348941263048822
+      },
+      "block_3_polygon_5_vertex_0": {
+        "x": 10.681418610726396,
+        "y": 13.281265426664518
+      },
+      "block_3_polygon_5_vertex_1": {
+        "x": 10.929520856965567,
+        "y": 13.887461933203177
+      },
+      "block_3_polygon_5_vertex_2": {
+        "x": 10.97730161628688,
+        "y": 13.888144515479205
+      },
+      "block_3_polygon_5_vertex_3": {
+        "x": 10.98025376907448,
+        "y": 13.870572086661035
+      },
+      "block_3_polygon_5_vertex_4": {
+        "x": 11.032328976307909,
+        "y": 13.784878727286035
+      },
+      "block_3_polygon_5_vertex_5": {
+        "x": 11.135820163403551,
+        "y": 13.6873201394965
+      },
+      "block_3_polygon_5_vertex_6": {
+        "x": 11.277763558541338,
+        "y": 13.550869938223535
+      },
+      "block_3_polygon_5_vertex_7": {
+        "x": 11.314677609120409,
+        "y": 13.455728348581964
+      },
+      "block_3_polygon_5_vertex_8": {
+        "x": 11.281059456978838,
+        "y": 13.376407083361322
+      },
+      "block_3_polygon_5_vertex_9": {
+        "x": 11.19338853469948,
+        "y": 13.344107266752893
+      },
+      "block_3_polygon_5_vertex_10": {
+        "x": 11.101982308541338,
+        "y": 13.378384586661035
+      },
+      "block_3_polygon_5_vertex_11": {
+        "x": 11.067265523587267,
+        "y": 13.473306473581964
+      },
+      "block_3_polygon_5_vertex_12": {
+        "x": 10.985966695462267,
+        "y": 13.464956876127893
+      },
+      "block_3_polygon_5_vertex_13": {
+        "x": 11.048808468495409,
+        "y": 13.326309379427599
+      },
+      "block_3_polygon_5_vertex_14": {
+        "x": 11.195146335278551,
+        "y": 13.278628755598234
+      },
+      "block_3_polygon_5_vertex_15": {
+        "x": 11.341923726712267,
+        "y": 13.330044742911028
+      },
+      "block_3_polygon_5_vertex_16": {
+        "x": 11.395976437245409,
+        "y": 13.457486149161035
+      },
+      "block_3_polygon_5_vertex_17": {
+        "x": 11.380156053219835,
+        "y": 13.5335115457465
+      },
+      "block_3_polygon_5_vertex_18": {
+        "x": 11.327641500149767,
+        "y": 13.61217364320057
+      },
+      "block_3_polygon_5_vertex_19": {
+        "x": 11.205693257962267,
+        "y": 13.725552555411035
+      },
+      "block_3_polygon_5_vertex_20": {
+        "x": 11.11428697219948,
+        "y": 13.806631680815393
+      },
+      "block_3_polygon_5_vertex_21": {
+        "x": 11.080888522778551,
+        "y": 13.849478360502893
+      },
+      "block_3_polygon_5_vertex_22": {
+        "x": 11.396855367337267,
+        "y": 13.849478360502893
+      },
+      "block_3_polygon_5_vertex_23": {
+        "x": 11.396855367337267,
+        "y": 13.925503727286035
+      },
+      "block_3_polygon_5_vertex_24": {
+        "x": 10.971025301133196,
+        "y": 13.925503727286035
+      },
+      "block_3_polygon_5_vertex_25": {
+        "x": 10.973612889411228,
+        "y": 13.910101336523205
+      },
+      "block_3_polygon_5_vertex_26": {
+        "x": 10.93858182238425,
+        "y": 13.909600892708532
+      },
+      "block_3_polygon_5_vertex_27": {
+        "x": 10.945090485726396,
+        "y": 13.925503727286035
+      },
+      "block_3_polygon_5_vertex_28": {
+        "x": 10.847971333180467,
+        "y": 13.925503727286035
+      },
+      "block_3_polygon_5_vertex_29": {
+        "x": 10.772824866686861,
+        "y": 13.730386551706964
+      },
+      "block_3_polygon_5_vertex_30": {
+        "x": 10.503440110002558,
+        "y": 13.730386551706964
+      },
+      "block_3_polygon_5_vertex_31": {
+        "x": 10.43268815240721,
+        "y": 13.925503727286035
+      },
+      "block_3_polygon_5_vertex_32": {
+        "x": 10.342160808144982,
+        "y": 13.925503727286035
+      },
+      "block_3_polygon_5_vertex_33": {
+        "x": 10.589572919522325,
+        "y": 13.281265426664518
+      },
+      "block_3_polygon_6_vertex_0": {
+        "x": 5.274157144599201,
+        "y": 13.542725791023976
+      },
+      "block_3_polygon_6_vertex_1": {
+        "x": 5.203405209355594,
+        "y": 13.731690634773976
+      },
+      "block_3_polygon_6_vertex_2": {
+        "x": 5.42181340652013,
+        "y": 13.731690634773976
+      },
+      "block_3_polygon_6_vertex_3": {
+        "x": 5.354577072434665,
+        "y": 13.55327268390537
+      },
+      "block_3_polygon_6_vertex_4": {
+        "x": 5.308873959355594,
+        "y": 13.419678945826298
+      },
+      "block_3_polygon_7_vertex_0": {
+        "x": 5.356774338059665,
+        "y": 13.352003116892583
+      },
+      "block_3_polygon_7_vertex_1": {
+        "x": 5.60007479635982,
+        "y": 13.946467247672551
+      },
+      "block_3_polygon_7_vertex_2": {
+        "x": 5.875336118512394,
+        "y": 13.9445947216715
+      },
+      "block_3_polygon_7_vertex_3": {
+        "x": 5.875336118512394,
+        "y": 13.492188711451298
+      },
+      "block_3_polygon_7_vertex_4": {
+        "x": 5.800409324937107,
+        "y": 13.54668088703037
+      },
+      "block_3_polygon_7_vertex_5": {
+        "x": 5.717132933907749,
+        "y": 13.587550003813512
+      },
+      "block_3_polygon_7_vertex_6": {
+        "x": 5.717132933907749,
+        "y": 13.51108517198444
+      },
+      "block_3_polygon_7_vertex_7": {
+        "x": 5.83314854698682,
+        "y": 13.435499210642583
+      },
+      "block_3_polygon_7_vertex_8": {
+        "x": 5.90346104698682,
+        "y": 13.349366445826298
+      },
+      "block_3_polygon_7_vertex_9": {
+        "x": 5.954437681012394,
+        "y": 13.349366445826298
+      },
+      "block_3_polygon_7_vertex_10": {
+        "x": 5.954437681012394,
+        "y": 13.996241410063512
+      },
+      "block_3_polygon_7_vertex_11": {
+        "x": 5.875336118512394,
+        "y": 13.996241410063512
+      },
+      "block_3_polygon_7_vertex_12": {
+        "x": 5.875336118512394,
+        "y": 13.972104447704446
+      },
+      "block_3_polygon_7_vertex_13": {
+        "x": 5.61130263224905,
+        "y": 13.973900593869523
+      },
+      "block_3_polygon_7_vertex_14": {
+        "x": 5.620446213059665,
+        "y": 13.996241410063512
+      },
+      "block_3_polygon_7_vertex_15": {
+        "x": 5.523327060513736,
+        "y": 13.996241410063512
+      },
+      "block_3_polygon_7_vertex_16": {
+        "x": 5.44818059402013,
+        "y": 13.80112423448444
+      },
+      "block_3_polygon_7_vertex_17": {
+        "x": 5.1787958373358265,
+        "y": 13.80112423448444
+      },
+      "block_3_polygon_7_vertex_18": {
+        "x": 5.1080438722898975,
+        "y": 13.996241410063512
+      },
+      "block_3_polygon_7_vertex_19": {
+        "x": 5.017516535478251,
+        "y": 13.996241410063512
+      },
+      "block_3_polygon_7_vertex_20": {
+        "x": 5.264928646855594,
+        "y": 13.352003116892583
+      },
+      "block_4_polygon_0_vertex_0": {
+        "x": 14.747632289729736,
+        "y": 16.4680800222108
+      },
+      "block_4_polygon_0_vertex_1": {
+        "x": 16.32209303898206,
+        "y": 16.489355110068715
+      },
+      "block_4_polygon_0_vertex_2": {
+        "x": 21.917840738830293,
+        "y": 16.63829297200118
+      },
+      "block_4_polygon_0_vertex_3": {
+        "x": 22.215711562873437,
+        "y": 11.425526806689618
+      },
+      "block_4_polygon_0_vertex_4": {
+        "x": 19.002949933100936,
+        "y": 11.638299333576924
+      },
+      "block_4_polygon_0_vertex_5": {
+        "x": 18.151884873455046,
+        "y": 11.61701546844921
+      },
+      "block_4_polygon_0_vertex_6": {
+        "x": 14.492307941243595,
+        "y": 11.340419843250032
+      },
+      "block_4_polygon_1_vertex_0": {
+        "x": 10.297173823113255,
+        "y": 1.525417070885453
+      },
+      "block_4_polygon_1_vertex_1": {
+        "x": 11.987946242021636,
+        "y": 1.8273407171190996
+      },
+      "block_4_polygon_1_vertex_2": {
+        "x": 12.772947722229091,
+        "y": 2.068879634106011
+      },
+      "block_4_polygon_1_vertex_3": {
+        "x": 16.173157690215916,
+        "y": 4.00000027081235
+      },
+      "block_4_polygon_1_vertex_4": {
+        "x": 16.513585572963862,
+        "y": 0.021276816969958645
+      },
+      "block_4_polygon_1_vertex_5": { "x": 17.130604891223797, "y": 0 },
+      "block_4_polygon_1_vertex_6": {
+        "x": 33.80845656682817,
+        "y": 0.5679971806050901
+      },
+      "block_4_polygon_1_vertex_7": {
+        "x": 33.729928891585146,
+        "y": 4.776517214354833
+      },
+      "block_4_polygon_1_vertex_8": {
+        "x": 21.194441073384795,
+        "y": 4.000001630894033
+      },
+      "block_4_polygon_1_vertex_9": {
+        "x": 20.818711820131327,
+        "y": 7.448621116311088
+      },
+      "block_4_polygon_1_vertex_10": {
+        "x": 26.173163056544084,
+        "y": 8.872340500446427
+      },
+      "block_4_polygon_1_vertex_11": {
+        "x": 26.194435215415368,
+        "y": 9.000002721927473
+      },
+      "block_4_polygon_1_vertex_12": {
+        "x": 25.343370600672543,
+        "y": 20.744678761382445
+      },
+      "block_4_polygon_1_vertex_13": {
+        "x": 24.768908557875918,
+        "y": 20.76595796695844
+      },
+      "block_4_polygon_1_vertex_14": {
+        "x": 11.279547988946788,
+        "y": 20.276592693670636
+      },
+      "block_4_polygon_1_vertex_15": {
+        "x": 11.236993627610232,
+        "y": 20.12766092654161
+      },
+      "block_4_polygon_1_vertex_16": {
+        "x": 10.222051934372402,
+        "y": 5.734608716752824
+      },
+      "block_4_polygon_1_vertex_17": {
+        "x": 0.2098940534394842,
+        "y": 5.7176916418778845
+      },
+      "block_4_polygon_1_vertex_18": { "x": 0, "y": 1.9395986799666716 },
+      "block_4_polygon_2_vertex_0": {
+        "x": 18.205542074884093,
+        "y": 12.240990497285388
+      },
+      "block_4_polygon_2_vertex_1": {
+        "x": 18.14270027204863,
+        "y": 12.435887940341495
+      },
+      "block_4_polygon_2_vertex_2": {
+        "x": 18.20488289221636,
+        "y": 12.628807880097888
+      },
+      "block_4_polygon_2_vertex_3": {
+        "x": 18.363745184982932,
+        "y": 12.69604418438103
+      },
+      "block_4_polygon_2_vertex_4": {
+        "x": 18.44987800940386,
+        "y": 12.678905524426959
+      },
+      "block_4_polygon_2_vertex_5": {
+        "x": 18.365503015364325,
+        "y": 12.641991473847888
+      },
+      "block_4_polygon_2_vertex_6": {
+        "x": 18.38615730627886,
+        "y": 12.580028571301959
+      },
+      "block_4_polygon_2_vertex_7": {
+        "x": 18.507885815943396,
+        "y": 12.641552008801959
+      },
+      "block_4_polygon_2_vertex_8": {
+        "x": 18.583032312239325,
+        "y": 12.435448505097888
+      },
+      "block_4_polygon_2_vertex_9": {
+        "x": 18.55644536241404,
+        "y": 12.298778571301959
+      },
+      "block_4_polygon_2_vertex_10": {
+        "x": 18.478662195051825,
+        "y": 12.208031512910388
+      },
+      "block_4_polygon_2_vertex_11": {
+        "x": 18.363745184982932,
+        "y": 12.175731696301959
+      },
+      "block_4_polygon_3_vertex_0": {
+        "x": 18.524145605410254,
+        "y": 12.144750274831317
+      },
+      "block_4_polygon_3_vertex_1": {
+        "x": 18.63334965928904,
+        "y": 12.263402618581317
+      },
+      "block_4_polygon_3_vertex_2": {
+        "x": 18.670922937239325,
+        "y": 12.435448505097888
+      },
+      "block_4_polygon_3_vertex_3": {
+        "x": 18.646753015364325,
+        "y": 12.57849047344353
+      },
+      "block_4_polygon_3_vertex_4": {
+        "x": 18.573803784693396,
+        "y": 12.689012922460101
+      },
+      "block_4_polygon_3_vertex_5": {
+        "x": 18.683227600897467,
+        "y": 12.74877855938103
+      },
+      "block_4_polygon_3_vertex_6": {
+        "x": 18.658178808535254,
+        "y": 12.80810473125603
+      },
+      "block_4_polygon_3_vertex_7": {
+        "x": 18.519751074160254,
+        "y": 12.72900316875603
+      },
+      "block_4_polygon_3_vertex_8": {
+        "x": 18.361547919357932,
+        "y": 12.768993415051959
+      },
+      "block_4_polygon_3_vertex_9": {
+        "x": 18.202905359114325,
+        "y": 12.72680590313103
+      },
+      "block_4_polygon_3_vertex_10": {
+        "x": 18.09326180293671,
+        "y": 12.60815355938103
+      },
+      "block_4_polygon_3_vertex_11": {
+        "x": 18.05480965449921,
+        "y": 12.435887940341495
+      },
+      "block_4_polygon_3_vertex_12": {
+        "x": 18.093481528009093,
+        "y": 12.262303985768817
+      },
+      "block_4_polygon_3_vertex_13": {
+        "x": 18.203564526880896,
+        "y": 12.143212176972888
+      },
+      "block_4_polygon_3_vertex_14": {
+        "x": 18.363305749739325,
+        "y": 12.102343060189746
+      },
+      "block_4_polygon_4_vertex_0": {
+        "x": 20.802493498995887,
+        "y": 13.512784837604244
+      },
+      "block_4_polygon_4_vertex_1": {
+        "x": 20.73174156375228,
+        "y": 13.701749681354244
+      },
+      "block_4_polygon_4_vertex_2": {
+        "x": 20.950149760916815,
+        "y": 13.701749681354244
+      },
+      "block_4_polygon_4_vertex_3": {
+        "x": 20.88291342683135,
+        "y": 13.523331730485637
+      },
+      "block_4_polygon_4_vertex_4": {
+        "x": 20.83721031375228,
+        "y": 13.389737992406566
+      },
+      "block_4_polygon_5_vertex_0": {
+        "x": 20.88511069245635,
+        "y": 13.322062156022263
+      },
+      "block_4_polygon_5_vertex_1": {
+        "x": 21.13321293869552,
+        "y": 13.928258662560921
+      },
+      "block_4_polygon_5_vertex_2": {
+        "x": 21.180993698016835,
+        "y": 13.928941244836949
+      },
+      "block_4_polygon_5_vertex_3": {
+        "x": 21.183945850804434,
+        "y": 13.91136881601878
+      },
+      "block_4_polygon_5_vertex_4": {
+        "x": 21.236021058037863,
+        "y": 13.82567545664378
+      },
+      "block_4_polygon_5_vertex_5": {
+        "x": 21.339512245133506,
+        "y": 13.728116868854244
+      },
+      "block_4_polygon_5_vertex_6": {
+        "x": 21.481455640271292,
+        "y": 13.59166666758128
+      },
+      "block_4_polygon_5_vertex_7": {
+        "x": 21.518369690850363,
+        "y": 13.496525077939708
+      },
+      "block_4_polygon_5_vertex_8": {
+        "x": 21.484751538708792,
+        "y": 13.417203812719066
+      },
+      "block_4_polygon_5_vertex_9": {
+        "x": 21.397080616429434,
+        "y": 13.384903996110637
+      },
+      "block_4_polygon_5_vertex_10": {
+        "x": 21.305674390271292,
+        "y": 13.41918131601878
+      },
+      "block_4_polygon_5_vertex_11": {
+        "x": 21.27095760531722,
+        "y": 13.514103202939708
+      },
+      "block_4_polygon_5_vertex_12": {
+        "x": 21.18965877719222,
+        "y": 13.505753605485637
+      },
+      "block_4_polygon_5_vertex_13": {
+        "x": 21.252500550225363,
+        "y": 13.367106108785343
+      },
+      "block_4_polygon_5_vertex_14": {
+        "x": 21.398838417008506,
+        "y": 13.319425484955978
+      },
+      "block_4_polygon_5_vertex_15": {
+        "x": 21.54561580844222,
+        "y": 13.370841472268772
+      },
+      "block_4_polygon_5_vertex_16": {
+        "x": 21.599668518975363,
+        "y": 13.49828287851878
+      },
+      "block_4_polygon_5_vertex_17": {
+        "x": 21.58384813494979,
+        "y": 13.574308275104244
+      },
+      "block_4_polygon_5_vertex_18": {
+        "x": 21.53133358187972,
+        "y": 13.652970372558315
+      },
+      "block_4_polygon_5_vertex_19": {
+        "x": 21.40938533969222,
+        "y": 13.76634928476878
+      },
+      "block_4_polygon_5_vertex_20": {
+        "x": 21.317979053929434,
+        "y": 13.847428410173137
+      },
+      "block_4_polygon_5_vertex_21": {
+        "x": 21.284580604508506,
+        "y": 13.890275089860637
+      },
+      "block_4_polygon_5_vertex_22": {
+        "x": 21.60054744906722,
+        "y": 13.890275089860637
+      },
+      "block_4_polygon_5_vertex_23": {
+        "x": 21.60054744906722,
+        "y": 13.96630045664378
+      },
+      "block_4_polygon_5_vertex_24": {
+        "x": 21.17471738286315,
+        "y": 13.96630045664378
+      },
+      "block_4_polygon_5_vertex_25": {
+        "x": 21.177304971141183,
+        "y": 13.95089806588095
+      },
+      "block_4_polygon_5_vertex_26": {
+        "x": 21.142273904114205,
+        "y": 13.950397622066276
+      },
+      "block_4_polygon_5_vertex_27": {
+        "x": 21.14878256745635,
+        "y": 13.96630045664378
+      },
+      "block_4_polygon_5_vertex_28": {
+        "x": 21.051663414910422,
+        "y": 13.96630045664378
+      },
+      "block_4_polygon_5_vertex_29": {
+        "x": 20.976516948416815,
+        "y": 13.771183281064708
+      },
+      "block_4_polygon_5_vertex_30": {
+        "x": 20.707132191732512,
+        "y": 13.771183281064708
+      },
+      "block_4_polygon_5_vertex_31": {
+        "x": 20.636380234137164,
+        "y": 13.96630045664378
+      },
+      "block_4_polygon_5_vertex_32": {
+        "x": 20.545852889874936,
+        "y": 13.96630045664378
+      },
+      "block_4_polygon_5_vertex_33": {
+        "x": 20.79326500125228,
+        "y": 13.322062156022263
+      },
+      "block_4_polygon_6_vertex_0": {
+        "x": 15.477849226329155,
+        "y": 13.58352252038172
+      },
+      "block_4_polygon_6_vertex_1": {
+        "x": 15.407097291085549,
+        "y": 13.77248736413172
+      },
+      "block_4_polygon_6_vertex_2": {
+        "x": 15.625505488250084,
+        "y": 13.77248736413172
+      },
+      "block_4_polygon_6_vertex_3": {
+        "x": 15.55826915416462,
+        "y": 13.594069413263114
+      },
+      "block_4_polygon_6_vertex_4": {
+        "x": 15.512566041085549,
+        "y": 13.460475675184043
+      },
+      "block_4_polygon_7_vertex_0": {
+        "x": 15.56046641978962,
+        "y": 13.392799846250327
+      },
+      "block_4_polygon_7_vertex_1": {
+        "x": 15.803766878089775,
+        "y": 13.987263977030295
+      },
+      "block_4_polygon_7_vertex_2": {
+        "x": 16.079028200242348,
+        "y": 13.985391451029244
+      },
+      "block_4_polygon_7_vertex_3": {
+        "x": 16.079028200242348,
+        "y": 13.532985440809043
+      },
+      "block_4_polygon_7_vertex_4": {
+        "x": 16.00410140666706,
+        "y": 13.587477616388114
+      },
+      "block_4_polygon_7_vertex_5": {
+        "x": 15.920825015637703,
+        "y": 13.628346733171256
+      },
+      "block_4_polygon_7_vertex_6": {
+        "x": 15.920825015637703,
+        "y": 13.551881901342185
+      },
+      "block_4_polygon_7_vertex_7": {
+        "x": 16.036840628716774,
+        "y": 13.476295940000327
+      },
+      "block_4_polygon_7_vertex_8": {
+        "x": 16.107153128716774,
+        "y": 13.390163175184043
+      },
+      "block_4_polygon_7_vertex_9": {
+        "x": 16.158129762742348,
+        "y": 13.390163175184043
+      },
+      "block_4_polygon_7_vertex_10": {
+        "x": 16.158129762742348,
+        "y": 14.037038139421256
+      },
+      "block_4_polygon_7_vertex_11": {
+        "x": 16.079028200242348,
+        "y": 14.037038139421256
+      },
+      "block_4_polygon_7_vertex_12": {
+        "x": 16.079028200242348,
+        "y": 14.01290117706219
+      },
+      "block_4_polygon_7_vertex_13": {
+        "x": 15.814994713979004,
+        "y": 14.014697323227267
+      },
+      "block_4_polygon_7_vertex_14": {
+        "x": 15.82413829478962,
+        "y": 14.037038139421256
+      },
+      "block_4_polygon_7_vertex_15": {
+        "x": 15.727019142243691,
+        "y": 14.037038139421256
+      },
+      "block_4_polygon_7_vertex_16": {
+        "x": 15.651872675750084,
+        "y": 13.841920963842185
+      },
+      "block_4_polygon_7_vertex_17": {
+        "x": 15.382487919065781,
+        "y": 13.841920963842185
+      },
+      "block_4_polygon_7_vertex_18": {
+        "x": 15.311735954019852,
+        "y": 14.037038139421256
+      },
+      "block_4_polygon_7_vertex_19": {
+        "x": 15.221208617208205,
+        "y": 14.037038139421256
+      },
+      "block_4_polygon_7_vertex_20": {
+        "x": 15.468620728585549,
+        "y": 13.392799846250327
+      }
+    }
+  },
+  "objects": {
+    "allIds": [
+      "block_0_object_0",
+      "block_0_object_1",
+      "block_0_object_2",
+      "block_1_object_0",
+      "block_1_object_1",
+      "block_1_object_2",
+      "block_2_object_0",
+      "block_2_object_1",
+      "block_2_object_2",
+      "block_3_object_0",
+      "block_3_object_1",
+      "block_3_object_2",
+      "block_4_object_0",
+      "block_4_object_1",
+      "block_4_object_2",
+      "block_4_object_3"
+    ],
+    "byId": {
+      "block_0_object_0": {
+        "position": { "x": 2.05134876909014, "y": 21.09446455496085 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_0_object_1": {
+        "position": { "x": 12.908787694621694, "y": 20.682529202772656 },
+        "type": 2,
+        "gravity": 1,
+        "animation": 1
+      },
+      "block_0_object_2": {
+        "position": { "x": 6.86256447285264, "y": 3.1016836041275013 },
+        "type": 4,
+        "gravity": 0,
+        "animation": 1
+      },
+      "block_1_object_0": {
+        "position": { "x": 10.38726185836964, "y": 21.153918109173198 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_1_object_1": {
+        "position": { "x": 21.244700783901195, "y": 20.74198275698501 },
+        "type": 2,
+        "gravity": 1,
+        "animation": 1
+      },
+      "block_1_object_2": {
+        "position": { "x": 16.5265950010628, "y": 0.9635512982026171 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_2_object_0": {
+        "position": { "x": 15.661651000428762, "y": 0.7943468796088382 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_2_object_1": {
+        "position": { "x": 9.725912562882513, "y": 43.02115343546828 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_2_object_2": {
+        "position": { "x": 20.95945186080698, "y": 43.43721044650252 },
+        "type": 2,
+        "gravity": 1,
+        "animation": 1
+      },
+      "block_3_object_0": {
+        "position": { "x": 2.5192788146622433, "y": 19.68049611654166 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_3_object_1": {
+        "position": { "x": 13.752818112586795, "y": 20.096553127575902 },
+        "type": 2,
+        "gravity": 1,
+        "animation": 1
+      },
+      "block_3_object_2": {
+        "position": { "x": 7.849785325375137, "y": 0.6426932380557133 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_4_object_0": {
+        "position": { "x": 12.741330749034645, "y": 19.68049611654166 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_4_object_1": {
+        "position": { "x": 23.974870046959197, "y": 20.096553127575902 },
+        "type": 2,
+        "gravity": 1,
+        "animation": 1
+      },
+      "block_4_object_2": {
+        "position": { "x": 18.07183725974754, "y": 0.6426932380557133 },
+        "type": 2,
+        "gravity": 2,
+        "animation": 1
+      },
+      "block_4_object_3": {
+        "position": { "x": 1.1830533771931755, "y": 2.8867387630527332 },
+        "type": 1,
+        "gravity": 0,
+        "animation": 1
+      }
+    }
+  },
+  "connectionBlocks": {
+    "allInstances": [
+      "block_0_0",
+      "block_1_1",
+      "block_2_2",
+      "block_3_3",
+      "block_4_4",
+      "block_1_5",
+      "block_1_6",
+      "block_3_7",
+      "block_3_8",
+      "block_3_9"
+    ],
+    "byInstance": {
+      "block_0_0": {
+        "blockId": "block_0",
+        "origin": { "x": 0, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_1_1"],
+          "byInstance": {
+            "block_1_1": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_0_polygon_0_vertex_4",
+                  "block_0_polygon_0_vertex_5"
+                ],
+                "byId": {
+                  "block_0_polygon_0_vertex_4": "block_1_polygon_7_vertex_7",
+                  "block_0_polygon_0_vertex_5": "block_1_polygon_7_vertex_6"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_1_1": {
+        "blockId": "block_1",
+        "origin": { "x": 25.673236917126133, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_0_0", "block_2_2"],
+          "byInstance": {
+            "block_0_0": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_1_polygon_7_vertex_7",
+                  "block_1_polygon_7_vertex_6"
+                ],
+                "byId": {
+                  "block_1_polygon_7_vertex_7": "block_0_polygon_0_vertex_4",
+                  "block_1_polygon_7_vertex_6": "block_0_polygon_0_vertex_5"
+                }
+              }
+            },
+            "block_2_2": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_1_polygon_7_vertex_10",
+                  "block_1_polygon_7_vertex_0"
+                ],
+                "byId": {
+                  "block_1_polygon_7_vertex_10": "block_2_polygon_1_vertex_6",
+                  "block_1_polygon_7_vertex_0": "block_2_polygon_1_vertex_5"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_2_2": {
+        "blockId": "block_2",
+        "origin": { "x": 59.682386923531766, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_1_1", "block_3_3"],
+          "byInstance": {
+            "block_1_1": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_2_polygon_1_vertex_6",
+                  "block_2_polygon_1_vertex_5"
+                ],
+                "byId": {
+                  "block_2_polygon_1_vertex_6": "block_1_polygon_7_vertex_10",
+                  "block_2_polygon_1_vertex_5": "block_1_polygon_7_vertex_0"
+                }
+              }
+            },
+            "block_3_3": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_2_polygon_1_vertex_22",
+                  "block_2_polygon_1_vertex_21"
+                ],
+                "byId": {
+                  "block_2_polygon_1_vertex_22": "block_3_polygon_1_vertex_0",
+                  "block_2_polygon_1_vertex_21": "block_3_polygon_1_vertex_1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_3_3": {
+        "blockId": "block_3",
+        "origin": { "x": 92.86140395279493, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_2_2", "block_4_4"],
+          "byInstance": {
+            "block_2_2": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_3_polygon_1_vertex_0",
+                  "block_3_polygon_1_vertex_1"
+                ],
+                "byId": {
+                  "block_3_polygon_1_vertex_0": "block_2_polygon_1_vertex_22",
+                  "block_3_polygon_1_vertex_1": "block_2_polygon_1_vertex_21"
+                }
+              }
+            },
+            "block_4_4": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_3_polygon_1_vertex_11",
+                  "block_3_polygon_1_vertex_10"
+                ],
+                "byId": {
+                  "block_3_polygon_1_vertex_11": "block_4_polygon_1_vertex_6",
+                  "block_3_polygon_1_vertex_10": "block_4_polygon_1_vertex_7"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_4_4": {
+        "blockId": "block_4",
+        "origin": { "x": 126.4478085852507, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_3_3"],
+          "byInstance": {
+            "block_3_3": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_4_polygon_1_vertex_6",
+                  "block_4_polygon_1_vertex_7"
+                ],
+                "byId": {
+                  "block_4_polygon_1_vertex_6": "block_3_polygon_1_vertex_11",
+                  "block_4_polygon_1_vertex_7": "block_3_polygon_1_vertex_10"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_1_5": {
+        "blockId": "block_1",
+        "origin": { "x": 170.25626515207887, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_1_6"],
+          "byInstance": {
+            "block_1_6": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_1_polygon_7_vertex_10",
+                  "block_1_polygon_7_vertex_0"
+                ],
+                "byId": {
+                  "block_1_polygon_7_vertex_10": "block_1_polygon_7_vertex_7",
+                  "block_1_polygon_7_vertex_0": "block_1_polygon_7_vertex_6"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_1_6": {
+        "blockId": "block_1",
+        "origin": { "x": 204.2654151584845, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_1_5"],
+          "byInstance": {
+            "block_1_5": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_1_polygon_7_vertex_7",
+                  "block_1_polygon_7_vertex_6"
+                ],
+                "byId": {
+                  "block_1_polygon_7_vertex_7": "block_1_polygon_7_vertex_10",
+                  "block_1_polygon_7_vertex_6": "block_1_polygon_7_vertex_0"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_3_7": {
+        "blockId": "block_3",
+        "origin": { "x": 238.27456516489013, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_3_8"],
+          "byInstance": {
+            "block_3_8": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_3_polygon_1_vertex_11",
+                  "block_3_polygon_1_vertex_10"
+                ],
+                "byId": {
+                  "block_3_polygon_1_vertex_11": "block_3_polygon_1_vertex_0",
+                  "block_3_polygon_1_vertex_10": "block_3_polygon_1_vertex_1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_3_8": {
+        "blockId": "block_3",
+        "origin": { "x": 271.8609697973459, "y": 0 },
+        "connectedBlocks": {
+          "allInstances": ["block_3_7"],
+          "byInstance": {
+            "block_3_7": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_3_polygon_1_vertex_0",
+                  "block_3_polygon_1_vertex_1"
+                ],
+                "byId": {
+                  "block_3_polygon_1_vertex_0": "block_3_polygon_1_vertex_11",
+                  "block_3_polygon_1_vertex_1": "block_3_polygon_1_vertex_10"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_3_9": {
+        "blockId": "block_3",
+        "origin": { "x": 305.44737442980164, "y": 0 },
+        "connectedBlocks": { "allInstances": [], "byInstance": {} }
+      }
+    }
+  }
+}

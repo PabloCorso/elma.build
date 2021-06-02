@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from "electron";
+import { app, BrowserWindow, ipcMain, dialog, Menu } from "electron";
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";
@@ -63,4 +63,20 @@ app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
+});
+
+const templatesFolderPath =
+  "C:/Users/USER/Documents/Source/elastomania/elma.build/templates";
+ipcMain.handle("read-file-dialog", async () => {
+  let result = "";
+  try {
+    const response = await dialog.showOpenDialog({
+      properties: ["openFile"],
+    });
+    result = response.filePaths[0];
+  } catch (error) {
+    console.log("ERROR", error);
+  }
+
+  return result;
 });

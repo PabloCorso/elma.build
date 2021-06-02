@@ -7,7 +7,10 @@ import {
 } from "../../types";
 import { StoredTemplate } from "../../types/templateStoreTypes";
 
-const selectTemplateBlock = (state: StoredTemplate, blockId: string) => {
+export const selectTemplateBlock = (
+  state: StoredTemplate,
+  blockId: string
+): TemplateBlock => {
   const storedBlock = state.blocks.byId[blockId];
   const block: TemplateBlock = {
     id: blockId,
@@ -31,13 +34,17 @@ const selectTemplateBlock = (state: StoredTemplate, blockId: string) => {
   return block;
 };
 
-const selectTemplateBlocks = (state: StoredTemplate) => {
-  return state.blocks.allIds.map((blockId) =>
-    selectTemplateBlock(state, blockId)
-  );
+export const selectTemplateBlocks = (
+  state: StoredTemplate
+): TemplateBlock[] => {
+  return state
+    ? state.blocks.allIds.map((blockId) => selectTemplateBlock(state, blockId))
+    : [];
 };
 
-const selectConnectionBlocks = (state: StoredTemplate) => {
+export const selectConnectionBlocks = (
+  state: StoredTemplate
+): ConnectionBlock[] => {
   return state.connectionBlocks.allInstances.map((instance) => {
     const storedConnectionBlock = state.connectionBlocks.byInstance[instance];
     const block = selectTemplateBlock(state, storedConnectionBlock.blockId);

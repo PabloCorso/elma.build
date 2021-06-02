@@ -2,9 +2,9 @@ import React, { useReducer } from "react";
 import {
   TemplateBlock,
   BlockElement,
-  PartialLevel,
   VertexBlockSelection,
   StoredTemplate,
+  PartialLevel,
 } from "../../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
 import TemplateStage from "../../organisms/templateStage";
@@ -12,6 +12,7 @@ import ConnectionsStage from "../../organisms/connectionsStage";
 import CardsList from "../../molecules/cardsList";
 import BlockCard from "../../molecules/blockCard";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
+import ImportIcon from "@material-ui/icons/Add";
 import {
   getLevelBoundsRect,
   getTemplateBlockOverlapShift,
@@ -40,9 +41,14 @@ enum TemplateStageTab {
 type Props = {
   level: PartialLevel;
   saveTemplate: (filename: string, template: StoredTemplate) => void;
+  requestLevelImport: () => void;
 };
 
-const TemplateEditor: React.FC<Props> = ({ level, saveTemplate }) => {
+const TemplateEditor: React.FC<Props> = ({
+  level,
+  saveTemplate,
+  requestLevelImport: loadLevel,
+}) => {
   const templateStage = useEditorStageState<HTMLDivElement>();
   const connectionsStage = useEditorStageState<HTMLDivElement>();
 
@@ -95,14 +101,19 @@ const TemplateEditor: React.FC<Props> = ({ level, saveTemplate }) => {
   return (
     <div className="template-editor">
       <div className="template-editor__toolbar">
+        <Button onClick={loadLevel}>
+          <ImportIcon />
+        </Button>
         <Button
           onClick={() => {
-            const levelBoundsRect = getLevelBoundsRect(level);
-            templateStage.fitBoundsRect({
-              ...levelBoundsRect,
-              x: -levelBoundsRect.x,
-              y: -levelBoundsRect.y,
-            });
+            if (level) {
+              const levelBoundsRect = getLevelBoundsRect(level);
+              templateStage.fitBoundsRect({
+                ...levelBoundsRect,
+                x: -levelBoundsRect.x,
+                y: -levelBoundsRect.y,
+              });
+            }
           }}
         >
           <ZoomOutMapIcon />

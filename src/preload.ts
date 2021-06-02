@@ -35,6 +35,17 @@ contextBridge.exposeInMainWorld("electron", {
     return Level.from(levelFile);
   },
 
+  readLevelDialog: async () => {
+    try {
+      const filename = await ipcRenderer.invoke("read-file-dialog");
+      const levelFile = fs.readFileSync(filename);
+      return Level.from(levelFile);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  },
+
   saveTemplate: ({ filename, template }: SaveTemplateData) => {
     fs.writeFileSync(
       `${templatesFolderPath}/${filename}.json`,
@@ -47,7 +58,11 @@ contextBridge.exposeInMainWorld("electron", {
   },
 
   readTemplate: (filename: string) => {
-    return fs.readFileSync(`${templatesFolderPath}/${filename}`, "utf8");
+    const template = fs.readFileSync(
+      `${templatesFolderPath}/${filename}`,
+      "utf8"
+    );
+    return JSON.parse(template);
   },
 });
 

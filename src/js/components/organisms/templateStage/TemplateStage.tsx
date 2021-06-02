@@ -68,37 +68,39 @@ const TemplateEditor: React.FC<Props> = ({
           <Rect {...selectionRectProps} />
         </Layer>
         <Layer>
-          {level.polygons.map((polygon, index) => {
-            const id = `${level.name}_polygon_${index}`;
-            const isSelected = selectedNodes.some(
-              (node) => node.attrs.id === id
-            );
-            return (
-              <PolygonShape
-                key={index}
-                name={id}
-                id={id}
-                polygon={polygon}
-                stroke={isSelected ? "yellow" : "black"}
-                strokeWidth={1 / stage.scale}
-              />
-            );
-          })}
-          {level.objects.map((levelObject, index) => {
-            const id = `${level.name}_object_${index}`;
-            const isSelected = selectedNodes.some(
-              (node) => node.attrs.id === id
-            );
-            return (
-              <ElmaObjectShape
-                key={id}
-                id={id}
-                elmaObject={levelObject}
-                stroke={isSelected ? "yellow" : "default"}
-                strokeWidth={1 / stage.scale}
-              />
-            );
-          })}
+          {level &&
+            level.polygons.map((polygon, index) => {
+              const id = `${level.name}_polygon_${index}`;
+              const isSelected = selectedNodes.some(
+                (node) => node.attrs.id === id
+              );
+              return (
+                <PolygonShape
+                  key={index}
+                  name={id}
+                  id={id}
+                  polygon={polygon}
+                  stroke={isSelected ? "yellow" : "black"}
+                  strokeWidth={1 / stage.scale}
+                />
+              );
+            })}
+          {level &&
+            level.objects.map((levelObject, index) => {
+              const id = `${level.name}_object_${index}`;
+              const isSelected = selectedNodes.some(
+                (node) => node.attrs.id === id
+              );
+              return (
+                <ElmaObjectShape
+                  key={id}
+                  id={id}
+                  elmaObject={levelObject}
+                  stroke={isSelected ? "yellow" : "default"}
+                  strokeWidth={1 / stage.scale}
+                />
+              );
+            })}
         </Layer>
       </EditorStage>
     </EditorStageContainer>

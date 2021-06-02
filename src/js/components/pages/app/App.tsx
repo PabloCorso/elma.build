@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
-import TemplateEditor from "../templateEditor";
 import LevelEditor from "../levelEditor";
+import TemplateEditor from "../templateEditor";
 import { AppMenuEvents, PartialLevel, StoredTemplate } from "../../../types";
 import { resetLevelPosition } from "../../../utils";
 import { useEventListener } from "../../../hooks";
@@ -11,13 +10,32 @@ const App: React.FC = () => {
   const [levFolder, setLevFolder] = useState<string[]>([]);
   const [templatesFolder, setTemplatesFolder] = useState<string[]>([]);
   const [level, setLevel] = useState<PartialLevel>();
-  const [template, setTemplate] = useState<StoredTemplate>();
+  const [templates, setTemplates] = useState<StoredTemplate[]>([]);
+
+  useEffect(() => {
+    if (templatesFolder) {
+      const loadedTemplates = [];
+      for (const templateName of templatesFolder) {
+        if (!templateName.startsWith("example")) {
+          loadedTemplates.push(window.electron.readTemplate(templateName));
+        }
+      }
+
+      setTemplates(loadedTemplates);
+    }
+  }, [templatesFolder]);
+
+  const [isTemplating, setIsTemplating] = useState(false);
 
   useEventListener("app-menu", (event: CustomEvent) => {
     const appMenuEvent = event.detail as AppMenuEvents;
     switch (appMenuEvent) {
       case AppMenuEvents.NewTemplate: {
-        console.log("new template");
+        setIsTemplating(true);
+        break;
+      }
+      case AppMenuEvents.NewLevel: {
+        setIsTemplating(false);
         break;
       }
       default: {
@@ -41,7 +59,7 @@ const App: React.FC = () => {
     setLevFolder(folder);
   };
 
-  const handleCreateLevel = (filename: string, level: PartialLevel) => {
+  const handleSaveLevel = (filename: string, level: PartialLevel) => {
     window.electron.saveLevel({ filename, level });
     updateLevFolder();
   };
@@ -52,56 +70,29 @@ const App: React.FC = () => {
     updateTemplatesFolder();
   }, []);
 
-  const handleLevelClick = (levelName: string) => {
-    const lev = window.electron.readLevel(levelName);
-    setLevel(resetLevelPosition(lev));
-    setTemplate(null);
-  };
-
-  const handleTemplateClick = (templateName: string) => {
-    const temp = window.electron.readTemplate(templateName);
-    setTemplate(temp);
-    setLevel(null);
+  const handleRequestLevelImport = async () => {
+    try {
+      const level = await window.electron.readLevelDialog();
+      if (level) {
+        setLevel(resetLevelPosition(level));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="app">
-      <div className="app__levels">
-        <List subheader={<ListSubheader component="div">Levels</ListSubheader>}>
-          {levFolder.map((level) => (
-            <ListItem
-              key={level}
-              button
-              onClick={() => {
-                handleLevelClick(level);
-              }}
-            >
-              <ListItemText primary={level} />
-            </ListItem>
-          ))}
-        </List>
-        <List
-          subheader={<ListSubheader component="div">Templates</ListSubheader>}
-        >
-          {templatesFolder.map((template) => (
-            <ListItem
-              key={template}
-              button
-              onClick={() => {
-                handleTemplateClick(template);
-              }}
-            >
-              <ListItemText primary={template} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-      <div className="app__template-editor">
-        {level && (
-          <TemplateEditor level={level} saveTemplate={handleSaveTemplate} />
+      <div className="app__editor">
+        {isTemplating && (
+          <TemplateEditor
+            level={level}
+            saveTemplate={handleSaveTemplate}
+            requestLevelImport={handleRequestLevelImport}
+          />
         )}
-        {template && (
-          <LevelEditor template={template} createLevel={handleCreateLevel} />
+        {!isTemplating && (
+          <LevelEditor templates={templates} saveLevel={handleSaveLevel} />
         )}
       </div>
     </div>

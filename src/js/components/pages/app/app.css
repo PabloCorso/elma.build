@@ -1,14 +1,10 @@
 .app {
   height: 100%;
-  display: grid;
-  grid-template-areas: "levels template-editor";
-  grid-template-columns: 200px 1fr;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
 }
 
-.app__level {
-  grid-area: levels;
-}
-
-.app__template-editor {
-  grid-area: template-editor;
+.app__editor {
+  flex: 1;
 }

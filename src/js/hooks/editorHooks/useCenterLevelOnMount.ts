@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { BoundsRect, PartialLevel } from "../../types";
-import { getBoundsRect, getLevelsBounds, getLevelBounds } from "../../utils";
+import {
+  getBoundsRect,
+  getLevelsBounds,
+  getLevelBounds,
+  EmptyBounds,
+} from "../../utils";
 
 type Props = {
   level: PartialLevel | PartialLevel[];
@@ -20,9 +25,12 @@ const useCenterLevelOnMount = ({
     function centerLevelOnMount() {
       const visibleStage = stageWidth > 0 && stageHeight > 0;
       if (!mountedStage && visibleStage) {
-        const levelBounds = Array.isArray(level)
-          ? getLevelsBounds(level)
-          : getLevelBounds(level);
+        let levelBounds = EmptyBounds;
+        if (level) {
+          levelBounds = Array.isArray(level)
+            ? getLevelsBounds(level)
+            : getLevelBounds(level);
+        }
         if (levelBounds) {
           const levelBoundsRect = getBoundsRect(levelBounds);
           fitBoundsRect({

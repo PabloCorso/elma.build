@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import Konva from "konva";
 import { Group, Layer, Rect } from "react-konva";
-import {
-  EditorStageState,
-  useCenterLevelOnMount,
-} from "../../../hooks/editorHooks";
+import { EditorStageState } from "../../../hooks/editorHooks";
 import { TemplateBlock } from "../../../types";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../../atoms/editorStageContainer";
@@ -15,25 +12,16 @@ import PolygonShape from "../../molecules/polygonShape";
 
 type Props = {
   blocks: TemplateBlock[];
-  templateBlocks: TemplateBlock[];
   stageState: EditorStageState<HTMLDivElement>;
   connectionsById: { [key: string]: { [key: string]: string } };
 };
 
 const LevelStage: React.FC<Props> = ({
   blocks,
-  templateBlocks,
   stageState,
   connectionsById,
 }) => {
-  const { stage, stageContainer, navigateTo, fitBoundsRect } = stageState;
-
-  useCenterLevelOnMount({
-    level: templateBlocks,
-    stageWidth: stage.width,
-    stageHeight: stage.height,
-    fitBoundsRect,
-  });
+  const { stage, stageContainer, navigateTo } = stageState;
 
   const [rect, setRect] = useState<unknown>();
   const handleDragMove = (

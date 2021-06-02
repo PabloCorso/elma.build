@@ -16,6 +16,7 @@ export type ElectronApi = {
   saveLevel: (data: SaveLevelData) => boolean;
   readLevel: (name: string) => PartialLevel;
   readAllLevels: () => string[];
+  readLevelDialog: () => Promise<PartialLevel>;
 
   /** Templates */
   saveTemplate: (data: SaveTemplateData) => boolean;

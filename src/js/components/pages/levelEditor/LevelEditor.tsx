@@ -12,14 +12,18 @@ import CardsList from "../../molecules/cardsList";
 import BlockCard from "../../molecules/blockCard";
 import useEditorStageState from "../../../hooks/editorHooks";
 import { shiftTemplateBlockFromOverlap } from "../../../utils";
+import { selectTemplateBlocks } from "../../../hooks/templateStore";
 import "./levelEditor.css";
 
 type Props = {
-  template: StoredTemplate;
-  createLevel: (filename: string, level: PartialLevel) => void;
+  templates: StoredTemplate[];
+  saveLevel: (filename: string, level: PartialLevel) => void;
 };
 
-const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
+const LevelEditor: React.FC<Props> = ({
+  templates = [],
+  saveLevel: createLevel,
+}) => {
   const stageState = useEditorStageState<HTMLDivElement>();
 
   const [levelName, setLevelName] = useState("");
@@ -59,22 +63,6 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
     createLevel(levelName, level);
   };
 
-  // const connectionsById = useMemo(() => {
-  //   const result: { [key: string]: { [key: string]: string } } = {};
-  //   for (const connection of template.connections) {
-  //     result[connection.v1.polygonId] = {
-  //       ...result[connection.v1.polygonId],
-  //       [connection.v1.id]: connection.v2.id,
-  //     };
-  //     result[connection.v2.polygonId] = {
-  //       ...result[connection.v2.polygonId],
-  //       [connection.v2.id]: connection.v1.id,
-  //     };
-  //   }
-
-  //   return result;
-  // }, [template.connections]);
-
   return (
     <div className="level-editor">
       <div className="level-editor__toolbar">
@@ -95,25 +83,31 @@ const LevelEditor: React.FC<Props> = ({ template, createLevel }) => {
         </form>
       </div>
       <div className="level-editor__stage">
-        {/* <LevelStage
+        <LevelStage
           blocks={stageBlocks}
-          templateBlocks={template.blocks}
           stageState={stageState}
-          connectionsById={connectionsById}
-        /> */}
+          connectionsById={{}}
+        />
       </div>
-      {/* <CardsList className="level-editor__blocks">
-        {template.blocks.map((block, index) => (
-          <BlockCard
-            key={index}
-            block={block}
-            onClick={() => {
-              handleClickBlock(block);
-            }}
-            readonly
-          />
-        ))}
-      </CardsList> */}
+      <CardsList className="level-editor__blocks">
+        {templates.map((template) => {
+          const blocks = selectTemplateBlocks(template);
+          return (
+            <CardsList key={template.name}>
+              {blocks.map((block, index) => (
+                <BlockCard
+                  key={index}
+                  block={block}
+                  onClick={() => {
+                    handleClickBlock(block);
+                  }}
+                  readonly
+                />
+              ))}
+            </CardsList>
+          );
+        })}
+      </CardsList>
     </div>
   );
 };

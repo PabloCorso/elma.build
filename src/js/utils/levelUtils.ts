@@ -33,7 +33,9 @@ export const getLevelBounds = ({
   return { x1, y1, x2, y2 };
 };
 
-export const getLevelsBounds = (levels: Partial<LevelElements>[]): Bounds => {
+export const getLevelsBounds = (
+  levels: Partial<LevelElements>[] = []
+): Bounds => {
   let result: Bounds;
   for (const level of levels) {
     const levelBounds = getLevelBounds(level);
