@@ -25,12 +25,12 @@ import editorTemplateReducer, {
   initialState,
   addConnection,
   addConnectionBlock,
-  addTemplateBlock,
   setTemplateName,
   renameTemplateBlock,
   useConnectionBlocksSelector,
   useTemplateBlocksSelector,
 } from "../../../hooks/templateStore";
+import { addTemplateBlock } from "../../../hooks/storeHooks/storeActions";
 import "./templateEditor.css";
 
 enum TemplateStageTab {

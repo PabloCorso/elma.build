@@ -1,21 +1,14 @@
-import { VertexBlockSelection } from "../../types";
 import {
+  VertexBlockSelection,
   StoreConnectionBlock,
-  StoredBlock,
-  StoredById,
-  StoredByInstance,
   TemplateAction,
   TemplateActions,
   TemplateState,
-} from "../../types/templateStoreTypes";
-
-const initStoredById = function <T>(): StoredById<T> {
-  return { allIds: [], byId: {} };
-};
-
-const initStoredByInstance = function <T>(): StoredByInstance<T> {
-  return { allInstances: [], byInstance: {} };
-};
+  Actions,
+  Action,
+} from "../../types";
+import { initStoredById, initStoredByInstance } from "../../utils/storeUtils";
+import { addTemplateBlockReducer } from "../storeHooks";
 
 export const initialState: TemplateState = {
   name: "",
@@ -31,8 +24,11 @@ const templateEditorReducer = (
   action: TemplateAction
 ): TemplateState => {
   switch (action.type) {
-    case TemplateActions.AddTemplateBlock: {
-      return addTemplateBlockReducer(state, action);
+    case Actions.AddTemplateBlock: {
+      return {
+        ...state,
+        ...addTemplateBlockReducer(state, action as Action),
+      };
     }
     case TemplateActions.AddConnection: {
       return addConnectionReducer(state, action);
@@ -44,17 +40,7 @@ const templateEditorReducer = (
       return { ...state, name: action.name };
     }
     case TemplateActions.RenameTemplateBlock: {
-      const { blockId, name } = action;
-      return {
-        ...state,
-        blocks: {
-          ...state.blocks,
-          byId: {
-            ...state.blocks.byId,
-            [blockId]: { ...state.blocks.byId[blockId], name },
-          },
-        },
-      };
+      return renameTemplateBlockReducer(state, action);
     }
     default: {
       return state;
@@ -114,58 +100,27 @@ const addConnectionBlockReducer = (
   connectionBlocks.byInstance[instance] = {
     blockId: block.id,
     origin,
-    connectedBlocks: { allInstances: [], byInstance: {} },
+    connectedBlocks: initStoredByInstance(),
   };
 
   return { ...state, connectionBlocks };
 };
 
-const addTemplateBlockReducer = (
+const renameTemplateBlockReducer = (
   state: TemplateState,
   action: TemplateAction
-): TemplateState => {
-  const { block } = action;
-
-  const blocks = { ...state.blocks };
-
-  const polygonsState = { ...state.polygons };
-  const verticesState = { ...state.vertices };
-  const polygonIds = [];
-  for (const polygon of block.polygons) {
-    polygonIds.push(polygon.id);
-    polygonsState.allIds.push(polygon.id);
-    const vertexIds = [];
-    for (const vertex of polygon.vertices) {
-      vertexIds.push(vertex.id);
-      verticesState.allIds.push(vertex.id);
-      verticesState.byId[vertex.id] = { x: vertex.x, y: vertex.y };
-    }
-
-    polygonsState.byId[polygon.id] = { grass: polygon.grass, vertexIds };
-  }
-
-  const objectsState = { ...state.objects };
-  const objectIds = [];
-  for (const object of block.objects) {
-    objectIds.push(object.id);
-    objectsState.allIds.push(object.id);
-    objectsState.byId[object.id] = {
-      position: object.position,
-      type: object.type,
-      gravity: object.gravity,
-      animation: object.animation,
-    };
-  }
-
-  const newBlock: StoredBlock = {
-    name: block.name,
-    polygonIds,
-    objectIds,
+) => {
+  const { blockId, name } = action;
+  return {
+    ...state,
+    blocks: {
+      ...state.blocks,
+      byId: {
+        ...state.blocks.byId,
+        [blockId]: { ...state.blocks.byId[blockId], name },
+      },
+    },
   };
-  blocks.allIds.push(block.id);
-  blocks.byId[block.id] = newBlock;
-
-  return { ...state, blocks };
 };
 
 export default templateEditorReducer;

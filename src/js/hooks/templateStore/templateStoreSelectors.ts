@@ -3,12 +3,13 @@ import {
   ConnectedBlock,
   ConnectedVertex,
   ConnectionBlock,
+  StoredLevel,
   TemplateBlock,
 } from "../../types";
 import { StoredTemplate } from "../../types/templateStoreTypes";
 
 export const selectTemplateBlock = (
-  state: StoredTemplate,
+  state: StoredLevel,
   blockId: string
 ): TemplateBlock => {
   const storedBlock = state.blocks.byId[blockId];
@@ -34,9 +35,7 @@ export const selectTemplateBlock = (
   return block;
 };
 
-export const selectTemplateBlocks = (
-  state: StoredTemplate
-): TemplateBlock[] => {
+export const selectTemplateBlocks = (state: StoredLevel): TemplateBlock[] => {
   return state
     ? state.blocks.allIds.map((blockId) => selectTemplateBlock(state, blockId))
     : [];
@@ -100,7 +99,7 @@ export const useConnectionBlocksSelector = (
   );
 
 export const useTemplateBlocksSelector = (
-  state: StoredTemplate
+  state: StoredLevel
 ): TemplateBlock[] =>
   useMemo(
     () => selectTemplateBlocks(state),

@@ -1,32 +1,15 @@
 import {
   BlockElement,
-  ElmaObject,
-  Point,
   TemplateBlock,
-  Vertex,
   VertexBlockSelection,
-} from ".";
-
-export type StoredById<T> = {
-  allIds: string[];
-  byId: { [key: string]: T };
-};
-
-export type StoredByInstance<T> = {
-  allInstances: string[];
-  byInstance: { [key: string]: T };
-};
-
-export type StoredPolygon = {
-  grass: boolean;
-  vertexIds: string[];
-};
-
-export type StoredBlock = {
-  name: string;
-  polygonIds: string[];
-  objectIds: string[];
-};
+} from "./templateTypes";
+import { Point } from "./elmaTypes";
+import {
+  Actions,
+  StoredById,
+  StoredByInstance,
+  StoredLevel,
+} from "./storeTypes";
 
 export type StoredConnectedBlock = {
   connectedVertices: StoredById<string>;
@@ -38,12 +21,7 @@ export type StoreConnectionBlock = {
   connectedBlocks: StoredByInstance<StoredConnectedBlock>;
 };
 
-export type StoredTemplate = {
-  name: string;
-  blocks: StoredById<StoredBlock>;
-  polygons: StoredById<StoredPolygon>;
-  vertices: StoredById<Vertex>;
-  objects: StoredById<ElmaObject>;
+export type StoredTemplate = StoredLevel & {
   connectionBlocks: StoredByInstance<StoreConnectionBlock>;
 };
 
@@ -52,13 +30,12 @@ export type TemplateState = StoredTemplate;
 export enum TemplateActions {
   AddConnection = "template/add_connection",
   AddConnectionBlock = "template/add_connection_block",
-  AddTemplateBlock = "template/add_block",
   SetTemplateName = "template/set_name",
   RenameTemplateBlock = "template/rename_block",
 }
 
 export type TemplateAction = {
-  type: TemplateActions;
+  type: TemplateActions | Actions;
   from?: VertexBlockSelection;
   to?: VertexBlockSelection;
   block?: TemplateBlock;

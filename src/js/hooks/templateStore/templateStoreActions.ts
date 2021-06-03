@@ -18,11 +18,6 @@ export const addConnectionBlock = (
   origin,
 });
 
-export const addTemplateBlock = (block: TemplateBlock): TemplateAction => ({
-  type: TemplateActions.AddTemplateBlock,
-  block,
-});
-
 export const setTemplateName = (name: string): TemplateAction => ({
   type: TemplateActions.SetTemplateName,
   name,

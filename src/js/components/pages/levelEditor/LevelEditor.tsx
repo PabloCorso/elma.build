@@ -1,18 +1,26 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import {
   TemplateBlock,
   PartialLevel,
   ElmaObject,
   Polygon,
   StoredTemplate,
+  Point,
 } from "../../../types";
 import LevelStage from "../../organisms/levelStage";
 import CardsList from "../../molecules/cardsList";
 import BlockCard from "../../molecules/blockCard";
 import useEditorStageState from "../../../hooks/editorHooks";
-import { shiftTemplateBlockFromOverlap } from "../../../utils";
+import { getTemplateBlockOverlapShift } from "../../../utils";
 import { selectTemplateBlocks } from "../../../hooks/templateStore";
+import editorLevelReducer, {
+  initialState,
+  useLevelBlocksSelector,
+  addLevelBlock,
+  moveLevelBlock,
+} from "../../../hooks/levelStore";
+import { addTemplateBlock } from "../../../hooks/storeHooks";
 import "./levelEditor.css";
 
 type Props = {
@@ -25,21 +33,21 @@ const LevelEditor: React.FC<Props> = ({
   saveLevel: createLevel,
 }) => {
   const stageState = useEditorStageState<HTMLDivElement>();
+  const [levelState, dispatch] = useReducer(editorLevelReducer, initialState);
+  const stageBlocks = useLevelBlocksSelector(levelState);
 
   const [levelName, setLevelName] = useState("");
-  const [stageBlocks, setStageBlocks] = useState<TemplateBlock[]>([]);
 
   const handleClickBlock = (block: TemplateBlock) => {
-    const instancedBlock = {
-      ...block,
-      instance: `${block.id}_${stageBlocks.length}`,
-    };
-    const shiftedBlock = shiftTemplateBlockFromOverlap(
-      instancedBlock,
-      stageBlocks
-    );
+    if (!levelState.blocks.byId[block.id]) {
+      dispatch(addTemplateBlock(block));
+    }
 
-    setStageBlocks((state) => [...state, shiftedBlock]);
+    const shift = getTemplateBlockOverlapShift(
+      stageBlocks.map((stageBlock) => stageBlock.block)
+    );
+    const origin = { x: shift.x + shift.width, y: 0 };
+    dispatch(addLevelBlock(block, origin));
   };
 
   const handleCreateLevel = (event: React.FormEvent) => {
@@ -47,9 +55,9 @@ const LevelEditor: React.FC<Props> = ({
 
     const polygons: Polygon[] = [];
     const objects: ElmaObject[] = [];
-    for (const block of stageBlocks) {
-      polygons.push(...block.polygons);
-      objects.push(...block.objects);
+    for (const stageBlock of stageBlocks) {
+      polygons.push(...stageBlock.block.polygons);
+      objects.push(...stageBlock.block.objects);
     }
 
     const level: PartialLevel = {
@@ -61,6 +69,10 @@ const LevelEditor: React.FC<Props> = ({
     };
 
     createLevel(levelName, level);
+  };
+
+  const handleMoveLevelBlock = (instance: string, origin: Point) => {
+    dispatch(moveLevelBlock(instance, origin));
   };
 
   return (
@@ -84,9 +96,10 @@ const LevelEditor: React.FC<Props> = ({
       </div>
       <div className="level-editor__stage">
         <LevelStage
-          blocks={stageBlocks}
+          levelBlocks={stageBlocks}
           stageState={stageState}
           connectionsById={{}}
+          moveLevelBlock={handleMoveLevelBlock}
         />
       </div>
       <div className="level-editor__blocks">
