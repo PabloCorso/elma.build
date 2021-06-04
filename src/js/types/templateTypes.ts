@@ -41,10 +41,13 @@ export type ConnectedBlock = {
   connectedVertices: ConnectedVertex[];
 };
 
-export type ConnectionBlock = {
+export type InstancedBlock = {
   block: TemplateBlock;
   instance: string;
   origin: Point;
+};
+
+export type ConnectionBlock = InstancedBlock & {
   connectedBlocks: ConnectedBlock[];
 };
 

@@ -12,7 +12,10 @@ import LevelStage from "../../organisms/levelStage";
 import CardsList from "../../molecules/cardsList";
 import BlockCard from "../../molecules/blockCard";
 import useEditorStageState from "../../../hooks/editorHooks";
-import { getTemplateBlockOverlapShift } from "../../../utils";
+import {
+  getTemplateBlockOverlapShift,
+  shiftTemplateBlock,
+} from "../../../utils";
 import { selectTemplateBlocks } from "../../../hooks/templateStore";
 import editorLevelReducer, {
   initialState,
@@ -44,7 +47,13 @@ const LevelEditor: React.FC<Props> = ({
     }
 
     const shift = getTemplateBlockOverlapShift(
-      stageBlocks.map((stageBlock) => stageBlock.block)
+      stageBlocks.map((stageBlock) => {
+        console.log({
+          instance: stageBlock.instance,
+          origin: stageBlock.origin,
+        });
+        return shiftTemplateBlock(stageBlock.block, stageBlock.origin);
+      })
     );
     const origin = { x: shift.x + shift.width, y: 0 };
     dispatch(addLevelBlock(block, origin));

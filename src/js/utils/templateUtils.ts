@@ -8,6 +8,7 @@ import {
   LevelBlockElements,
   Point,
   ConnectionBlock,
+  VertexBlock,
 } from "../types";
 import { getLevelsBoundsRect, resetLevelElementsPosition } from "./levelUtils";
 import { EmptyBoundsRect } from "./shapeUtils";
@@ -59,7 +60,6 @@ export const shiftTemplateBlock = (
       },
       shift
     ),
-    // origin: { x: shift.x + shift.width, y: shift.y + shift.height },
   };
 };
 
@@ -119,3 +119,31 @@ export const createTemplateBlock = (
   };
   return newBlock;
 };
+
+const shiftPoint = (point: Point, shift: Point): Point => ({
+  x: point.x + shift.x,
+  y: point.y + shift.y,
+});
+
+const shiftVertex = (vertex: VertexBlock, shift: Point): VertexBlock => ({
+  ...vertex,
+  ...shiftPoint(vertex, shift),
+});
+
+export const shiftPolygonBlock = (
+  polygon: PolygonBlock,
+  shift: Point
+): PolygonBlock => {
+  return {
+    ...polygon,
+    vertices: polygon.vertices.map((vertex) => shiftVertex(vertex, shift)),
+  };
+};
+
+export const shiftObjectBlock = (
+  object: ElmaObjectBlock,
+  shift: Point
+): ElmaObjectBlock => ({
+  ...object,
+  position: shiftPoint(object.position, shift),
+});

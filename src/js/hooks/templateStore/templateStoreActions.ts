@@ -31,3 +31,12 @@ export const renameTemplateBlock = (
   blockId,
   name,
 });
+
+export const moveConnectionBlock = (
+  instance: string,
+  origin: Point
+): TemplateAction => ({
+  type: TemplateActions.MoveConnectionBlock,
+  instance,
+  origin,
+});

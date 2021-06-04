@@ -2,12 +2,6 @@ import { Point } from "./elmaTypes";
 import { Actions, StoredByInstance, StoredLevel } from "./storeTypes";
 import { TemplateBlock } from "./templateTypes";
 
-export type LevelBlock = {
-  block: TemplateBlock;
-  instance: string;
-  origin: Point;
-};
-
 export type StoredLevelBlock = {
   blockId: string;
   origin: Point;

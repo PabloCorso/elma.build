@@ -5,6 +5,7 @@ import {
   VertexBlockSelection,
   StoredTemplate,
   PartialLevel,
+  Point,
 } from "../../../types";
 import { Button, Tab, Tabs, TextField } from "@material-ui/core";
 import TemplateStage from "../../organisms/templateStage";
@@ -27,6 +28,7 @@ import editorTemplateReducer, {
   addConnectionBlock,
   setTemplateName,
   renameTemplateBlock,
+  moveConnectionBlock,
   useConnectionBlocksSelector,
   useTemplateBlocksSelector,
 } from "../../../hooks/templateStore";
@@ -98,6 +100,10 @@ const TemplateEditor: React.FC<Props> = ({
     dispatch(addConnection(from, to));
   };
 
+  const handleMoveConnectionBlock = (instance: string, origin: Point) => {
+    dispatch(moveConnectionBlock(instance, origin));
+  };
+
   return (
     <div className="template-editor">
       <div className="template-editor__toolbar">
@@ -163,6 +169,7 @@ const TemplateEditor: React.FC<Props> = ({
               templateBlocks={templateBlocks}
               connectionBlocks={connectionBlocks}
               createConnection={handleCreateConnection}
+              moveConnectionBlock={handleMoveConnectionBlock}
             />
           </TabPanel>
         </div>

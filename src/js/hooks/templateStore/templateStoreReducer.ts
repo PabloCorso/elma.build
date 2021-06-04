@@ -42,6 +42,9 @@ const templateEditorReducer = (
     case TemplateActions.RenameTemplateBlock: {
       return renameTemplateBlockReducer(state, action);
     }
+    case TemplateActions.MoveConnectionBlock: {
+      return moveConnectionBlockReducer(state, action);
+    }
     default: {
       return state;
     }
@@ -118,6 +121,23 @@ const renameTemplateBlockReducer = (
       byId: {
         ...state.blocks.byId,
         [blockId]: { ...state.blocks.byId[blockId], name },
+      },
+    },
+  };
+};
+
+const moveConnectionBlockReducer = (
+  state: TemplateState,
+  action: TemplateAction
+) => {
+  const { instance, origin } = action;
+  return {
+    ...state,
+    connectionBlocks: {
+      allInstances: state.connectionBlocks.allInstances,
+      byInstance: {
+        ...state.connectionBlocks.byInstance,
+        [instance]: { ...state.connectionBlocks.byInstance[instance], origin },
       },
     },
   };

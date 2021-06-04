@@ -25,7 +25,7 @@ const EditorStage: React.FC<Props> = ({
     (event: Konva.KonvaEventObject<WheelEvent>) => {
       event.evt.preventDefault();
 
-      const scaleBy = 1.1;
+      const scaleBy = 1.125;
       const stage = event.target.getStage();
       const oldScale = stage.scaleX();
       const mousePointTo = {

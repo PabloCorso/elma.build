@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import Konva from "konva";
-import { Group, Layer, Rect } from "react-konva";
+import { Group, Layer } from "react-konva";
 import { EditorStageState } from "../../../hooks/editorHooks";
-import { LevelBlock, Point, TemplateBlock } from "../../../types";
+import { InstancedBlock, Point } from "../../../types";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../../atoms/editorStageContainer";
 import VertexShape from "../../molecules/vertexShape";
-import { getLevelBoundsRect, shiftTemplateBlock } from "../../../utils";
 import ElmaObjectShape from "../../molecules/elmaObjectShape";
 import PolygonShape from "../../molecules/polygonShape";
 
 type Props = {
-  levelBlocks: LevelBlock[];
+  levelBlocks: InstancedBlock[];
   stageState: EditorStageState<HTMLDivElement>;
   connectionsById: { [key: string]: { [key: string]: string } };
   moveLevelBlock: (instance: string, point: Point) => void;
@@ -25,32 +24,8 @@ const LevelStage: React.FC<Props> = ({
 }) => {
   const { stage, stageContainer, navigateTo } = stageState;
 
-  const [rect, setRect] = useState<unknown>();
-  const handleDragMove = (
-    block: TemplateBlock,
-    event: Konva.KonvaEventObject<DragEvent>
-  ) => {
-    const shift = {
-      x: event.target.x(),
-      y: event.target.y(),
-    };
-    const shiftedBlock = shiftTemplateBlock(block, shift);
-    setRect(shiftedBlock);
-    for (const polygon of block.polygons) {
-      const connection = connectionsById[polygon.id];
-      if (connection) {
-        for (const vertex of polygon.vertices) {
-          const vertexConnection = connection[vertex.id];
-          if (vertexConnection) {
-            console.log({ vertexConnection });
-          }
-        }
-      }
-    }
-  };
-
   const handleDragEnd = (
-    levelBlock: LevelBlock,
+    levelBlock: InstancedBlock,
     event: Konva.KonvaEventObject<DragEvent>
   ) => {
     const shift = {
@@ -68,22 +43,12 @@ const LevelStage: React.FC<Props> = ({
     >
       <EditorStage {...stage} navigateTo={navigateTo}>
         <Layer>
-          {rect && (
-            <Rect
-              {...getLevelBoundsRect(rect)}
-              stroke="red"
-              strokeWidth={1 / stage.scale}
-            />
-          )}
-          {levelBlocks.map((levelBlock, index) => {
+          {levelBlocks.map((levelBlock) => {
             const { block } = levelBlock;
             return (
               <Group
-                key={`${block.id}_${index}`}
+                key={levelBlock.instance}
                 draggable
-                onDragMove={(event) => {
-                  handleDragMove(block, event);
-                }}
                 onDragEnd={(event) => {
                   handleDragEnd(levelBlock, event);
                 }}

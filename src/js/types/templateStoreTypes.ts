@@ -32,6 +32,7 @@ export enum TemplateActions {
   AddConnectionBlock = "template/add_connection_block",
   SetTemplateName = "template/set_name",
   RenameTemplateBlock = "template/rename_block",
+  MoveConnectionBlock = "template/move_connection_block",
 }
 
 export type TemplateAction = {
@@ -43,4 +44,5 @@ export type TemplateAction = {
   blockElements?: BlockElement[];
   name?: string;
   blockId?: string;
+  instance?: string;
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Konva from "konva";
 import { Group, Layer } from "react-konva";
 import {
   EditorStageState,
@@ -8,8 +9,8 @@ import {
   TemplateBlock,
   ConnectionBlock,
   VertexBlockSelection,
+  Point,
 } from "../../../types";
-import { getConnectionShiftedBlock } from "../../../utils";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../../atoms/editorStageContainer";
 import VertexShape from "../../molecules/vertexShape";
@@ -24,6 +25,7 @@ type Props = {
     fromVertex: VertexBlockSelection,
     toVertex: VertexBlockSelection
   ) => void;
+  moveConnectionBlock: (instance: string, origin: Point) => void;
 };
 
 const ConnectionsStage: React.FC<Props> = ({
@@ -31,6 +33,7 @@ const ConnectionsStage: React.FC<Props> = ({
   connectionBlocks,
   templateBlocks,
   createConnection,
+  moveConnectionBlock,
 }) => {
   const { stage, stageContainer, navigateTo, fitBoundsRect } = stageState;
 
@@ -54,6 +57,17 @@ const ConnectionsStage: React.FC<Props> = ({
     }
   };
 
+  const handleDragEnd = (
+    connectionBlock: ConnectionBlock,
+    event: Konva.KonvaEventObject<DragEvent>
+  ) => {
+    const origin = {
+      x: event.target.x(),
+      y: event.target.y(),
+    };
+    moveConnectionBlock(connectionBlock.instance, origin);
+  };
+
   const [hoveredBlock, setHoveredBlock] = useState<ConnectionBlock>();
   return (
     <EditorStageContainer
@@ -64,8 +78,7 @@ const ConnectionsStage: React.FC<Props> = ({
       <EditorStage {...stage} navigateTo={navigateTo}>
         <Layer>
           {connectionBlocks.map((connectionBlock) => {
-            const block = getConnectionShiftedBlock(connectionBlock);
-            const instance = connectionBlock.instance;
+            const { block, instance } = connectionBlock;
             return (
               <Group
                 key={connectionBlock.instance}
@@ -75,6 +88,9 @@ const ConnectionsStage: React.FC<Props> = ({
                 }}
                 onMouseLeave={() => {
                   setHoveredBlock(null);
+                }}
+                onDragEnd={(event) => {
+                  handleDragEnd(connectionBlock, event);
                 }}
               >
                 {block.polygons.map((polygon) => {
