@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Konva from "konva";
 import { Group, Layer } from "react-konva";
 import {
   EditorStageState,
@@ -16,6 +15,7 @@ import EditorStageContainer from "../../atoms/editorStageContainer";
 import VertexShape from "../../molecules/vertexShape";
 import ElmaObjectShape from "../../molecules/elmaObjectShape";
 import PolygonShape from "../../molecules/polygonShape";
+import { handleControlledBlockDrag } from "../../../utils";
 
 type Props = {
   stageState: EditorStageState<HTMLDivElement>;
@@ -57,17 +57,6 @@ const ConnectionsStage: React.FC<Props> = ({
     }
   };
 
-  const handleDragEnd = (
-    connectionBlock: ConnectionBlock,
-    event: Konva.KonvaEventObject<DragEvent>
-  ) => {
-    const origin = {
-      x: event.target.x(),
-      y: event.target.y(),
-    };
-    moveConnectionBlock(connectionBlock.instance, origin);
-  };
-
   const [hoveredBlock, setHoveredBlock] = useState<ConnectionBlock>();
   return (
     <EditorStageContainer
@@ -90,7 +79,11 @@ const ConnectionsStage: React.FC<Props> = ({
                   setHoveredBlock(null);
                 }}
                 onDragEnd={(event) => {
-                  handleDragEnd(connectionBlock, event);
+                  handleControlledBlockDrag({
+                    event,
+                    block: connectionBlock,
+                    move: moveConnectionBlock,
+                  });
                 }}
               >
                 {block.polygons.map((polygon) => {

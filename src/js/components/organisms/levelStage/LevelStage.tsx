@@ -1,5 +1,4 @@
 import React from "react";
-import Konva from "konva";
 import { Group, Layer } from "react-konva";
 import { EditorStageState } from "../../../hooks/editorHooks";
 import { InstancedBlock, Point } from "../../../types";
@@ -8,6 +7,7 @@ import EditorStageContainer from "../../atoms/editorStageContainer";
 import VertexShape from "../../molecules/vertexShape";
 import ElmaObjectShape from "../../molecules/elmaObjectShape";
 import PolygonShape from "../../molecules/polygonShape";
+import { handleControlledBlockDrag, shiftTemplateBlock } from "../../../utils";
 
 type Props = {
   levelBlocks: InstancedBlock[];
@@ -24,17 +24,6 @@ const LevelStage: React.FC<Props> = ({
 }) => {
   const { stage, stageContainer, navigateTo } = stageState;
 
-  const handleDragEnd = (
-    levelBlock: InstancedBlock,
-    event: Konva.KonvaEventObject<DragEvent>
-  ) => {
-    const shift = {
-      x: event.target.x(),
-      y: event.target.y(),
-    };
-    moveLevelBlock(levelBlock.instance, shift);
-  };
-
   return (
     <EditorStageContainer
       ref={stageContainer.setRef}
@@ -44,13 +33,20 @@ const LevelStage: React.FC<Props> = ({
       <EditorStage {...stage} navigateTo={navigateTo}>
         <Layer>
           {levelBlocks.map((levelBlock) => {
-            const { block } = levelBlock;
+            const block = shiftTemplateBlock(
+              levelBlock.block,
+              levelBlock.origin
+            );
             return (
               <Group
                 key={levelBlock.instance}
                 draggable
                 onDragEnd={(event) => {
-                  handleDragEnd(levelBlock, event);
+                  handleControlledBlockDrag({
+                    event,
+                    block: levelBlock,
+                    move: moveLevelBlock,
+                  });
                 }}
               >
                 {block.polygons.map((polygon) => {

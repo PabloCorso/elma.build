@@ -9,6 +9,7 @@ import {
   Point,
   ConnectionBlock,
   VertexBlock,
+  HandleControlledBlockDrag,
 } from "../types";
 import { getLevelsBoundsRect, resetLevelElementsPosition } from "./levelUtils";
 import { EmptyBoundsRect } from "./shapeUtils";
@@ -147,3 +148,20 @@ export const shiftObjectBlock = (
   ...object,
   position: shiftPoint(object.position, shift),
 });
+
+export const handleControlledBlockDrag = ({
+  block,
+  event,
+  move,
+}: HandleControlledBlockDrag): void => {
+  const shift = {
+    x: event.target.x(),
+    y: event.target.y(),
+  };
+  // To have controlled shapes, we need to update
+  // the shape's position to the previous one first.
+  // Otherwise Konva updates the position internally,
+  // and we end up update the position twice.
+  event.target.position(block.origin);
+  move(block.instance, shift);
+};

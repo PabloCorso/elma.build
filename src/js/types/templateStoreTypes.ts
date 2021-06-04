@@ -1,9 +1,11 @@
+import Konva from "konva";
+import { Point } from "./elmaTypes";
 import {
   BlockElement,
+  InstancedBlock,
   TemplateBlock,
   VertexBlockSelection,
 } from "./templateTypes";
-import { Point } from "./elmaTypes";
 import {
   Actions,
   StoredById,
@@ -45,4 +47,10 @@ export type TemplateAction = {
   name?: string;
   blockId?: string;
   instance?: string;
+};
+
+export type HandleControlledBlockDrag = {
+  block: InstancedBlock;
+  event: Konva.KonvaEventObject<DragEvent>;
+  move: (instance: string, newOrigin: Point) => void;
 };
