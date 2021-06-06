@@ -31,6 +31,7 @@ import editorTemplateReducer, {
   moveConnectionBlock,
   useConnectionBlocksSelector,
   useTemplateBlocksSelector,
+  selectConnectionEdges,
 } from "../../../hooks/templateStore";
 import { addTemplateBlock } from "../../../hooks/storeHooks/storeActions";
 import "./templateEditor.css";
@@ -60,6 +61,7 @@ const TemplateEditor: React.FC<Props> = ({
   );
   const templateBlocks = useTemplateBlocksSelector(templateState);
   const connectionBlocks = useConnectionBlocksSelector(templateState);
+  const connectionEdges = selectConnectionEdges(templateState);
 
   const createConnectionBlock = (block: TemplateBlock) => {
     const shift = getTemplateBlockOverlapShift(
@@ -169,6 +171,7 @@ const TemplateEditor: React.FC<Props> = ({
             <ConnectionsStage
               stageState={connectionsStage}
               connectionBlocks={connectionBlocks}
+              connectionEdges={connectionEdges}
               createConnection={handleCreateConnection}
               moveConnectionBlock={handleMoveConnectionBlock}
             />

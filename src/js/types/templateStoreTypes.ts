@@ -1,7 +1,8 @@
 import Konva from "konva";
-import { Point } from "./elmaTypes";
+import { Point, Vertex } from "./elmaTypes";
 import {
   BlockElement,
+  ConnectionBlock,
   InstancedBlock,
   TemplateBlock,
   VertexBlockSelection,
@@ -53,4 +54,11 @@ export type HandleControlledBlockDrag = {
   block: InstancedBlock;
   event: Konva.KonvaEventObject<DragEvent>;
   move: (instance: string, newOrigin: Point) => void;
+};
+
+export type ConnectionEdge = {
+  fromBlock: ConnectionBlock;
+  toBlock: ConnectionBlock;
+  fromVertex: Vertex;
+  toVertex: Vertex;
 };

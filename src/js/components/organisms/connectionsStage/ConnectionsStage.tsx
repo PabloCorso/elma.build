@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { Group, Layer } from "react-konva";
+import { Group, Layer, Line } from "react-konva";
 import { EditorStageState } from "../../../hooks/editorHooks";
-import { ConnectionBlock, VertexBlockSelection, Point } from "../../../types";
+import {
+  ConnectionBlock,
+  VertexBlockSelection,
+  Point,
+  ConnectionEdge,
+} from "../../../types";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../../atoms/editorStageContainer";
 import VertexShape from "../../molecules/vertexShape";
@@ -12,6 +17,7 @@ import { handleControlledBlockDrag, shiftTemplateBlock } from "../../../utils";
 type Props = {
   stageState: EditorStageState<HTMLDivElement>;
   connectionBlocks: ConnectionBlock[];
+  connectionEdges: ConnectionEdge[];
   createConnection: (
     fromVertex: VertexBlockSelection,
     toVertex: VertexBlockSelection
@@ -22,6 +28,7 @@ type Props = {
 const ConnectionsStage: React.FC<Props> = ({
   stageState,
   connectionBlocks,
+  connectionEdges,
   createConnection,
   moveConnectionBlock,
 }) => {
@@ -120,6 +127,21 @@ const ConnectionsStage: React.FC<Props> = ({
               </Group>
             );
           })}
+          {connectionEdges.map((edge, index) => (
+            <Line
+              key={`${edge.fromBlock.instance}_${edge.toBlock.instance}_${index}`}
+              points={[
+                edge.fromVertex.x + edge.fromBlock.origin.x,
+                edge.fromVertex.y + edge.fromBlock.origin.y,
+                edge.toVertex.x + edge.toBlock.origin.x,
+                edge.toVertex.y + edge.toBlock.origin.y,
+              ]}
+              stroke="green"
+              strokeWidth={1 / stage.scale}
+              hitStrokeWidth={0}
+              shadowForStrokeEnabled={false}
+            />
+          ))}
         </Layer>
       </EditorStage>
     </EditorStageContainer>

@@ -69,7 +69,7 @@ const App: React.FC = () => {
         setLevel(resetLevelPosition(level));
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

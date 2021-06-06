@@ -41,7 +41,7 @@ contextBridge.exposeInMainWorld("electron", {
       const levelFile = fs.readFileSync(filename);
       return Level.from(levelFile);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return null;
     }
   },

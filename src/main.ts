@@ -78,7 +78,7 @@ ipcMain.handle("read-file-dialog", async () => {
     });
     result = response.filePaths[0];
   } catch (error) {
-    console.log("ERROR", error);
+    console.error("ERROR", error);
   }
 
   return result;

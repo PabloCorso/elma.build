@@ -1,5 +1,5 @@
 {
-  "name": "quizTemplate",
+  "name": "vjQuiz",
   "blocks": {
     "allIds": ["block_0", "block_1", "block_2", "block_3", "block_4"],
     "byId": {
@@ -3894,10 +3894,7 @@
       "block_3_3",
       "block_4_4",
       "block_1_5",
-      "block_1_6",
-      "block_3_7",
-      "block_3_8",
-      "block_3_9"
+      "block_3_6"
     ],
     "byInstance": {
       "block_0_0": {
@@ -3925,7 +3922,7 @@
         "blockId": "block_1",
         "origin": { "x": 25.673236917126133, "y": 0 },
         "connectedBlocks": {
-          "allInstances": ["block_0_0", "block_2_2"],
+          "allInstances": ["block_0_0", "block_1_5"],
           "byInstance": {
             "block_0_0": {
               "connectedVertices": {
@@ -3936,6 +3933,126 @@
                 "byId": {
                   "block_1_polygon_7_vertex_7": "block_0_polygon_0_vertex_4",
                   "block_1_polygon_7_vertex_6": "block_0_polygon_0_vertex_5"
+                }
+              }
+            },
+            "block_1_5": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_1_polygon_7_vertex_10",
+                  "block_1_polygon_7_vertex_0"
+                ],
+                "byId": {
+                  "block_1_polygon_7_vertex_10": "block_1_polygon_7_vertex_7",
+                  "block_1_polygon_7_vertex_0": "block_1_polygon_7_vertex_6"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_2_2": {
+        "blockId": "block_2",
+        "origin": { "x": 96.5501180490985, "y": 0.7035252579213491 },
+        "connectedBlocks": {
+          "allInstances": ["block_1_5", "block_3_3"],
+          "byInstance": {
+            "block_1_5": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_2_polygon_1_vertex_6",
+                  "block_2_polygon_1_vertex_5"
+                ],
+                "byId": {
+                  "block_2_polygon_1_vertex_6": "block_1_polygon_7_vertex_10",
+                  "block_2_polygon_1_vertex_5": "block_1_polygon_7_vertex_0"
+                }
+              }
+            },
+            "block_3_3": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_2_polygon_1_vertex_21",
+                  "block_2_polygon_1_vertex_22"
+                ],
+                "byId": {
+                  "block_2_polygon_1_vertex_21": "block_3_polygon_1_vertex_1",
+                  "block_2_polygon_1_vertex_22": "block_3_polygon_1_vertex_0"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_3_3": {
+        "blockId": "block_3",
+        "origin": { "x": 66.83528528533978, "y": 33.51907006629749 },
+        "connectedBlocks": {
+          "allInstances": ["block_2_2", "block_3_6"],
+          "byInstance": {
+            "block_2_2": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_3_polygon_1_vertex_1",
+                  "block_3_polygon_1_vertex_0"
+                ],
+                "byId": {
+                  "block_3_polygon_1_vertex_1": "block_2_polygon_1_vertex_21",
+                  "block_3_polygon_1_vertex_0": "block_2_polygon_1_vertex_22"
+                }
+              }
+            },
+            "block_3_6": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_3_polygon_1_vertex_11",
+                  "block_3_polygon_1_vertex_10"
+                ],
+                "byId": {
+                  "block_3_polygon_1_vertex_11": "block_3_polygon_1_vertex_0",
+                  "block_3_polygon_1_vertex_10": "block_3_polygon_1_vertex_1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_4_4": {
+        "blockId": "block_4",
+        "origin": { "x": -15.305005023560668, "y": 34.584861976127655 },
+        "connectedBlocks": {
+          "allInstances": ["block_3_6"],
+          "byInstance": {
+            "block_3_6": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_4_polygon_1_vertex_6",
+                  "block_4_polygon_1_vertex_7"
+                ],
+                "byId": {
+                  "block_4_polygon_1_vertex_6": "block_3_polygon_1_vertex_11",
+                  "block_4_polygon_1_vertex_7": "block_3_polygon_1_vertex_10"
+                }
+              }
+            }
+          }
+        }
+      },
+      "block_1_5": {
+        "blockId": "block_1",
+        "origin": { "x": 57.95650185793706, "y": 0.04357383837901807 },
+        "connectedBlocks": {
+          "allInstances": ["block_1_1", "block_2_2"],
+          "byInstance": {
+            "block_1_1": {
+              "connectedVertices": {
+                "allIds": [
+                  "block_1_polygon_7_vertex_7",
+                  "block_1_polygon_7_vertex_6"
+                ],
+                "byId": {
+                  "block_1_polygon_7_vertex_7": "block_1_polygon_7_vertex_10",
+                  "block_1_polygon_7_vertex_6": "block_1_polygon_7_vertex_0"
                 }
               }
             },
@@ -3954,54 +4071,21 @@
           }
         }
       },
-      "block_2_2": {
-        "blockId": "block_2",
-        "origin": { "x": 59.682386923531766, "y": 0 },
-        "connectedBlocks": {
-          "allInstances": ["block_1_1", "block_3_3"],
-          "byInstance": {
-            "block_1_1": {
-              "connectedVertices": {
-                "allIds": [
-                  "block_2_polygon_1_vertex_6",
-                  "block_2_polygon_1_vertex_5"
-                ],
-                "byId": {
-                  "block_2_polygon_1_vertex_6": "block_1_polygon_7_vertex_10",
-                  "block_2_polygon_1_vertex_5": "block_1_polygon_7_vertex_0"
-                }
-              }
-            },
-            "block_3_3": {
-              "connectedVertices": {
-                "allIds": [
-                  "block_2_polygon_1_vertex_22",
-                  "block_2_polygon_1_vertex_21"
-                ],
-                "byId": {
-                  "block_2_polygon_1_vertex_22": "block_3_polygon_1_vertex_0",
-                  "block_2_polygon_1_vertex_21": "block_3_polygon_1_vertex_1"
-                }
-              }
-            }
-          }
-        }
-      },
-      "block_3_3": {
+      "block_3_6": {
         "blockId": "block_3",
-        "origin": { "x": 92.86140395279493, "y": 0 },
+        "origin": { "x": 32.021851891406776, "y": 33.80480086495196 },
         "connectedBlocks": {
-          "allInstances": ["block_2_2", "block_4_4"],
+          "allInstances": ["block_3_3", "block_4_4"],
           "byInstance": {
-            "block_2_2": {
+            "block_3_3": {
               "connectedVertices": {
                 "allIds": [
                   "block_3_polygon_1_vertex_0",
                   "block_3_polygon_1_vertex_1"
                 ],
                 "byId": {
-                  "block_3_polygon_1_vertex_0": "block_2_polygon_1_vertex_22",
-                  "block_3_polygon_1_vertex_1": "block_2_polygon_1_vertex_21"
+                  "block_3_polygon_1_vertex_0": "block_3_polygon_1_vertex_11",
+                  "block_3_polygon_1_vertex_1": "block_3_polygon_1_vertex_10"
                 }
               }
             },
@@ -4019,116 +4103,6 @@
             }
           }
         }
-      },
-      "block_4_4": {
-        "blockId": "block_4",
-        "origin": { "x": 126.4478085852507, "y": 0 },
-        "connectedBlocks": {
-          "allInstances": ["block_3_3"],
-          "byInstance": {
-            "block_3_3": {
-              "connectedVertices": {
-                "allIds": [
-                  "block_4_polygon_1_vertex_6",
-                  "block_4_polygon_1_vertex_7"
-                ],
-                "byId": {
-                  "block_4_polygon_1_vertex_6": "block_3_polygon_1_vertex_11",
-                  "block_4_polygon_1_vertex_7": "block_3_polygon_1_vertex_10"
-                }
-              }
-            }
-          }
-        }
-      },
-      "block_1_5": {
-        "blockId": "block_1",
-        "origin": { "x": 170.25626515207887, "y": 0 },
-        "connectedBlocks": {
-          "allInstances": ["block_1_6"],
-          "byInstance": {
-            "block_1_6": {
-              "connectedVertices": {
-                "allIds": [
-                  "block_1_polygon_7_vertex_10",
-                  "block_1_polygon_7_vertex_0"
-                ],
-                "byId": {
-                  "block_1_polygon_7_vertex_10": "block_1_polygon_7_vertex_7",
-                  "block_1_polygon_7_vertex_0": "block_1_polygon_7_vertex_6"
-                }
-              }
-            }
-          }
-        }
-      },
-      "block_1_6": {
-        "blockId": "block_1",
-        "origin": { "x": 204.2654151584845, "y": 0 },
-        "connectedBlocks": {
-          "allInstances": ["block_1_5"],
-          "byInstance": {
-            "block_1_5": {
-              "connectedVertices": {
-                "allIds": [
-                  "block_1_polygon_7_vertex_7",
-                  "block_1_polygon_7_vertex_6"
-                ],
-                "byId": {
-                  "block_1_polygon_7_vertex_7": "block_1_polygon_7_vertex_10",
-                  "block_1_polygon_7_vertex_6": "block_1_polygon_7_vertex_0"
-                }
-              }
-            }
-          }
-        }
-      },
-      "block_3_7": {
-        "blockId": "block_3",
-        "origin": { "x": 238.27456516489013, "y": 0 },
-        "connectedBlocks": {
-          "allInstances": ["block_3_8"],
-          "byInstance": {
-            "block_3_8": {
-              "connectedVertices": {
-                "allIds": [
-                  "block_3_polygon_1_vertex_11",
-                  "block_3_polygon_1_vertex_10"
-                ],
-                "byId": {
-                  "block_3_polygon_1_vertex_11": "block_3_polygon_1_vertex_0",
-                  "block_3_polygon_1_vertex_10": "block_3_polygon_1_vertex_1"
-                }
-              }
-            }
-          }
-        }
-      },
-      "block_3_8": {
-        "blockId": "block_3",
-        "origin": { "x": 271.8609697973459, "y": 0 },
-        "connectedBlocks": {
-          "allInstances": ["block_3_7"],
-          "byInstance": {
-            "block_3_7": {
-              "connectedVertices": {
-                "allIds": [
-                  "block_3_polygon_1_vertex_0",
-                  "block_3_polygon_1_vertex_1"
-                ],
-                "byId": {
-                  "block_3_polygon_1_vertex_0": "block_3_polygon_1_vertex_11",
-                  "block_3_polygon_1_vertex_1": "block_3_polygon_1_vertex_10"
-                }
-              }
-            }
-          }
-        }
-      },
-      "block_3_9": {
-        "blockId": "block_3",
-        "origin": { "x": 305.44737442980164, "y": 0 },
-        "connectedBlocks": { "allInstances": [], "byInstance": {} }
       }
     }
   }
