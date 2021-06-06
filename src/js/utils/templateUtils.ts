@@ -6,9 +6,6 @@ import {
   BoundsRect,
   PolygonBlock,
   LevelBlockElements,
-  Point,
-  ConnectionBlock,
-  VertexBlock,
   HandleControlledBlockDrag,
 } from "../types";
 import { getLevelsBoundsRect, resetLevelElementsPosition } from "./levelUtils";
@@ -64,29 +61,6 @@ export const shiftTemplateBlock = (
   };
 };
 
-const translatePoint = (translate: Point) => (point: Point) => ({
-  x: point.x + translate.x,
-  y: point.y + translate.y,
-});
-
-export const getConnectionShiftedBlock = (
-  connectionBlock: ConnectionBlock
-): TemplateBlock => {
-  const shiftOrigin = translatePoint(connectionBlock.origin);
-  const polygons = connectionBlock.block.polygons.map((polygon) => ({
-    ...polygon,
-    vertices: polygon.vertices.map((vertex) => ({
-      ...vertex,
-      ...shiftOrigin(vertex),
-    })),
-  }));
-  const objects = connectionBlock.block.objects.map((object) => ({
-    ...object,
-    position: shiftOrigin(object.position),
-  }));
-  return { ...connectionBlock.block, polygons, objects };
-};
-
 export const getTemplateBlockOverlapShift = (
   overlapBlocks: TemplateBlock[]
 ): BoundsRect => {
@@ -98,14 +72,6 @@ export const getTemplateBlockOverlapShift = (
     width: shiftBounds.width + marginRight,
   };
   return shift;
-};
-
-export const shiftTemplateBlockFromOverlap = (
-  templateBlock: TemplateBlock,
-  overlapBlocks: TemplateBlock[] = []
-): TemplateBlock => {
-  const shift = getTemplateBlockOverlapShift(overlapBlocks);
-  return shiftTemplateBlock(templateBlock, shift);
 };
 
 export const createTemplateBlock = (
@@ -121,47 +87,18 @@ export const createTemplateBlock = (
   return newBlock;
 };
 
-const shiftPoint = (point: Point, shift: Point): Point => ({
-  x: point.x + shift.x,
-  y: point.y + shift.y,
-});
-
-const shiftVertex = (vertex: VertexBlock, shift: Point): VertexBlock => ({
-  ...vertex,
-  ...shiftPoint(vertex, shift),
-});
-
-export const shiftPolygonBlock = (
-  polygon: PolygonBlock,
-  shift: Point
-): PolygonBlock => {
-  return {
-    ...polygon,
-    vertices: polygon.vertices.map((vertex) => shiftVertex(vertex, shift)),
-  };
-};
-
-export const shiftObjectBlock = (
-  object: ElmaObjectBlock,
-  shift: Point
-): ElmaObjectBlock => ({
-  ...object,
-  position: shiftPoint(object.position, shift),
-});
-
 export const handleControlledBlockDrag = ({
   block,
   event,
   move,
 }: HandleControlledBlockDrag): void => {
   const shift = {
-    x: event.target.x(),
-    y: event.target.y(),
+    x: block.origin.x + event.target.x(),
+    y: block.origin.y + event.target.y(),
   };
-  // To have controlled shapes, we need to update
-  // the shape's position to the previous one first.
-  // Otherwise Konva updates the position internally,
-  // and we end up update the position twice.
-  event.target.position(block.origin);
+  // Reset the internal position first.
+  // Because Konva edits the position internally
+  // on drag and we end up moving x and y twice.
+  event.target.position({ x: 0, y: 0 });
   move(block.instance, shift);
 };

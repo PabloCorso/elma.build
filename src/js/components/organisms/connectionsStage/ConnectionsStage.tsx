@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import { Group, Layer } from "react-konva";
-import {
-  EditorStageState,
-  useCenterLevelOnMount,
-} from "../../../hooks/editorHooks";
-import {
-  TemplateBlock,
-  ConnectionBlock,
-  VertexBlockSelection,
-  Point,
-} from "../../../types";
+import { EditorStageState } from "../../../hooks/editorHooks";
+import { ConnectionBlock, VertexBlockSelection, Point } from "../../../types";
 import EditorStage from "../editorStage";
 import EditorStageContainer from "../../atoms/editorStageContainer";
 import VertexShape from "../../molecules/vertexShape";
 import ElmaObjectShape from "../../molecules/elmaObjectShape";
 import PolygonShape from "../../molecules/polygonShape";
-import { handleControlledBlockDrag } from "../../../utils";
+import { handleControlledBlockDrag, shiftTemplateBlock } from "../../../utils";
 
 type Props = {
   stageState: EditorStageState<HTMLDivElement>;
   connectionBlocks: ConnectionBlock[];
-  templateBlocks: TemplateBlock[];
   createConnection: (
     fromVertex: VertexBlockSelection,
     toVertex: VertexBlockSelection
@@ -31,18 +22,10 @@ type Props = {
 const ConnectionsStage: React.FC<Props> = ({
   stageState,
   connectionBlocks,
-  templateBlocks,
   createConnection,
   moveConnectionBlock,
 }) => {
-  const { stage, stageContainer, navigateTo, fitBoundsRect } = stageState;
-
-  useCenterLevelOnMount({
-    level: templateBlocks,
-    stageWidth: stage.width,
-    stageHeight: stage.height,
-    fitBoundsRect,
-  });
+  const { stage, stageContainer, navigateTo } = stageState;
 
   const [selectedVertex, setSelectedVertex] = useState<VertexBlockSelection>();
 
@@ -67,7 +50,11 @@ const ConnectionsStage: React.FC<Props> = ({
       <EditorStage {...stage} navigateTo={navigateTo}>
         <Layer>
           {connectionBlocks.map((connectionBlock) => {
-            const { block, instance } = connectionBlock;
+            const { instance } = connectionBlock;
+            const block = shiftTemplateBlock(
+              connectionBlock.block,
+              connectionBlock.origin
+            );
             return (
               <Group
                 key={connectionBlock.instance}

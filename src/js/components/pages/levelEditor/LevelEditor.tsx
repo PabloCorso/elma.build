@@ -47,13 +47,9 @@ const LevelEditor: React.FC<Props> = ({
     }
 
     const shift = getTemplateBlockOverlapShift(
-      stageBlocks.map((stageBlock) => {
-        console.log({
-          instance: stageBlock.instance,
-          origin: stageBlock.origin,
-        });
-        return shiftTemplateBlock(stageBlock.block, stageBlock.origin);
-      })
+      stageBlocks.map((stageBlock) =>
+        shiftTemplateBlock(stageBlock.block, stageBlock.origin)
+      )
     );
     const origin = { x: shift.x + shift.width, y: 0 };
     dispatch(addLevelBlock(block, origin));

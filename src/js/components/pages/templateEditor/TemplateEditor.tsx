@@ -17,8 +17,8 @@ import ImportIcon from "@material-ui/icons/Add";
 import {
   getLevelBoundsRect,
   getTemplateBlockOverlapShift,
-  getConnectionShiftedBlock,
   createTemplateBlock,
+  shiftTemplateBlock,
 } from "../../../utils";
 import TabPanel from "../../atoms/tabPanel";
 import useEditorStageState from "../../../hooks/editorHooks";
@@ -63,7 +63,9 @@ const TemplateEditor: React.FC<Props> = ({
 
   const createConnectionBlock = (block: TemplateBlock) => {
     const shift = getTemplateBlockOverlapShift(
-      connectionBlocks.map(getConnectionShiftedBlock)
+      connectionBlocks.map((connectionBlock) =>
+        shiftTemplateBlock(connectionBlock.block, connectionBlock.origin)
+      )
     );
     const origin = { x: shift.x + shift.width, y: 0 };
     dispatch(addConnectionBlock(block, origin));
@@ -166,7 +168,6 @@ const TemplateEditor: React.FC<Props> = ({
           <TabPanel value={TemplateStageTab.Connections} index={tabIndex}>
             <ConnectionsStage
               stageState={connectionsStage}
-              templateBlocks={templateBlocks}
               connectionBlocks={connectionBlocks}
               createConnection={handleCreateConnection}
               moveConnectionBlock={handleMoveConnectionBlock}

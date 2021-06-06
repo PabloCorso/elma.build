@@ -30,6 +30,13 @@ const App: React.FC = () => {
     setTemplatesFolder(folder);
   }, []);
 
+  useEffect(
+    function onChangeEditor() {
+      setLevel(null);
+    },
+    [isTemplating]
+  );
+
   useEventListener("app-menu", (event: CustomEvent) => {
     const appMenuEvent = event.detail as AppMenuEvents;
     switch (appMenuEvent) {
